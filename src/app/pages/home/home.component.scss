@@ -12,7 +12,6 @@
   background-color: #f8f9fa;
 }
 
-/* NAVIGATION */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -38,7 +37,6 @@
   color: black;
 }
 
-/* HERO SECTION */
 .hero {
   display: flex;
   align-items: center;
@@ -84,7 +82,6 @@
   width: 400px;
 }
 
-/* TOP PICKS */
 .top-picks, .categories, .bestseller, .offer, .pricing {
   text-align: center;
   padding: 50px 10%;
@@ -96,7 +93,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* BOOK LIST */
 .book-list {
   display: flex;
   flex-wrap: wrap;
@@ -134,7 +130,6 @@ h2 {
   color: #555;
 }
 
-/* KATEGORIEN & BESTSELLER */
 .category-list, .bestseller-list {
   display: flex;
   justify-content: center;
@@ -157,7 +152,6 @@ h2 {
   font-size: 1.2rem;
 }
 
-/* ANGEBOT */
 .offer {
   background: #eef2ff;
   border-radius: 20px;
@@ -178,7 +172,6 @@ h2 {
   background: #0056b3;
 }
 
-/* PREISE */
 .pricing {
   display: flex;
   justify-content: center;
@@ -217,17 +210,20 @@ h2 {
   margin: 10px 0;
 }
 
-/* FOOTER */
+
 .footer {
   background: white;
   padding: 40px 10%;
   display: flex;
   justify-content: space-between;
   align-items: start;
+  flex-wrap: wrap;
+  border-top: 1px solid #ddd;
 }
 
 .footer-logo img {
   width: 120px;
+  margin-bottom: 10px;
 }
 
 .footer h4 {
@@ -237,6 +233,11 @@ h2 {
 
 .footer ul {
   list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 5px;
 }
 
 .footer ul li a {
@@ -245,9 +246,12 @@ h2 {
 }
 
 .footer-newsletter input {
+  width: 80%;
+  max-width: 250px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-top: 10px;
 }
 
 .footer-newsletter button {
@@ -256,6 +260,7 @@ h2 {
   padding: 8px 15px;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .footer-newsletter button:hover {
