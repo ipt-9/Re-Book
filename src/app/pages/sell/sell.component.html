@@ -1,1 +1,89 @@
-<p>sell works!</p>
+<div class="sell-container">
+  <nav class="navbar">
+    <div class="logo">
+      <img src="/logo.png" alt="Re-Book Logo">
+    </div>
+    <ul class="nav-links">
+      <li>Home</li>
+      <li>Shop</li>
+      <li>Sell</li>
+      <li>Pricing</li>
+    </ul>
+  </nav>
+
+  <section class="sell-header">
+    <h2>VERKAUF DEIN BUCH</h2>
+    <p>Liste deine gebrauchten Lehrbücher und Schulmaterialien zum Verkauf auf.
+      Wir helfen dir, Käufer zu finden und den besten Preis zu erzielen.</p>
+  </section>
+
+  <section class="sell-form">
+    <form>
+      <div class="form-group">
+        <label for="title">Titel</label>
+        <input type="text" id="title" placeholder="Gib den Buchtitel ein" aria-label="Buchtitel">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Beschreibung</label>
+        <textarea id="description" placeholder="Beschreibe den Zustand und die Details des Buches" aria-label="Beschreibung"></textarea>
+      </div>
+
+      <div class="form-group category-group">
+        <label>Kategorie</label>
+        <div class="checkbox-group">
+          <label for="category1"><input type="checkbox" id="category1"> Schulbücher</label>
+          <label for="category2"><input type="checkbox" id="category2"> Schulmaterial</label>
+          <label for="category3"><input type="checkbox" id="category3"> Lernmaterial</label>
+          <label for="category4"><input type="checkbox" id="category4"> Andere</label>
+        </div>
+      </div>
+
+      <div class="form-group price-group">
+        <label for="price">Preis</label>
+        <div class="price-input">
+          <input type="text" id="price" placeholder="Gib den Preis ein" aria-label="Preis">
+          <span>CHF</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="file-upload">Bild hochladen</label>
+        <input type="file" id="file-upload" aria-label="Bild hochladen">
+      </div>
+
+      <button type="submit" class="submit-btn">Absenden</button>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <img src="/logo.png" alt="Re-Book Logo">
+      <p>Hirschengraben 10</p>
+      <p>Postfach 3439</p>
+      <p>6002 Luzern</p>
+      <p>Switzerland</p>
+    </div>
+    <div class="footer-links">
+      <h4>Links</h4>
+      <ul>
+        <li>Home</li>
+        <li>Shop</li>
+        <li>Sell</li>
+        <li>Cart</li>
+      </ul>
+    </div>
+    <div class="footer-help">
+      <h4>Help</h4>
+      <ul>
+        <li>Privacy Policy</li>
+        <li>Terms of Service</li>
+      </ul>
+    </div>
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <input type="email" placeholder="Enter Your Email Address" aria-label="Newsletter Email">
+      <button class="subscribe-btn">SUBSCRIBE</button>
+    </div>
+  </footer>
+</div>
