@@ -7,7 +7,7 @@
   font-family: 'Afacad', sans-serif;
 }
 
-.checkout-container {
+.about-container {
   width: 100%;
   min-height: 100vh;
   background-color: #f8f9fa;
@@ -42,108 +42,34 @@
   color: black;
 }
 
-.checkout-header {
-  text-align: center;
-  margin: 40px 0;
-}
-
-.checkout-header h2 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-.payment-form {
+.about-content {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100%;
+  justify-content: center;
+  padding: 80px 10%;
+  gap: 50px;
 }
 
-.payment-box {
-  background: white;
-  padding: 40px;
+.about-text {
+  max-width: 50%;
+}
+
+.about-text h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.about-image img {
+  width: 450px;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.payment-box h3 {
-  font-size: 1.3rem;
-  color: #2c3e50;
-  margin-bottom: 15px;
-}
-
-.card-types {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 15px;
-}
-
-.card-types img {
-  width: 50px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  text-align: left;
-  font-weight: 600;
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: #2c3e50;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  font-size: 1rem;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  margin-top: 5px;
-}
-
-.card-details {
-  display: flex;
-  justify-content: space-between;
-}
-
-.card-details div {
-  width: 48%;
-}
-
-.price-summary {
-  margin: 20px 0;
-  text-align: left;
-}
-
-.price-summary p {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1rem;
-  color: #2c3e50;
-}
-
-.pay-btn {
-  background: #6a5acd;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  margin-top: 15px;
-  width: 100%;
-}
-
-.pay-btn:hover {
-  background: #5845c3;
 }
 
 .footer {

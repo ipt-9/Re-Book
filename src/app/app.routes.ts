@@ -12,6 +12,9 @@ import { TermsComponent } from './pages/terms/terms.component';
 import { PolicyComponent } from './pages/policy/policy.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
+import { AboutusComponent } from './pages/aboutus/aboutus.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,5 +31,8 @@ export const routes: Routes = [
   { path: 'policy', component: PolicyComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'confirmation', component: ConfirmationComponent },
+  { path: 'aboutus', component: AboutusComponent },
+  { path: 'contact', component: ContactComponent },
   { path: '**', redirectTo: 'home' }
 ];

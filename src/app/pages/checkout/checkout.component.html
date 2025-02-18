@@ -1,1 +1,85 @@
-<p>checkout works!</p>
+<div class="checkout-container">
+  <nav class="navbar">
+    <div class="logo">
+      <img src="/logo.png" alt="Re-Book Logo">
+    </div>
+    <ul class="nav-links">
+      <li>Home</li>
+      <li>Shop</li>
+      <li>Sell</li>
+      <li>Pricing</li>
+    </ul>
+  </nav>
+
+  <section class="checkout-header">
+    <h2>SHOPPING CART</h2>
+  </section>
+
+  <section class="payment-form">
+    <div class="payment-box">
+      <h3>Kartendetails</h3>
+      <div class="card-types">
+        <img src="/mastercard.png" alt="MasterCard">
+        <img src="/visa.svg" alt="Visa">
+      </div>
+
+      <form>
+        <label for="cardname">Kartenname</label>
+        <input type="text" id="cardname" placeholder="Name">
+
+        <label for="cardnumber">Kartennummer</label>
+        <input type="text" id="cardnumber" placeholder="1111 2222 3333 4444">
+
+        <div class="card-details">
+          <div>
+            <label for="expiry">Ablaufdatum</label>
+            <input type="text" id="expiry" placeholder="mm/yy">
+          </div>
+          <div>
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" placeholder="123">
+          </div>
+        </div>
+
+        <div class="price-summary">
+          <p><strong>Zwischensumme</strong> <span>CHF 169.00</span></p>
+          <p><strong>Versand</strong> <span>CHF 9.90</span></p>
+          <p><strong>Total (Steuer inkl.)</strong> <span>CHF 178.90</span></p>
+        </div>
+
+        <button type="submit" class="pay-btn">ZAHLEN</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <img src="/logo.png" alt="Re-Book Logo">
+      <p>Hirschengraben 10</p>
+      <p>Postfach 3439</p>
+      <p>6002 Luzern</p>
+      <p>Switzerland</p>
+    </div>
+    <div class="footer-links">
+      <h4>Links</h4>
+      <ul>
+        <li>Home</li>
+        <li>Shop</li>
+        <li>Sell</li>
+        <li>Cart</li>
+      </ul>
+    </div>
+    <div class="footer-help">
+      <h4>Help</h4>
+      <ul>
+        <li>Privacy Policy</li>
+        <li>Terms of Service</li>
+      </ul>
+    </div>
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <input type="email" placeholder="Enter Your Email Address">
+      <button class="subscribe-btn">SUBSCRIBE</button>
+    </div>
+  </footer>
+</div>
