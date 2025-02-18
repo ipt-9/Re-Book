@@ -1,0 +1,72 @@
+.btn {
+  background: #6a5acd;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.btn:hover {
+  background: #5845c3;
+}
+
+.footer {
+  background: #f7f7f7;
+  padding: 40px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  border-top: 1px solid #ddd;
+}
+
+.footer-logo img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.footer h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 5px;
+}
+
+.footer ul li a {
+  text-decoration: none;
+  color: #444;
+}
+
+.footer-newsletter input {
+  width: 80%;
+  max-width: 250px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.footer-newsletter button {
+  background: black;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.footer-newsletter button:hover {
+  background: #333;
+}
