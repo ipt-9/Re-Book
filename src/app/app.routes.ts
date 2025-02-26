@@ -33,6 +33,5 @@ export const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'confirmation', component: ConfirmationComponent },
   { path: 'aboutus', component: AboutusComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: '**', redirectTo: 'home' }
+  { path: 'contact', component: ContactComponent }
 ];

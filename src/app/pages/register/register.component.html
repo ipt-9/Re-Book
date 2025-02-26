@@ -4,32 +4,33 @@
       <img src="/logo.png" alt="Re-Book Logo">
     </div>
     <ul class="nav-links">
-      <li><a href="/home">Home</a></li>
-      <li><a href="/shop">Shop</a></li>
-      <li><a href="/sell">Sell</a></li>
-      <li><a href="/pricing">Pricing</a></li>
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/shop">Shop</a></li>
+      <li><a routerLink="/sell">Sell</a></li>
+      <li><a routerLink="/pricing">Pricing</a></li>
     </ul>
   </nav>
 
   <section class="register-content">
     <div class="register-form">
       <h2>Registrieren</h2>
-      <p>Falls du schon einen Account hast <a href="/login"><strong>Anmelden !</strong></a></p>
+      <p>Falls du schon einen Account hast <a routerLink="/login"><strong>Anmelden!</strong></a></p>
 
-      <form>
+      <!-- Angular Form -->
+      <form (submit)="register(); $event.preventDefault()">
         <label>Email</label>
-        <input type="email" placeholder="Gib deine Email Adresse ein">
+        <input type="email" placeholder="Gib deine Email Adresse ein" [(ngModel)]="user.email" name="email" required>
 
-        <label>Nutzename</label>
-        <input type="text" placeholder="Gib deinen Nutzernamen ein">
+        <label>Nutzername</label>
+        <input type="text" placeholder="Gib deinen Nutzernamen ein" [(ngModel)]="user.username" name="username" required>
 
         <label>Passwort</label>
-        <input type="password" placeholder="Gib dein Passwort ein">
+        <input type="password" placeholder="Gib dein Passwort ein" [(ngModel)]="user.password" name="password" required>
 
         <label>Passwort bestätigen</label>
-        <input type="password" placeholder="Bestätige dein Passwort">
+        <input type="password" placeholder="Bestätige dein Passwort" [(ngModel)]="user.confirmPassword" name="confirmPassword" required>
 
-        <button class="btn">Registrieren</button>
+        <button class="btn" type="submit">Registrieren</button>
       </form>
     </div>
   </section>
@@ -40,9 +41,10 @@
     </div>
     <div class="footer-links">
       <ul>
-        <li><a href="/privacy">Privacy Policy</a></li>
-        <li><a href="/terms">Terms of Service</a></li>
+        <li><a routerLink="/privacy">Privacy Policy</a></li>
+        <li><a routerLink="/terms">Terms of Service</a></li>
       </ul>
     </div>
   </footer>
 </div>
+
