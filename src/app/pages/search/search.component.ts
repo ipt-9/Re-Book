@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-search',
-  imports: [],
+    imports: [
+        RouterLink
+    ],
   templateUrl: './search.component.html',
-  styleUrl: './search.component.scss'
+  styleUrls: ['./search.component.scss', '../../../styles.scss']
 })
 export class SearchComponent {
 

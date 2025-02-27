@@ -9,7 +9,7 @@ import { lastValueFrom } from 'rxjs';
   selector: 'app-register',
   standalone: true,
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  styleUrls: ['./register.component.scss', '../../../styles.scss'],
   imports: [FormsModule, RouterLink]
 })
 

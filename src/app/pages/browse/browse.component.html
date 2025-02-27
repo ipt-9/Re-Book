@@ -1,13 +1,16 @@
 <div class="browse-container">
   <nav class="navbar">
     <div class="logo">
-      <img src="/logo.png" alt="Re-Book Logo">
+      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
     </div>
     <ul class="nav-links">
-      <li>Home</li>
-      <li>Shop</li>
-      <li>Sell</li>
-      <li>Pricing</li>
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/browse">Shop</a></li>
+      <li><a routerLink="/sell">Sell</a></li>
+      <li><a routerLink="/pricing">Pricing</a></li>
+      <li><a routerLink="/favourites">Favourites</a></li>
+      <li><a routerLink="/cart">Cart</a></li>
+      <li><a routerLink="/profile">Profile</a></li>
     </ul>
   </nav>
 
@@ -127,7 +130,7 @@
 
   <footer class="footer">
     <div class="footer-logo">
-      <img src="/logo.png" alt="Re-Book Logo">
+      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
       <p>Hirschengraben 10</p>
       <p>Postfach 3439</p>
       <p>6002 Luzern</p>
@@ -136,17 +139,20 @@
     <div class="footer-links">
       <h4>Links</h4>
       <ul>
-        <li>Home</li>
-        <li>Shop</li>
-        <li>Sell</li>
-        <li>Cart</li>
+        <li><a routerLink="/home">Home</a></li>
+        <li><a routerLink="/browse">Shop</a></li>
+        <li><a routerLink="/sell">Sell</a></li>
+        <li><a routerLink="/cart">Cart</a></li>
+        <li><a routerLink="/profile">Profile</a></li>
       </ul>
     </div>
     <div class="footer-help">
       <h4>Help</h4>
       <ul>
-        <li>Privacy Policy</li>
-        <li>Terms of Service</li>
+        <li><a routerLink="/aboutus">About Us</a></li>
+        <li><a routerLink="/contact">Contact</a></li>
+        <li><a routerLink="/policy">Privacy Policy</a></li>
+        <li><a routerLink="/terms">Terms of Service</a></li>
       </ul>
     </div>
     <div class="footer-newsletter">
