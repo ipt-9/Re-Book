@@ -1,19 +1,21 @@
 <div class="profile-container">
   <nav class="navbar">
     <div class="logo">
-      <img src="/logo.png" alt="Re-Book Logo">
-    </div>
-    <ul class="nav-links">
-      <li><a href="/home">Home</a></li>
-      <li><a href="/shop">Shop</a></li>
-      <li><a href="/sell">Sell</a></li>
-      <li><a href="/pricing">Pricing</a></li>
-    </ul>
+      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
+    </div><ul class="nav-links">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/browse">Shop</a></li>
+    <li><a routerLink="/sell">Sell</a></li>
+    <li><a routerLink="/pricing">Pricing</a></li>
+    <li><a routerLink="/favourites">Favourites</a></li>
+    <li><a routerLink="/cart">Cart</a></li>
+    <li><a routerLink="/profile">Profile</a></li>
+  </ul>
   </nav>
 
   <section class="profile-info">
     <div class="profile-header">
-      <img src="/" alt="User Profile">
+      <img src="./wissenschaft.jpeg" alt="User Profile">
       <h2>Max Mustermann <span class="premium">Premium</span></h2>
       <p>max&#64;gmail.com</p>
       <button class="logout-btn">Log out</button>
@@ -58,12 +60,12 @@
     <h2>ADVERTISED PRODUCTS</h2>
     <div class="product-list">
       <div class="product-item">
-        <img src="/zgb.jpg" alt="ZGB/OR">
+        <img src="./zgb.jpg" alt="ZGB/OR">
         <h4>ZGB/OR</h4>
         <p>CHF 9.90</p>
       </div>
       <div class="product-item">
-        <img src="/wirtschaft.jpg" alt="Wirtschaft">
+        <img src="./wirtschaft_ordner.jpeg" alt="Wirtschaft">
         <h4>Brennpunkt Wirtschaft</h4>
         <p>CHF 32.00</p>
       </div>
@@ -72,7 +74,7 @@
     <h2>SOLD PRODUCTS</h2>
     <div class="product-list">
       <div class="product-item">
-        <img src="/sold-book.jpg" alt="Sold Book">
+        <img src="./frw3.png" alt="Sold Book">
         <h4>ZGB/OR</h4>
         <p>CHF 45.90</p>
       </div>
@@ -81,13 +83,35 @@
 
   <footer class="footer">
     <div class="footer-logo">
-      <img src="/logo.png" alt="Re-Book Logo">
+      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
+      <p>Hirschengraben 10</p>
+      <p>Postfach 3439</p>
+      <p>6002 Luzern</p>
+      <p>Switzerland</p>
     </div>
     <div class="footer-links">
+      <h4>Links</h4>
       <ul>
-        <li><a href="/privacy">Privacy Policy</a></li>
-        <li><a href="/terms">Terms of Service</a></li>
+        <li><a routerLink="/home">Home</a></li>
+        <li><a routerLink="/browse">Shop</a></li>
+        <li><a routerLink="/sell">Sell</a></li>
+        <li><a routerLink="/cart">Cart</a></li>
+        <li><a routerLink="/profile">Profile</a></li>
       </ul>
+    </div>
+    <div class="footer-help">
+      <h4>Help</h4>
+      <ul>
+        <li><a routerLink="/aboutus">About Us</a></li>
+        <li><a routerLink="/contact">Contact</a></li>
+        <li><a routerLink="/policy">Privacy Policy</a></li>
+        <li><a routerLink="/terms">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <input type="email" placeholder="Enter Your Email Address">
+      <button class="subscribe-btn">SUBSCRIBE</button>
     </div>
   </footer>
 </div>

@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-sell',
-  imports: [],
+    imports: [
+        RouterLink
+    ],
   templateUrl: './sell.component.html',
-  styleUrl: './sell.component.scss'
+  styleUrls: ['./sell.component.scss', '../../../styles.scss']
 })
 export class SellComponent {
 

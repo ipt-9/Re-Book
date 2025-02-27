@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-cart',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+  styleUrls: ['./cart.component.scss', '../../../styles.scss']
 })
 export class CartComponent {
 

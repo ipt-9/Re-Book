@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrls: ['./home.component.scss', '../../../styles.scss']
+
 })
 export class HomeComponent {
 
