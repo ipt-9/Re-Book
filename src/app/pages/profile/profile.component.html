@@ -13,74 +13,71 @@
   </ul>
   </nav>
 
-  <section class="profile-info">
+
+  <section class="profile-info" *ngIf="user">
     <div class="profile-header">
       <img src="./wissenschaft.jpeg" alt="User Profile">
-      <h2>Max Mustermann <span class="premium">Premium</span></h2>
-      <p>max&#64;gmail.com</p>
-      <button class="logout-btn">Log out</button>
+      <h2>{{ user.name }} <span *ngIf="user.premium" class="premium">Premium</span></h2>
+      <p>{{ user.email }}</p>
+      <button class="logout-btn" (click)="logout()">Log out</button>
     </div>
 
     <div class="profile-details">
       <div class="detail-item">
-        <label>Voller Name</label>
-        <input type="text" value="Max Mustermann" disabled>
+        <label>Name</label>
+        <input type="text" [value]="user.name" disabled>
       </div>
       <div class="detail-item">
-        <label>Spitzname</label>
-        <input type="text" value="Max12" disabled>
+        <label>Username</label>
+        <input type="text" [value]="user.username" disabled>
       </div>
       <div class="detail-item">
         <label>Land</label>
-        <input type="text" value="Schweiz" disabled>
+        <input type="text" [value]="user.country" disabled>
       </div>
       <div class="detail-item">
         <label>Schule</label>
-        <input type="text" value="FMZ Luzern" disabled>
+        <input type="text" [value]="user.school" disabled>
       </div>
     </div>
 
     <div class="profile-stats">
       <div class="stat-item">
         <h3>Verkaufte Produkte</h3>
-        <p>32</p>
+        <p>{{ user.soldProducts.length }}</p>
       </div>
       <div class="stat-item">
         <h3>Verdientes Geld</h3>
-        <p>300 CHF</p>
+        <p>{{ user.earnedMoney }} CHF</p>
       </div>
       <div class="stat-item">
         <h3>Gekaufte Produkte</h3>
-        <p>12</p>
+        <p>{{ user.boughtProducts.length }}</p>
       </div>
     </div>
   </section>
 
-  <section class="products">
+  <section class="products" *ngIf="user">
     <h2>ADVERTISED PRODUCTS</h2>
     <div class="product-list">
-      <div class="product-item">
-        <img src="./zgb.jpg" alt="ZGB/OR">
-        <h4>ZGB/OR</h4>
-        <p>CHF 9.90</p>
-      </div>
-      <div class="product-item">
-        <img src="./wirtschaft_ordner.jpeg" alt="Wirtschaft">
-        <h4>Brennpunkt Wirtschaft</h4>
-        <p>CHF 32.00</p>
+      <div class="product-item" *ngFor="let product of user.advertisedProducts">
+        <img [src]="product.image" [alt]="product.name">
+        <h4>{{ product.name }}</h4>
+        <p>CHF {{ product.price }}</p>
       </div>
     </div>
 
     <h2>SOLD PRODUCTS</h2>
     <div class="product-list">
-      <div class="product-item">
-        <img src="./frw3.png" alt="Sold Book">
-        <h4>ZGB/OR</h4>
-        <p>CHF 45.90</p>
+      <div class="product-item" *ngFor="let product of user.soldProducts">
+        <img [src]="product.image" [alt]="product.name">
+        <h4>{{ product.name }}</h4>
+        <p>CHF {{ product.price }}</p>
       </div>
     </div>
   </section>
 
+<!--
   <footer class="footer">
     <div class="footer-logo">
       <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
@@ -114,4 +111,5 @@
       <button class="subscribe-btn">SUBSCRIBE</button>
     </div>
   </footer>
+  -->
 </div>
