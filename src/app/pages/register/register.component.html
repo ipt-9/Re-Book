@@ -15,28 +15,59 @@
   </nav>
 
   <section class="register-content">
+    <div class="register-image">
+      <img src="/login_register.jpg" alt="Register Illustration">
+    </div>
     <div class="register-form">
       <h2>Registrieren</h2>
-      <p>Falls du schon einen Account hast <a routerLink="/login"><strong>Anmelden!</strong></a></p>
+      <p>Falls du schon einen Account hast<br>Du kannst dich <a href="/login">Anmelden!</a></p>
 
-      <!-- Angular Form -->
       <form (submit)="register(); $event.preventDefault()">
-        <label>Email</label>
-        <input type="email" placeholder="Gib deine Email Adresse ein" [(ngModel)]="user.email" name="email" required>
+        <label for="email">Email</label>
+        <div class="input-group">
+          <input type="email" id="email" placeholder="Gib deine Email Adresse ein" [(ngModel)]="user.email" name="email" required>
+          <i class="fa fa-envelope"></i>
+        </div>
 
-        <label>Nutzername</label>
-        <input type="text" placeholder="Gib deinen Nutzernamen ein" [(ngModel)]="user.username" name="username" required>
+        <label for="username">Nutzername</label>
+        <div class="input-group">
+          <input type="text" id="username" placeholder="Gib deinen Nutzernamen ein" [(ngModel)]="user.username" name="username" required>
+          <i class="fa fa-user"></i>
+        </div>
 
-        <label>Passwort</label>
-        <input type="password" placeholder="Gib dein Passwort ein" [(ngModel)]="user.password" name="password" required>
+        <label for="password">Passwort</label>
+        <div class="input-group">
+          <input type="password" id="password" placeholder="Gib dein Passwort ein" [(ngModel)]="user.password" name="password" required>
+          <i class="fa fa-eye"></i>
+        </div>
 
-        <label>Passwort bestätigen</label>
-        <input type="password" placeholder="Bestätige dein Passwort" [(ngModel)]="user.confirmPassword" name="confirmPassword" required>
+        <label for="confirmPassword">Passwort bestätigen</label>
+        <div class="input-group">
+          <input type="password" id="confirmPassword" placeholder="Bestätige dein Passwort" [(ngModel)]="user.confirmPassword" name="confirmPassword" required>
+          <i class="fa fa-lock"></i>
+        </div>
 
-        <button class="btn" type="submit">Registrieren</button>
+        <label for="school">Schule</label>
+        <div class="input-group">
+          <input type="text" id="school" placeholder="Gib deine Schule ein" [(ngModel)]="user.school" name="school">
+          <i class="fa fa-phone"></i>
+        </div>
+
+        <label for="region">Region</label>
+        <div class="input-group">
+          <input type="text" id="region" [(ngModel)]="user.region" name="region" >
+          <i class="fa fa-calendar"></i>
+        </div>
+
+        <div class="options">
+          <label><input type="checkbox" required> Ich akzeptiere die <a href="/terms">Nutzungsbedingungen</a></label>
+        </div>
+
+        <button type="submit" class="register-btn">Registrieren</button>
       </form>
     </div>
   </section>
+
 
   <footer class="footer">
     <div class="footer-logo">

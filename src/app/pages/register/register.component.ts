@@ -15,7 +15,7 @@ import { lastValueFrom } from 'rxjs';
 
 
 export class RegisterComponent {
-  user = { username: '', email: '', password: '', confirmPassword: '' };
+  user = { username: '', email: '', password: '', confirmPassword: '', school: '', region: '' };
   message: string = '';
 
   constructor(private registerService: RegisterService, private router: Router) {}
