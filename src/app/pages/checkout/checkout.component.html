@@ -8,9 +8,10 @@
       <li><a routerLink="/browse">Shop</a></li>
       <li><a routerLink="/sell">Sell</a></li>
       <li><a routerLink="/pricing">Pricing</a></li>
-      <li><a routerLink="/favourites">Favourites</a></li>
+      <li><a routerLink="/favorites">Favorites</a></li>
       <li><a routerLink="/cart">Cart</a></li>
       <li><a routerLink="/profile">Profile</a></li>
+      <li><a routerLink="/login">Login</a></li>
     </ul>
   </nav>
 
@@ -49,8 +50,8 @@
           <p><strong>Versand</strong> <span>CHF 9.90</span></p>
           <p><strong>Total (Steuer inkl.)</strong> <span>CHF 178.90</span></p>
         </div>
+        <button type="submit" class="pay-btn" (click)="goToConfirmation()">ZAHLEN</button>
 
-        <button type="submit" class="pay-btn">ZAHLEN</button>
       </form>
     </div>
   </section>

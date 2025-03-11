@@ -8,9 +8,10 @@
       <li><a routerLink="/browse">Shop</a></li>
       <li><a routerLink="/sell">Sell</a></li>
       <li><a routerLink="/pricing">Pricing</a></li>
-      <li><a routerLink="/favourites">Favourites</a></li>
+      <li><a routerLink="/favorites">Favorites</a></li>
       <li><a routerLink="/cart">Cart</a></li>
       <li><a routerLink="/profile">Profile</a></li>
+      <li><a routerLink="/login">Login</a></li>
     </ul>
   </nav>
 
@@ -69,7 +70,7 @@
   <section class="cart-summary">
     <h3>Zusammenfassung</h3>
     <p class="total-price">CHF 61.80</p>
-    <button class="checkout-btn">Zur Kasse</button>
+    <button class="checkout-btn" (click)="goToCheckout()">Zur Kasse</button>
   </section>
 
   <footer class="footer">

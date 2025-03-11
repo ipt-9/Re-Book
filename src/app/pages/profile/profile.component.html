@@ -1,115 +1,177 @@
 <div class="profile-container">
-  <nav class="navbar">
-    <div class="logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-    </div><ul class="nav-links">
-    <li><a routerLink="/home">Home</a></li>
-    <li><a routerLink="/browse">Shop</a></li>
-    <li><a routerLink="/sell">Sell</a></li>
-    <li><a routerLink="/pricing">Pricing</a></li>
-    <li><a routerLink="/favourites">Favourites</a></li>
-    <li><a routerLink="/cart">Cart</a></li>
-    <li><a routerLink="/profile">Profile</a></li>
-  </ul>
-  </nav>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/home"><img src="/logo.png" alt="Re-Book Logo"></a>
+        </div>
+        <ul class="nav-links">
+            <li><a routerLink="/home">Home</a></li>
+            <li><a routerLink="/shop">Shop</a></li>
+            <li><a routerLink="/sell">Sell</a></li>
+            <li><a routerLink="/pricing">Pricing</a></li>
+            <li><a routerLink="/favorites">Favorites</a></li>
+            <li><a routerLink="/cart">Cart</a></li>
+            <li><a routerLink="/profile">Profile</a></li>
+            <li><a routerLink="/login">Login</a></li>
+        </ul>
+    </nav>
 
+    <section class="profile-header">
+        <div class="profile-info">
+            <img src="/profile.avif" alt="Profile Picture" class="profile-pic">
+            <div>
+                <h2>Max Mustermann <span class="premium">Premium</span></h2>
+                <p class="email">max&#64;gmail.com</p>
+            </div>
+        </div>
+        <button class="signout-btn">Sign out</button>
+    </section>
 
-  <section class="profile-info" *ngIf="user">
-    <div class="profile-header">
-      <img src="./wissenschaft.jpeg" alt="User Profile">
-      <h2>{{ user.name }} <span *ngIf="user.premium" class="premium">Premium</span></h2>
-      <p>{{ user.email }}</p>
-      <button class="logout-btn" (click)="logout()">Log out</button>
-    </div>
+    <section class="profile-details">
+        <div class="detail-group">
+            <label>Voller Name</label>
+            <input type="text" value="Max Mustermann" disabled>
+        </div>
+        <div class="detail-group">
+            <label>Spitzname</label>
+            <input type="text" value="Max12" disabled>
+        </div>
+        <div class="detail-group">
+            <label>Geschlecht</label>
+            <input type="text" value="Männlich" disabled>
+        </div>
+        <div class="detail-group">
+            <label>Land</label>
+            <input type="text" value="Schweiz" disabled>
+        </div>
+        <div class="detail-group">
+            <label>Sprache</label>
+            <input type="text" value="Deutsch" disabled>
+        </div>
+        <div class="detail-group">
+            <label>Schule</label>
+            <input type="text" value="FMZ Luzern" disabled>
+        </div>
+    </section>
 
-    <div class="profile-details">
-      <div class="detail-item">
-        <label>Name</label>
-        <input type="text" [value]="user.name" disabled>
-      </div>
-      <div class="detail-item">
-        <label>Username</label>
-        <input type="text" [value]="user.username" disabled>
-      </div>
-      <div class="detail-item">
-        <label>Land</label>
-        <input type="text" [value]="user.country" disabled>
-      </div>
-      <div class="detail-item">
-        <label>Schule</label>
-        <input type="text" [value]="user.school" disabled>
-      </div>
-    </div>
+    <section class="email-section">
+        <h3>Meine Email Adresse</h3>
+        <div class="email-info">
+            <img src="/email.webp" alt="Email Icon" class="email-icon">
+            <div>
+                <p class="email-text">max&#64;gmail.com</p>
+                <p class="email-date">Vor einem Monat</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="profile-stats">
-      <div class="stat-item">
+    <section class="products">
+        <h3>Beworbene Produkte</h3>
+        <div class="book-list">
+            <div class="book-item highlighted">
+                <img src="/frw3.png" alt="Product">
+                <h4>Finanz- und Rechnungswesen - Vertiefungen</h4>
+                <strong>CHF 49.90</strong>
+            </div>
+            <div class="book-item">
+                <img src="/grammatik.jpg" alt="Product">
+                <h4>Systematische Übungsgrammatik</h4>
+                <strong>CHF 25.90</strong>
+            </div>
+            <div class="book-item">
+                <img src="/gold.webp" alt="Product">
+                <h4>Gold B2 First</h4>
+                <strong>CHF 46.70</strong>
+            </div>
+            <div class="book-item">
+                <img src="/business.jpg" alt="Product">
+                <h4>Business Partner B1+</h4>
+                <strong>CHF 35.90</strong>
+            </div>
+        </div>
+    </section>
+
+    <section class="products">
         <h3>Verkaufte Produkte</h3>
-        <p>{{ user.soldProducts.length }}</p>
-      </div>
-      <div class="stat-item">
-        <h3>Verdientes Geld</h3>
-        <p>{{ user.earnedMoney }} CHF</p>
-      </div>
-      <div class="stat-item">
+        <div class="book-list">
+            <div class="book-item highlighted">
+                <img src="/frw3.png" alt="Product">
+                <h4>Finanz- und Rechnungswesen - Vertiefungen</h4>
+                <strong>CHF 49.90</strong>
+            </div>
+            <div class="book-item">
+                <img src="/grammatik.jpg" alt="Product">
+                <h4>Systematische Übungsgrammatik</h4>
+                <strong>CHF 25.90</strong>
+            </div>
+            <div class="book-item">
+                <img src="/gold.webp" alt="Product">
+                <h4>Gold B2 First</h4>
+                <strong>CHF 46.70</strong>
+            </div>
+            <div class="book-item">
+                <img src="/business.jpg" alt="Product">
+                <h4>Business Partner B1+</h4>
+                <strong>CHF 35.90</strong>
+            </div>
+        </div>
+    </section>
+
+    <section class="products">
         <h3>Gekaufte Produkte</h3>
-        <p>{{ user.boughtProducts.length }}</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="products" *ngIf="user">
-    <h2>ADVERTISED PRODUCTS</h2>
-    <div class="product-list">
-      <div class="product-item" *ngFor="let product of user.advertisedProducts">
-        <img [src]="product.image" [alt]="product.name">
-        <h4>{{ product.name }}</h4>
-        <p>CHF {{ product.price }}</p>
-      </div>
-    </div>
-
-    <h2>SOLD PRODUCTS</h2>
-    <div class="product-list">
-      <div class="product-item" *ngFor="let product of user.soldProducts">
-        <img [src]="product.image" [alt]="product.name">
-        <h4>{{ product.name }}</h4>
-        <p>CHF {{ product.price }}</p>
-      </div>
-    </div>
-  </section>
-
-<!--
-  <footer class="footer">
-    <div class="footer-logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-      <p>Hirschengraben 10</p>
-      <p>Postfach 3439</p>
-      <p>6002 Luzern</p>
-      <p>Switzerland</p>
-    </div>
-    <div class="footer-links">
-      <h4>Links</h4>
-      <ul>
-        <li><a routerLink="/home">Home</a></li>
-        <li><a routerLink="/browse">Shop</a></li>
-        <li><a routerLink="/sell">Sell</a></li>
-        <li><a routerLink="/cart">Cart</a></li>
-        <li><a routerLink="/profile">Profile</a></li>
-      </ul>
-    </div>
-    <div class="footer-help">
-      <h4>Help</h4>
-      <ul>
-        <li><a routerLink="/aboutus">About Us</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-        <li><a routerLink="/policy">Privacy Policy</a></li>
-        <li><a routerLink="/terms">Terms of Service</a></li>
-      </ul>
-    </div>
-    <div class="footer-newsletter">
-      <h4>Newsletter</h4>
-      <input type="email" placeholder="Enter Your Email Address">
-      <button class="subscribe-btn">SUBSCRIBE</button>
-    </div>
-  </footer>
-  -->
+        <div class="book-list">
+            <div class="book-item highlighted">
+                <img src="/frw3.png" alt="Product">
+                <h4>Finanz- und Rechnungswesen - Vertiefungen</h4>
+                <strong>CHF 49.90</strong>
+            </div>
+            <div class="book-item">
+                <img src="/grammatik.jpg" alt="Product">
+                <h4>Systematische Übungsgrammatik</h4>
+                <strong>CHF 25.90</strong>
+            </div>
+            <div class="book-item">
+                <img src="/gold.webp" alt="Product">
+                <h4>Gold B2 First</h4>
+                <strong>CHF 46.70</strong>
+            </div>
+            <div class="book-item">
+                <img src="/business.jpg" alt="Product">
+                <h4>Business Partner B1+</h4>
+                <strong>CHF 35.90</strong>
+            </div>
+        </div>
+    </section>
+<footer class="footer">
+        <div class="footer-logo">
+            <a href="/home"><img src="/logo.png" alt="Re-Book Logo"></a>
+            <p>Hirschengraben 10</p>
+            <p>Postfach 3439</p>
+            <p>6002 Luzern</p>
+            <p>Switzerland</p>
+        </div>
+        <div class="footer-links">
+            <h4>Links</h4>
+            <ul>
+                <li><a routerLink="/home">Home</a></li>
+                <li><a routerLink="/shop">Shop</a></li>
+                <li><a routerLink="/sell">Sell</a></li>
+                <li><a routerLink="/cart">Cart</a></li>
+                <li><a routerLink="/profile">Profile</a></li>
+            </ul>
+        </div>
+        <div class="footer-help">
+            <h4>Help</h4>
+            <ul>
+                <li><a routerLink="/aboutus">About Us</a></li>
+                <li><a routerLink="/contact">Contact</a></li>
+                <li><a routerLink="/policy">Privacy Policy</a></li>
+                <li><a routerLink="/terms">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-newsletter">
+            <h4>Newsletter</h4>
+            <input type="email" placeholder="Enter Your Email Address">
+            <button class="subscribe-btn">SUBSCRIBE</button>
+        </div>
+    </footer>
 </div>
