@@ -8,10 +8,9 @@
       <li><a routerLink="/browse">Shop</a></li>
       <li><a routerLink="/sell">Sell</a></li>
       <li><a routerLink="/pricing">Pricing</a></li>
-      <li><a routerLink="/favorites">Favorites</a></li>
+      <li><a routerLink="/favorites">Favourites</a></li>
       <li><a routerLink="/cart">Cart</a></li>
       <li><a routerLink="/profile">Profile</a></li>
-      <li><a routerLink="/login">Login</a></li>
     </ul>
   </nav>
 
@@ -22,7 +21,7 @@
 
   <section class="cart-items">
     <div class="cart-item">
-      <img src="/zgb.jpg" alt="ZGB/OR">
+      <img  routerLink="/product" src="/zgb.jpg" alt="ZGB/OR">
       <div class="item-info">
         <h4>ZGB/OR</h4>
         <p>Ernst A. Schraner</p>
@@ -70,7 +69,7 @@
   <section class="cart-summary">
     <h3>Zusammenfassung</h3>
     <p class="total-price">CHF 61.80</p>
-    <button class="checkout-btn" (click)="goToCheckout()">Zur Kasse</button>
+    <button routerLink="/checkout" class="checkout-btn">Zur Kasse</button>
   </section>
 
   <footer class="footer">
