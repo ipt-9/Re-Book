@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="pricing-container">
   <nav class="navbar">
     <div class="logo">
       <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
@@ -14,29 +14,32 @@
       <li><a routerLink="/login">Login</a></li>
     </ul>
   </nav>
-  <section class="login-content">
-    <div class="login-image">
-      <img src="/login_register.jpg" alt="Login Illustration">
+
+  <section class="pricing-header">
+    <h2>UNSERE PREISE</h2>
+  </section>
+
+  <section class="pricing-options">
+    <div class="pricing-card">
+      <h3>Premium</h3>
+      <h4>Ein Preis für alle</h4>
+      <p>Entsperre alle Vorteile zu einem einzigen Preis:</p>
+        <li>Priorisierter Zugang zu Top-Artikeln</li>
+        <li>Beschleunige deine Verkäufe</li>
+        <li>Verbesserter und optimierter Feed</li>
+      <h2>CHF 20</h2>
+      <button class="buy-btn">Jetzt kaufen</button>
     </div>
-    <div class="login-form">
-      <h2>Anmelden</h2>
-      <p>Falls du keinen Account hast<br>Du kannst dich <a routerLink="/register">Registrieren!</a></p>
 
-      <form (ngSubmit)="login()">
-        <label for="email">Email</label>
-        <div class="input-group">
-          <input type="email" id="email" name="email" placeholder="Gib deine Email Adresse ein" required>
-          <i class="fa fa-envelope"></i>
-        </div>
-
-        <label for="password">Passwort</label>
-        <div class="input-group">
-          <input type="password" id="password" name="password" placeholder="Gib dein Passwort ein" required>
-          <i class="fa fa-eye"></i>
-        </div>
-
-        <button type="submit" class="login-btn">Anmelden</button>
-      </form>
+    <div class="pricing-card">
+      <h3>Einzelpreis</h3>
+      <p>Erhalte individuelle Vorteile zu einem kleineren Preis:</p>
+        <li>Zugang zu ausgewählten Artikeln</li>
+        <li>Erhöhe die Sichtbarkeit für bestimmte Artikel</li>
+        <li>Passe deine Feed-Optimierungen individuell an</li>
+        <li>Zahle nur für das, was du wirklich brauchst!</li>
+      <h2>CHF 3</h2>
+      <button class="buy-btn">Jetzt kaufen</button>
     </div>
   </section>
 
