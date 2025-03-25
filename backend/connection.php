@@ -9,7 +9,7 @@ header('Access-Control-Allow-Headers: Content-Type');
 $host = "localhost"; // Your database host
 $user = "root";      // Your database username
 $password = "";      // Your database password
-$database = "rebookdb"; // Replace with your actual database name
+$database = "bmsd22a_rebook"; // Replace with your actual database name
 
 $conn = new mysqli($host, $user, $password, $database);
 

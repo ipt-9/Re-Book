@@ -8,7 +8,7 @@
       <li><a routerLink="/browse">Shop</a></li>
       <li><a routerLink="/sell">Sell</a></li>
       <li><a routerLink="/pricing">Pricing</a></li>
-      <li><a routerLink="/favourites">Favourites</a></li>
+      <li><a routerLink="/favorites">Favourites</a></li>
       <li><a routerLink="/cart">Cart</a></li>
       <li><a routerLink="/profile">Profile</a></li>
     </ul>
@@ -35,7 +35,7 @@
         Die deutsche- und die französischsprachige Ausgabe sind identisch aufgebaut.
       </p>
       <p class="price"><strong>CHF 9.90</strong></p>
-      <button class="cart-btn">ZUM WARENKORB</button>
+      <button routerLink="/cart" class="cart-btn">ZUM WARENKORB</button>
       <button class="wishlist-btn">❤️</button>
     </div>
   </section>
@@ -43,25 +43,25 @@
   <section class="suggestions">
     <div><h2>VORSCHLÄGE</h2>
     <div class="suggested-books">
-      <div class="book-item">
+      <div  routerLink="/product" class="book-item">
         <img src="/wirtschaft_ordner.jpeg" alt="Brennpunkt Wirtschaft">
         <h4>Brennpunkt Wirtschaft Und Gesellschaft 1</h4>
         <strong>CHF 72.00</strong>
       </div>
 
-      <div class="book-item">
+      <div  routerLink="/product"  class="book-item">
         <img src="/grammatik.jpg" alt="Übungsgrammatik">
         <h4>Systematische Übungsgrammatik</h4>
         <strong>CHF 25.90</strong>
       </div>
 
-      <div class="book-item">
+      <div  routerLink="/product" class="book-item">
         <img src="/gold.webp" alt="Gold B2">
         <h4>Gold B2 First</h4>
         <strong>CHF 46.70</strong>
       </div>
 
-      <div class="book-item">
+      <div  routerLink="/product" class="book-item">
         <img src="/business.jpg" alt="Business Partner">
         <h4>Business Partner B1+</h4>
         <strong>CHF 35.90</strong>
