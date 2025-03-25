@@ -7,47 +7,26 @@
   font-family: 'Afacad', sans-serif;
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
 .product-container {
   width: 100%;
   min-height: 100vh;
   background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 50px;
-  background: #f7f7f7;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-}
-
-.logo img {
-  height: 40px;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  font-size: 1rem;
-  color: black;
 }
 
 .product-details {
   display: flex;
   justify-content: center;
   gap: 40px;
-  margin: 50px 0;
-  width: 80%;
+  margin: 50px auto;
+  width: 90%;
+  max-width: 1200px;
 }
 
 .product-images {
@@ -82,7 +61,8 @@
   color: #2c3e50;
 }
 
-.author, .book-condition {
+.author,
+.book-condition {
   font-size: 1rem;
   color: #666;
   margin-top: 5px;
@@ -131,11 +111,15 @@
   margin-left: 10px;
 }
 
+.suggestions {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto 50px auto;
+}
+
 .suggestions h2 {
   text-align: center;
-  width: 100%;
-  margin-top: 50px;
-  margin-bottom: 30px;
+  margin: 50px 0 30px;
 }
 
 .suggested-books {
@@ -143,7 +127,6 @@
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
-  margin-bottom: 50px;
 }
 
 .book-item {
@@ -152,7 +135,7 @@
   border-radius: 8px;
   text-align: center;
   width: 200px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .book-item img {
@@ -169,61 +152,4 @@
 .book-item strong {
   font-size: 1rem;
   color: #555;
-}
-
-.footer {
-  background: #f7f7f7;
-  padding: 40px 10%;
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  flex-wrap: wrap;
-  border-top: 1px solid #ddd;
-  width: 100%;
-}
-
-.footer-logo img {
-  width: 120px;
-  margin-bottom: 10px;
-}
-
-.footer h4 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-
-.footer ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer ul li {
-  margin-bottom: 5px;
-}
-
-.footer ul li a {
-  text-decoration: none;
-  color: #444;
-}
-
-.footer-newsletter input {
-  width: 80%;
-  max-width: 250px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-
-.footer-newsletter button {
-  background: black;
-  color: white;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.footer-newsletter button:hover {
-  background: #333;
 }

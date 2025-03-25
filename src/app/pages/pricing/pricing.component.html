@@ -1,79 +1,32 @@
 <div class="pricing-container">
-  <nav class="navbar">
-    <div class="logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-    </div>
-    <ul class="nav-links">
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/browse">Shop</a></li>
-      <li><a routerLink="/sell">Sell</a></li>
-      <li><a routerLink="/pricing">Pricing</a></li>
-      <li><a routerLink="/favorites">Favorites</a></li>
-      <li><a routerLink="/cart">Cart</a></li>
-      <li><a routerLink="/profile">Profile</a></li>
-      <li><a routerLink="/login">Login</a></li>
-    </ul>
-  </nav>
+<app-navbar></app-navbar>
 
   <section class="pricing-header">
-    <h2>UNSERE PREISE</h2>
+    <h2>OUR PRICES</h2>
   </section>
 
   <section class="pricing-options">
     <div class="pricing-card">
       <h3>Premium</h3>
-      <h4>Ein Preis für alle</h4>
-      <p>Entsperre alle Vorteile zu einem einzigen Preis:</p>
-        <li>Priorisierter Zugang zu Top-Artikeln</li>
-        <li>Beschleunige deine Verkäufe</li>
-        <li>Verbesserter und optimierter Feed</li>
+      <h4>One price for all</h4>
+      <p>Unlock all the benefits at a single price:</p>
+        <li>Prioritized access to top articles</li>
+        <li>Accelerate your sales</li>
+        <li>Improved and optimized Fee</li>
       <h2>CHF 20</h2>
-      <button class="buy-btn">Jetzt kaufen</button>
+      <button class="buy-btn">Buy now</button>
     </div>
 
     <div class="pricing-card">
       <h3>Einzelpreis</h3>
-      <p>Erhalte individuelle Vorteile zu einem kleineren Preis:</p>
-        <li>Zugang zu ausgewählten Artikeln</li>
-        <li>Erhöhe die Sichtbarkeit für bestimmte Artikel</li>
-        <li>Passe deine Feed-Optimierungen individuell an</li>
-        <li>Zahle nur für das, was du wirklich brauchst!</li>
+      <p>Get individual benefits at a lower price:
+        <li>Access to selected articles</li>
+        <li>Increase visibility for certain articles</li>
+        <li>Adjust your feed optimizations</li>
+        <li>Only pay for what you really need!</li>
       <h2>CHF 3</h2>
-      <button class="buy-btn">Jetzt kaufen</button>
+      <button class="buy-btn">Buy now</button>
     </div>
   </section>
-
-  <footer class="footer">
-    <div class="footer-logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-      <p>Hirschengraben 10</p>
-      <p>Postfach 3439</p>
-      <p>6002 Luzern</p>
-      <p>Switzerland</p>
-    </div>
-    <div class="footer-links">
-      <h4>Links</h4>
-      <ul>
-        <li><a routerLink="/home">Home</a></li>
-        <li><a routerLink="/browse">Shop</a></li>
-        <li><a routerLink="/sell">Sell</a></li>
-        <li><a routerLink="/cart">Cart</a></li>
-        <li><a routerLink="/profile">Profile</a></li>
-      </ul>
-    </div>
-    <div class="footer-help">
-      <h4>Help</h4>
-      <ul>
-        <li><a routerLink="/aboutus">About Us</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-        <li><a routerLink="/policy">Privacy Policy</a></li>
-        <li><a routerLink="/terms">Terms of Service</a></li>
-      </ul>
-    </div>
-    <div class="footer-newsletter">
-      <h4>Newsletter</h4>
-      <input type="email" placeholder="Enter Your Email Address">
-      <button class="subscribe-btn">SUBSCRIBE</button>
-    </div>
-  </footer>
+<app-footer></app-footer>
 </div>

@@ -1,21 +1,32 @@
 import { Component } from '@angular/core';
 import { RegisterService } from './register.service';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { Router } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss', '../../../styles.scss'],
-  imports: [FormsModule, RouterLink]
+  imports: [
+    FormsModule,
+    RouterLink,
+    NavbarComponent,
+    FooterComponent
+  ]
 })
-
-
 export class RegisterComponent {
-  user = { username: '', email: '', password: '', confirmPassword: '', school: '', region: '' };
+  user = {
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    school: '',
+    region: ''
+  };
   message: string = '';
 
   constructor(private registerService: RegisterService, private router: Router) {}
@@ -27,19 +38,13 @@ export class RegisterComponent {
     }
 
     try {
-      // Fetch response as a string
       let responseText = await lastValueFrom(this.registerService.registerUser(this.user));
 
-      console.log("Raw Response:", responseText); // Debugging
+      console.log("Raw Response:", responseText);
+      if (!responseText) throw new Error("Empty response from server");
 
-      if (!responseText) {
-        throw new Error("Empty response from server");
-      }
-
-      // Remove BOM character (if present)
       responseText = responseText.replace(/^\uFEFF/, '');
 
-      // Parse JSON response
       const response = JSON.parse(responseText);
 
       if (response.status === "success") {
@@ -54,4 +59,3 @@ export class RegisterComponent {
     }
   }
 }
-

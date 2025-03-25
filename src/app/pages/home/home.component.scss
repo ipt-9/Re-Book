@@ -2,7 +2,11 @@
   width: 400px;
 }
 
-.top-picks, .categories, .bestseller, .offer, .pricing {
+.top-picks,
+.categories,
+.bestseller,
+.offer,
+.pricing {
   text-align: center;
   padding: 50px 10%;
 }
@@ -26,7 +30,7 @@ h2 {
   border-radius: 8px;
   text-align: center;
   width: 200px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
 }
 
@@ -45,29 +49,34 @@ h2 {
   font-weight: bold;
 }
 
-.book-item p, .book-item strong {
+.book-item p,
+.book-item strong {
   font-size: 1rem;
   color: #555;
 }
 
-.category-list, .bestseller-list {
+.category-list,
+.bestseller-list {
   display: flex;
   justify-content: center;
   gap: 20px;
   margin-top: 20px;
 }
 
-.category-item, .bestseller-item {
+.category-item,
+.bestseller-item {
   width: 250px;
   text-align: center;
 }
 
-.category-item img, .bestseller-item img {
+.category-item img,
+.bestseller-item img {
   width: 100%;
   border-radius: 8px;
 }
 
-.category-item h4, .bestseller-item h4 {
+.category-item h4,
+.bestseller-item h4 {
   margin-top: 10px;
   font-size: 1.2rem;
 }
@@ -86,6 +95,7 @@ h2 {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .offer .btn:hover {
@@ -104,7 +114,7 @@ h2 {
   border-radius: 10px;
   text-align: center;
   width: 250px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .pricing-item h3 {
@@ -112,7 +122,7 @@ h2 {
 }
 
 .pricing-item ul {
-  list-style-type: disc;
+  list-style: disc;
   padding-left: 20px;
   margin: 10px 0;
 }

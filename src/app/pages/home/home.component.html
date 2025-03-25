@@ -1,34 +1,21 @@
 <div class="home-container">
-  <nav class="navbar">
-    <div class="logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-    </div>
-    <ul class="nav-links">
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/browse">Shop</a></li>
-      <li><a routerLink="/sell">Sell</a></li>
-      <li><a routerLink="/pricing">Pricing</a></li>
-      <li><a routerLink="/favorites">Favorites</a></li>
-      <li><a routerLink="/cart">Cart</a></li>
-      <li><a routerLink="/profile">Profile</a></li>
-      <li><a routerLink="/login">Login</a></li>
-    </ul>
-  </nav>
+  <app-navbar></app-navbar>
 
   <section class="hero">
     <div class="text-content">
       <h1>Re-Book</h1>
       <p>
-        ist eine Online-Plattform, die Schülern den einfachen Kauf und Verkauf
-        gebrauchter Schulbücher und -materialien ermöglicht.
+        is an online platform that makes it easy for students to buy and sell used school books
+        and materials.
+
       </p>
       <p>
-        Unsere Mission ist es, Bildung erschwinglicher und nachhaltiger zu machen,
-        indem wir geeignete Marktplätze anbieten.
+        Our mission is to make education more affordable and sustainable
+        by offering suitable marketplaces.
       </p>
       <div class="buttons">
-        <a routerLink="/browse" class="btn">KAUFEN</a>
-        <a routerLink="/sell" class="btn">VERKAUFEN</a>
+        <a routerLink="/browse" class="btn">BUY</a>
+        <a routerLink="/sell" class="btn">SELL</a>
       </div>
     </div>
     <div class="image-content">
@@ -42,22 +29,22 @@
       <div  routerLink="/product" class="book-item">
         <img src="/zgb.jpg" alt="ZGB/OR">
         <h4>ZGB/OR</h4>
-        <p>Autor</p>
-        <strong>Preis</strong>
+        <p>Author</p>
+        <strong>Price</strong>
       </div>
 
       <div  routerLink="/product" class="book-item">
         <img src="/wirtschaft_ordner.jpeg" alt="Brennpunkt Wirtschaft">
         <h4>Brennpunkt Wirtschaft Und Gesellschaft 1</h4>
-        <p>Autor</p>
-        <strong>Preis</strong>
+        <p>Author</p>
+        <strong>Price</strong>
       </div>
 
       <div  routerLink="/product" class="book-item">
         <img src="/frw1.webp" alt="Finanzwesen 1">
         <h4>Finanz- und Rechnungswesen - Grundlagen 1</h4>
-        <p>Autor</p>
-        <strong>Preis</strong>
+        <p>Author</p>
+        <strong>Price</strong>
       </div>
     </div>
   </section>
@@ -67,112 +54,77 @@
     <div class="category-list">
       <div class="category-item">
         <img src="/schulbücher.jpg" alt="Schulbücher">
-        <h4>Schulbücher</h4>
-        <p>Finde erschwingliche, gebrauchsfreundliche Lehr- und Schulbücher,
-          die zu deinem Lehrplan passen.</p>
+        <h4>School books</h4>
+        <p>Find affordable, easy-to-use textbooks that fit your curriculum.</p>
       </div>
       <div class="category-item">
         <img src="/schulmaterial.png" alt="Schulmaterial">
-        <h4>Schulmaterial</h4>
-        <p>Von Notizbüchern bis hin zu Taschenrechnern findest du alle wichtigen Schulmaterialien an einem Ort.</p>
+        <h4>School material</h4>
+        <p>From notebooks to calculators, you'll find all your school supplies in one place.</p>
       </div>
       <div class="category-item">
         <img src="/lernmaterial.jpg" alt="Lernmaterial">
-        <h4>Lernmaterial</h4>
-        <p>Bereichere deine Lernsitzungen mit einer Vielzahl von Lernressourcen.</p>
+        <h4>Learning material</h4>
+        <p>Enrich your learning sessions with a variety of learning resources.</p>
       </div>
     </div>
   </section>
 
   <section class="bestseller">
-    <h2>Unsere meistverkauften Fächer</h2>
+    <h2></h2>
     <div class="bestseller-list">
       <div class="bestseller-item">
         <img src="/wirtschaft_recht.jpg" alt="Wirtschaft & Recht">
-        <h4>Wirtschaft & Recht</h4>
-        <p>Beherrsche komplexe Konzepte in Wirtschaft und Recht mit unseren meistverkauften Lehrbüchern
-          – von den Grundlagen bis hin zu praktischen Anwendungen.</p>
+        <h4>Economy and law</h4>
+        <p>Master complex concepts in business and law with our best-selling textbooks
+          - from the basics to practical applications.</p>
       </div>
       <div class="bestseller-item">
         <img src="/geschichte.jpg" alt="Geschichte">
-        <h4>Geschichte</h4>
-        <p>Tauche tief in die Vergangenheit ein mit unseren meistverkauften Geschichtsbüchern.
-          Egal, ob du alte Zivilisationen studierst oder dich für andere historische Epochen interessierst
-          – hier findest du das Richtige.</p>
+        <h4>History</h4>
+        <p>Dive deep into the past with our best-selling history books,
+          whether you're studying ancient civilizations or
+          interested in other historical periods - you'll find the right one here.</p>
       </div>
       <div class="bestseller-item">
         <img src="/wissenschaft.jpeg" alt="Wissenschaften">
-        <h4>Wissenschaften</h4>
-        <p>Entdecke die Wunder der Natur mit unseren meistverkauften Wissenschaftsbüchern.</p>
+        <h4>Science</h4>
+        <p>Discover the wonders of nature with our best-selling science books.</p>
       </div>
     </div>
   </section>
 
   <section class="offer">
-    <h2>Alle Bücher sind jetzt 10 % günstiger!</h2>
-    <p>Melde dich an und erhalte einen Gutschein per E-Mail!</p>
-    <a routerLink="/register" class="btn">REGISTRIEREN</a>
+    <h2>All books are now 10 % cheaper!</h2>
+    <p>Sign up and receive a voucher by e-mail!</p>
+    <a routerLink="/register" class="btn">REGISTER</a>
   </section>
 
   <section class="pricing">
     <div class="pricing-item">
       <h3>Premium</h3>
       <p>
-        Entsperre alle Vorteile zum Einheitspreis:
-        <li>Priorisierter Zugang zu Top-Artikeln</li>
-        <li>Beschleunige deine Verkäufe</li>
-        <li>Verbesserter, optimierter Feed</li>
-        <li>Und vieles mehr!</li>
+        Unlock all benefits at a single price:
+        <li>Prioritized access to top items</li>
+        <li>Accelerate your sales</li>
+        <li>Improved, optimized feed</li>
+        <li>And much more!</li>
       </p>
       <strong>CHF 20</strong>
     </div>
 
     <div class="pricing-item">
-      <h3>Einzelpreis</h3>
+      <h3>Single price</h3>
       <p>
-        Erhalte individuelle Vorteile zu einem kleineren Preis:
-        <li>Zugang zu ausgewählten Artikeln</li>
-        <li>Sichtbarkeit für bestimmte Artikel steigern</li>
-        <li>Passe deine Feed-Optimierungen an</li>
-        <li>Zahle nur für das, was du wirklich brauchst!</li>
+        Get individual benefits at a lower price:
+        <li>Access to selected articles</li>
+        <li>Increase visibility for certain articles</li>
+        <li>Adjust your feed optimizations</li>
+        <li>Only pay for what you really need!</li>
       </p>
       <strong>CHF 3</strong>
     </div>
   </section>
 
-
-
-  <footer class="footer">
-    <div class="footer-logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-      <p>Hirschengraben 10</p>
-      <p>Postfach 3439</p>
-      <p>6002 Luzern</p>
-      <p>Switzerland</p>
-    </div>
-    <div class="footer-links">
-      <h4>Links</h4>
-      <ul>
-        <li><a routerLink="/home">Home</a></li>
-        <li><a routerLink="/browse">Shop</a></li>
-        <li><a routerLink="/sell">Sell</a></li>
-        <li><a routerLink="/cart">Cart</a></li>
-        <li><a routerLink="/profile">Profile</a></li>
-      </ul>
-    </div>
-    <div class="footer-help">
-      <h4>Help</h4>
-      <ul>
-        <li><a routerLink="/aboutus">About Us</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-        <li><a routerLink="/policy">Privacy Policy</a></li>
-        <li><a routerLink="/terms">Terms of Service</a></li>
-      </ul>
-    </div>
-    <div class="footer-newsletter">
-      <h4>Newsletter</h4>
-      <input type="email" placeholder="Enter Your Email Address">
-      <button class="subscribe-btn">SUBSCRIBE</button>
-    </div>
-  </footer>
+  <app-footer></app-footer>
 </div>

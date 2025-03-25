@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DatabaseService {
-  private apiUrl = 'http://localhost/Re-Book/backend/api.php';
+  private apiUrl = 'http://localhost/Re-Book/backend/connection.php';
 
   constructor(private http: HttpClient) {}
 
