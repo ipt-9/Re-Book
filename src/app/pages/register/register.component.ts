@@ -20,42 +20,22 @@ import { FooterComponent } from '../footer/footer.component';
 })
 export class RegisterComponent {
   user = {
-    username: '',
     email: '',
+    username: '',
     password: '',
-    confirmPassword: '',
-    school: '',
     region: ''
   };
-  message: string = '';
 
   constructor(private registerService: RegisterService, private router: Router) {}
 
   async register() {
-    if (this.user.password !== this.user.confirmPassword) {
-      this.message = 'Passwords do not match';
-      return;
-    }
-
     try {
-      let responseText = await lastValueFrom(this.registerService.registerUser(this.user));
-
-      console.log("Raw Response:", responseText);
-      if (!responseText) throw new Error("Empty response from server");
-
-      responseText = responseText.replace(/^\uFEFF/, '');
-
-      const response = JSON.parse(responseText);
-
-      if (response.status === "success") {
-        this.message = response.message;
-        this.router.navigate(['/home']);
-      } else {
-        this.message = "Registration failed!";
-      }
+      const response = await lastValueFrom(this.registerService.registerUser(this.user));
+      alert('Registration successful! Redirecting to login page.');
+      this.router.navigate(['/login']);
     } catch (error) {
-      this.message = "Registration failed!";
-      console.error('Registration error', error);
+      console.error('Registration failed', error);
+      alert('Registration failed. Please try again.');
     }
   }
 }

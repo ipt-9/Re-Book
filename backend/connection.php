@@ -1,20 +1,13 @@
 ﻿<?php
-use Dotenv\Dotenv;
+$DB_HOST = 'localhost';
+$DB_USER = 'Rebook';
+$DB_PASSWORD = 'U1sOja2bgN7&opq?';
+$DB_NAME = 'BMSD22a_ReBook';
+$DB_PORT = 3306;
 
-// Load .env file
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+$conn = new mysqli($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME, $DB_PORT);
 
-// Database connection using environment variables
-$conn = new mysqli(
-    $_ENV['DB_HOST'],
-    $_ENV['DB_USER'],
-    $_ENV['DB_PASSWORD'],
-    $_ENV['DB_NAME']
-);
-
-// Check connection
 if ($conn->connect_error) {
-    die(json_encode(["status" => "error", "message" => "Database connection failed"]));
+    die(json_encode(['success' => false, 'message' => 'Database connection failed: ' . $conn->connect_error]));
 }
 ?>
