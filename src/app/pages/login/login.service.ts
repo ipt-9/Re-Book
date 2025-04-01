@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost/Re-Book/backend';
+  private apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/backend';
 
   constructor(private http: HttpClient) {}
 

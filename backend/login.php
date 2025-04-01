@@ -4,7 +4,7 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
-include 'connection.php';
+include 'connection.php'; // Load database connection
 
 $data = json_decode(file_get_contents("php://input"), true);
 
@@ -16,6 +16,7 @@ if (!isset($data['email']) || !isset($data['password'])) {
 $email = $data['email'];
 $password = $data['password'];
 
+// Use prepared statements to prevent SQL injection
 $sql = "SELECT * FROM users WHERE email=?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);

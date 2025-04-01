@@ -7,7 +7,6 @@ import { FooterComponent } from '../footer/footer.component';
   selector: 'app-home',
   standalone: true,
   imports: [
-    RouterLink,
     NavbarComponent,
     FooterComponent
   ],
