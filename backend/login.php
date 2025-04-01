@@ -1,32 +1,37 @@
 ﻿<?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Allow-Headers: Content-Type");
-header("Content-Type: application/json");
+require 'connection.php';
 
-include 'connection.php'; // Load database connection
+header('Content-Type: application/json');
 
-$data = json_decode(file_get_contents("php://input"), true);
+$data = json_decode(file_get_contents('php://input'), true);
 
 if (!isset($data['email']) || !isset($data['password'])) {
-    echo json_encode(["status" => "error", "message" => "Invalid input"]);
+    echo json_encode(['success' => false, 'message' => 'Invalid input.']);
     exit();
 }
 
-$email = $data['email'];
+$email = $conn->real_escape_string($data['email']);
 $password = $data['password'];
 
-// Use prepared statements to prevent SQL injection
-$sql = "SELECT * FROM users WHERE email=?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
+$query = $conn->prepare("SELECT id, username, password FROM users WHERE email = ?");
+$query->bind_param("s", $email);
+$query->execute();
+$result = $query->get_result();
 $user = $result->fetch_assoc();
 
 if ($user && password_verify($password, $user['password'])) {
-    echo json_encode(["status" => "success", "message" => "Login successful"]);
+    echo json_encode([
+        'success' => true,
+        'message' => 'Login successful.',
+        'user' => [
+            'id' => $user['id'],
+            'username' => $user['username'],
+            'email' => $email
+        ]
+    ]);
 } else {
-    echo json_encode(["status" => "error", "message" => "Invalid credentials"]);
+    echo json_encode(['success' => false, 'message' => 'Invalid credentials.']);
 }
+
+$conn->close();
 ?>
