@@ -2,7 +2,7 @@
   <app-navbar></app-navbar>
 
   <div class="main-content">
-    <!-- 🔍 Search Bar -->
+    <!--Search Bar -->
     <section class="search-bar">
       <h2>SEARCH PRODUCTS</h2>
       <div class="search-input">
@@ -11,7 +11,7 @@
       </div>
     </section>
 
-    <!-- 🧠 Filter -->
+    <!-- Filter -->
     <section class="filter-section">
       <h2>FILTER</h2>
       <div class="filter-container">
@@ -66,7 +66,7 @@
       </div>
     </section>
 
-    <!-- 📚 Book Display -->
+    <!-- Book Display -->
     <section class="book-list">
       <div *ngFor="let book of filteredBooks()" routerLink="/product" class="book-item">
         <img [src]="book.image" [alt]="book.title">
