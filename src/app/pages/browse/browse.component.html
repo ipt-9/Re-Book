@@ -2,6 +2,7 @@
   <app-navbar></app-navbar>
 
   <div class="main-content">
+    <!-- 🔍 Search Bar -->
     <section class="search-bar">
       <h2>SEARCH PRODUCTS</h2>
       <div class="search-input">
@@ -10,50 +11,70 @@
       </div>
     </section>
 
+    <!-- 🧠 Filter -->
     <section class="filter-section">
       <h2>FILTER</h2>
       <div class="filter-container">
-
+        <!-- Price Filter -->
         <div class="filter-group" [class.closed]="!isOpen('price')">
           <h3 (click)="toggle('price')">Price</h3>
-          <div *ngIf="isOpen('price')">
-            <p>CHF <input type="text" placeholder="10"> to CHF <input type="text" placeholder="100"></p>
+          <div *ngIf="isOpen('price')" class="price-inputs">
+            <span>CHF</span>
+            <input
+              type="number"
+              placeholder="min"
+              (input)="minPrice = parseFloat($any($event.target).value) || null"
+            />
+            <span>to</span>
+            <span>CHF</span>
+            <input
+              type="number"
+              placeholder="max"
+              (input)="maxPrice = parseFloat($any($event.target).value) || null"
+            />
           </div>
         </div>
 
+        <!-- Category Filter -->
         <div class="filter-group" [class.closed]="!isOpen('category')">
           <h3 (click)="toggle('category')">Category</h3>
           <ul *ngIf="isOpen('category')">
-            <li>School books</li>
-            <li>School material</li>
-            <li>Learning material</li>
+            <li
+              *ngFor="let cat of categories"
+              [class.selected]="selectedCategory === cat"
+              (click)="selectCategory(cat)"
+            >
+              {{ cat }}
+            </li>
           </ul>
         </div>
 
+
+        <!-- Subject Filter -->
         <div class="filter-group" [class.closed]="!isOpen('subject')">
           <h3 (click)="toggle('subject')">Subject</h3>
           <ul *ngIf="isOpen('subject')">
-            <li>Mathematics</li>
-            <li>History</li>
-            <li>German</li>
-            <li>Science</li>
-            <li>English</li>
-            <li>Literature</li>
+            <li
+              *ngFor="let subj of ['Law', 'Economy', 'Finance', 'Language']"
+              [class.active]="selectedSubjects.includes(subj)"
+              (click)="toggleSubject(subj)"
+            >
+              {{ subj }}
+            </li>
           </ul>
         </div>
-
       </div>
     </section>
 
+    <!-- 📚 Book Display -->
     <section class="book-list">
       <div *ngFor="let book of filteredBooks()" routerLink="/product" class="book-item">
         <img [src]="book.image" [alt]="book.title">
         <h4>{{ book.title }}</h4>
         <p>{{ book.author }}</p>
-        <strong>CHF {{ book.price }}</strong>
+        <strong>CHF {{ book.price.toFixed(2) }}</strong>
       </div>
     </section>
-
   </div>
 
   <app-footer></app-footer>

@@ -168,3 +168,53 @@
   font-size: 1.1rem;
   color: #007bff;
 }
+
+.filter-group ul li {
+  cursor: pointer;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  color: #2c3e50;
+  transition: all 0.2s;
+}
+
+.filter-group ul li:hover {
+  color: #6a5acd;
+}
+
+.filter-group ul li.active {
+  color: #d9534f;
+  font-weight: bold;
+}
+
+.filter-group ul li.selected {
+  color: #007bff;
+  font-weight: bold;
+}
+.price-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.price-inputs span {
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+.price-inputs input {
+  width: 90px;
+  padding: 8px 10px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background: #f8f9fa;
+  transition: border-color 0.3s;
+}
+
+.price-inputs input:focus {
+  border-color: #6a5acd;
+  outline: none;
+}
+
