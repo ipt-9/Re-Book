@@ -24,11 +24,11 @@ export class LoginComponent {
     password: ''
   };
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginSSService: LoginService, private router: Router) {}
 
   async login() {
     try {
-      const response = await lastValueFrom(this.loginService.loginUser(this.user));
+      const response = await lastValueFrom(this.loginSSService.loginUser(this.user));
       alert('Login successful! Redirecting to profile.');
       this.router.navigate(['/profile']);
     } catch (error) {

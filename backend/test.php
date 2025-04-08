@@ -6,9 +6,8 @@ echo "Hello World";
 // Database connection parameters
 $host = "localhost:3306";
 $db_name = "BMSD22a_ReBook";
-$username = "Rebook"; // Update if necessary
-$password = "U1sOja2bgN7&opq?"; // Update if necessary
-
+$username = "Rebook";
+$password = "U1sOja2bgN7&opq?";  
 
 try {
     // Create a new PDO instance
