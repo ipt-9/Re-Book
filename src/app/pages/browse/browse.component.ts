@@ -5,6 +5,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-browse',
@@ -36,14 +37,19 @@ export class BrowseComponent {
     this.loadBooks();
   }
 
+  // This replaces the BookService logic
+  private getBooks(): Observable<any[]> {
+    const apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/backend/get_books.php';
+    return this.http.get<any[]>(apiUrl);
+  }
+
   loadBooks(): void {
-    this.http.get<any[]>('https://rebook-bmsd22a.bbzwinf.ch/backend/get_books.php').subscribe({
+    this.getBooks().subscribe({
       next: (data) => this.books = data,
       error: (err) => console.error('Failed to load books', err)
     });
   }
 
-  // ⬇️ Main filtering logic
   filteredBooks() {
     const term = this.searchTerm.toLowerCase().trim();
 
@@ -69,7 +75,6 @@ export class BrowseComponent {
     console.log('Searching for:', this.searchTerm);
   }
 
-  // ⬇️ Filter toggle
   openedFilters: Record<string, boolean> = {
     price: true,
     category: true,
@@ -84,7 +89,6 @@ export class BrowseComponent {
     return this.openedFilters[section];
   }
 
-  // ⬇️ Subject click toggle
   toggleSubject(subject: string): void {
     const index = this.selectedSubjects.indexOf(subject);
     if (index > -1) {
@@ -94,7 +98,6 @@ export class BrowseComponent {
     }
   }
 
-  // ⬇️ Category selection (single selection)
   selectCategory(category: string): void {
     this.selectedCategory = this.selectedCategory === category ? null : category;
   }
