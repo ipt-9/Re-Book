@@ -7,7 +7,6 @@ import { FooterComponent } from '../footer/footer.component';
   selector: 'app-contact',
   standalone: true,
   imports: [
-    RouterLink,
     NavbarComponent,
     FooterComponent
   ],
