@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-browse',
@@ -20,7 +20,7 @@ import { Observable } from 'rxjs';
   templateUrl: './browse.component.html',
   styleUrls: ['./browse.component.scss', '../../../styles.scss']
 })
-export class BrowseComponent {
+export class BrowseComponent implements OnInit {
   searchTerm: string = '';
   selectedSubjects: string[] = [];
   selectedCategory: string | null = null;
@@ -30,14 +30,32 @@ export class BrowseComponent {
   books: any[] = [];
   categories = ['School Books', 'School Material', 'Learning Material'];
 
-  constructor(private http: HttpClient) {
-  }
+  openedFilters: Record<string, boolean> = {
+    price: true,
+    category: true,
+    subject: true
+  };
+
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    // URL-Filter (Query-Parameter) übernehmen
+    this.route.queryParams.subscribe(params => {
+      if (params['category']) {
+        this.selectedCategory = params['category'];
+      }
+      if (params['subject']) {
+        this.selectedSubjects = [params['subject']];
+      }
+    });
+
+    // Bücher vom Backend laden
     this.loadBooks();
   }
 
-  // This replaces the BookService logic
   private getBooks(): Observable<any[]> {
     const apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/backend/get_books.php';
     return this.http.get<any[]>(apiUrl);
@@ -74,12 +92,6 @@ export class BrowseComponent {
   onSearch(): void {
     console.log('Searching for:', this.searchTerm);
   }
-
-  openedFilters: Record<string, boolean> = {
-    price: true,
-    category: true,
-    subject: true
-  };
 
   toggle(section: string): void {
     this.openedFilters[section] = !this.openedFilters[section];
