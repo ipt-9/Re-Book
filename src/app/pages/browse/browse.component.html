@@ -2,7 +2,6 @@
   <app-navbar></app-navbar>
 
   <div class="main-content">
-    <!-- 🔍 Search Bar -->
     <section class="search-bar">
       <h2>SEARCH PRODUCTS</h2>
       <div class="search-input">
@@ -11,11 +10,9 @@
       </div>
     </section>
 
-    <!-- 🧠 Filter -->
     <section class="filter-section">
       <h2>FILTER</h2>
       <div class="filter-container">
-        <!-- Price Filter -->
         <div class="filter-group" [class.closed]="!isOpen('price')">
           <h3 (click)="toggle('price')">Price</h3>
           <div *ngIf="isOpen('price')" class="price-inputs">
@@ -35,7 +32,6 @@
           </div>
         </div>
 
-        <!-- Category Filter -->
         <div class="filter-group" [class.closed]="!isOpen('category')">
           <h3 (click)="toggle('category')">Category</h3>
           <ul *ngIf="isOpen('category')">
@@ -49,13 +45,11 @@
           </ul>
         </div>
 
-
-        <!-- Subject Filter -->
         <div class="filter-group" [class.closed]="!isOpen('subject')">
           <h3 (click)="toggle('subject')">Subject</h3>
           <ul *ngIf="isOpen('subject')">
             <li
-              *ngFor="let subj of ['Law', 'Economy', 'Finance', 'Language']"
+              *ngFor="let subj of ['Law', 'Economy', 'Finance', 'Language', 'Mathematics', 'Science', 'History' ]"
               [class.active]="selectedSubjects.includes(subj)"
               (click)="toggleSubject(subj)"
             >
@@ -66,7 +60,6 @@
       </div>
     </section>
 
-    <!-- 📚 Book Display -->
     <section class="book-list">
       <div *ngFor="let book of filteredBooks()" routerLink="/product" class="book-item">
         <img [src]="book.image" [alt]="book.title">

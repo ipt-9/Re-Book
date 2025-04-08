@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -18,7 +19,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './browse.component.html',
   styleUrls: ['./browse.component.scss', '../../../styles.scss']
 })
-export class BrowseComponent {
+export class BrowseComponent implements OnInit {
   searchTerm: string = '';
   selectedSubjects: string[] = [];
   selectedCategory: string | null = null;
@@ -70,12 +71,24 @@ export class BrowseComponent {
 
   categories = ['School Books', 'School Material', 'Learning Material'];
 
-  // ⬇️ Filter toggle
   openedFilters: Record<string, boolean> = {
     price: true,
     category: true,
     subject: true
   };
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params['category']) {
+        this.selectedCategory = params['category'];
+      }
+      if (params['subject']) {
+        this.selectedSubjects = [params['subject']];
+      }
+    });
+  }
 
   toggle(section: string): void {
     this.openedFilters[section] = !this.openedFilters[section];
@@ -85,7 +98,6 @@ export class BrowseComponent {
     return this.openedFilters[section];
   }
 
-  // ⬇️ Subject click toggle
   toggleSubject(subject: string): void {
     const index = this.selectedSubjects.indexOf(subject);
     if (index > -1) {
@@ -94,13 +106,10 @@ export class BrowseComponent {
       this.selectedSubjects.push(subject);
     }
   }
-
-  // ⬇️ Category selection (single selection)
   selectCategory(category: string): void {
     this.selectedCategory = this.selectedCategory === category ? null : category;
   }
 
-  // ⬇️ Main filtering logic
   filteredBooks() {
     const term = this.searchTerm.toLowerCase().trim();
 

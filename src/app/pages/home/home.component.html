@@ -7,12 +7,12 @@
       <p>
         is an online platform that makes it easy for students to buy and sell used school books
         and materials.
-
       </p>
       <p>
         Our mission is to make education more affordable and sustainable
         by offering suitable marketplaces.
       </p>
+
       <div class="buttons">
         <a routerLink="/browse" class="btn">BUY</a>
         <a routerLink="/sell" class="btn">SELL</a>
@@ -26,21 +26,21 @@
   <section class="top-picks">
     <h2>TOP PICKS</h2>
     <div class="book-list">
-      <div  routerLink="/product" class="book-item">
+      <div routerLink="/product" class="book-item">
         <img src="/zgb.jpg" alt="ZGB/OR">
         <h4>ZGB/OR</h4>
         <p>Author</p>
         <strong>Price</strong>
       </div>
 
-      <div  routerLink="/product" class="book-item">
+      <div routerLink="/product" class="book-item">
         <img src="/wirtschaft_ordner.jpeg" alt="Brennpunkt Wirtschaft">
         <h4>Brennpunkt Wirtschaft Und Gesellschaft 1</h4>
         <p>Author</p>
         <strong>Price</strong>
       </div>
 
-      <div  routerLink="/product" class="book-item">
+      <div routerLink="/product" class="book-item">
         <img src="/frw1.webp" alt="Finanzwesen 1">
         <h4>Finanz- und Rechnungswesen - Grundlagen 1</h4>
         <p>Author</p>
@@ -52,17 +52,17 @@
   <section class="categories">
     <h2>Kategorien</h2>
     <div class="category-list">
-      <div class="category-item">
+      <div class="category-item" [routerLink]="['/browse']" [queryParams]="{ category: 'School Books' }">
         <img src="/schulbücher.jpg" alt="Schulbücher">
         <h4>School books</h4>
         <p>Find affordable, easy-to-use textbooks that fit your curriculum.</p>
       </div>
-      <div class="category-item">
+      <div class="category-item" [routerLink]="['/browse']" [queryParams]="{ category: 'School Material' }">
         <img src="/schulmaterial.png" alt="Schulmaterial">
         <h4>School material</h4>
         <p>From notebooks to calculators, you'll find all your school supplies in one place.</p>
       </div>
-      <div class="category-item">
+      <div class="category-item" [routerLink]="['/browse']" [queryParams]="{ category: 'Learning Material' }">
         <img src="/lernmaterial.jpg" alt="Lernmaterial">
         <h4>Learning material</h4>
         <p>Enrich your learning sessions with a variety of learning resources.</p>
@@ -73,20 +73,20 @@
   <section class="bestseller">
     <h2></h2>
     <div class="bestseller-list">
-      <div class="bestseller-item">
+      <div class="bestseller-item" [routerLink]="['/browse']" [queryParams]="{ subject: 'Economy' }">
         <img src="/wirtschaft_recht.jpg" alt="Wirtschaft & Recht">
         <h4>Economy and law</h4>
         <p>Master complex concepts in business and law with our best-selling textbooks
           - from the basics to practical applications.</p>
       </div>
-      <div class="bestseller-item">
+      <div class="bestseller-item" [routerLink]="['/browse']" [queryParams]="{ subject: 'History' }">
         <img src="/geschichte.jpg" alt="Geschichte">
         <h4>History</h4>
         <p>Dive deep into the past with our best-selling history books,
           whether you're studying ancient civilizations or
           interested in other historical periods - you'll find the right one here.</p>
       </div>
-      <div class="bestseller-item">
+      <div class="bestseller-item" [routerLink]="['/browse']" [queryParams]="{ subject: 'Science' }">
         <img src="/wissenschaft.jpeg" alt="Wissenschaften">
         <h4>Science</h4>
         <p>Discover the wonders of nature with our best-selling science books.</p>
