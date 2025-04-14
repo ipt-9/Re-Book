@@ -1,16 +1,16 @@
 ﻿<?php
 require 'connection.php';
-
 header('Content-Type: application/json');
+session_start();
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if (!isset($data['email']) || (!isset($data['password']) && !isset($data['username']))) {
+if (!isset($data['email']) || !isset($data['password'])) {
     exit(json_encode(['success' => false, 'message' => 'Invalid input.']));
 }
 
 $email = $conn->real_escape_string($data['email']);
-$password = $data['password'] ?? $data['username'];
+$password = $data['password'];
 
 $query = $conn->prepare("SELECT user_id, username, password FROM users WHERE email = ?");
 $query->bind_param("s", $email);
@@ -19,7 +19,6 @@ $result = $query->get_result();
 $user = $result->fetch_assoc();
 
 if ($user && password_verify($password, $user['password'])) {
-    session_start();
     $token = bin2hex(random_bytes(32));
     $_SESSION['token'] = $token;
     $_SESSION['user_id'] = $user['user_id'];

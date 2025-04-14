@@ -12,6 +12,7 @@ if (!isset($headers['Authorization'])) {
 
 $authHeader = $headers['Authorization'];
 $token = str_replace('Bearer ', '', $authHeader);
+
 session_start();
 
 if (!isset($_SESSION['token']) || $_SESSION['token'] !== $token) {
