@@ -1,4 +1,3 @@
-
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -11,22 +10,8 @@ require_once 'connection.php';
 
 $query = "
     SELECT
-        p.product_id,
-        p.title,
-        p.author,
-        p.description,
-        p.subject,
-        p.category,
-        p.format,
-        p.image,
-        l.listing_condition,
-        l.status,
-		l.price,
-        l.created_at
-    FROM
-        products p
-    JOIN
-        listings l ON p.product_id = l.fk_product_id
+        product_id, title, author, description, subject, category, format, image, price
+    FROM products
 ";
 $result = $conn->query($query);
 
