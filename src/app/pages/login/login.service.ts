@@ -10,8 +10,8 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
-  loginUser(userData: any): Observable<string> {
-    return this.http.post(this.apiUrl, userData, { responseType: 'text' });
+  loginUser(userData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, userData);
   }
 }
 

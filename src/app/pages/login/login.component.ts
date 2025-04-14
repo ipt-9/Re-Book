@@ -5,6 +5,7 @@ import { RouterLink, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -24,17 +25,27 @@ export class LoginComponent {
     password: ''
   };
 
-  constructor(private loginSSService: LoginService, private router: Router) {}
+  constructor(  private loginSSService: LoginService,
+                private router: Router,
+                private authService: AuthService) {}
 
   async login() {
     try {
       const response = await lastValueFrom(this.loginSSService.loginUser(this.user));
-      alert('Login successful! Redirecting to profile.');
-      this.router.navigate(['/profile']);
+
+      if (response.success && response.token) {
+        this.authService.setToken(response.token);
+        alert('Login successful! Redirecting to profile.');
+        this.router.navigate(['/profile']);
+      } else {
+        alert('Login failed: ' + response.message);
+      }
+
     } catch (error) {
       console.error('Login failed', error);
       alert('Invalid email or password. Please try again.');
     }
   }
+
 }
 
