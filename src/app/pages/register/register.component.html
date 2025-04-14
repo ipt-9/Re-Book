@@ -1,106 +1,48 @@
-<div class="register-container">
-  <nav class="navbar">
-    <div class="logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-    </div>
-    <ul class="nav-links">
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/browse">Shop</a></li>
-      <li><a routerLink="/sell">Sell</a></li>
-      <li><a routerLink="/pricing">Pricing</a></li>
-      <li><a routerLink="/favorites">Favourites</a></li>
-      <li><a routerLink="/cart">Cart</a></li>
-      <li><a routerLink="/profile">Profile</a></li>
-    </ul>
-  </nav>
+<div class="login-container">
+  <app-navbar></app-navbar>
 
-  <section class="register-content">
-    <div class="register-image">
-      <img src="/login_register.jpg" alt="Register Illustration">
+  <section class="login-content">
+    <div class="login-image">
+      <img src="/login_register.jpg" alt="Register Illustration" />
     </div>
-    <div class="register-form">
-      <h2>Registrieren</h2>
-      <p>Falls du schon einen Account hast<br>Du kannst dich <a href="/login">Anmelden!</a></p>
+
+    <div class="login-form">
+      <h2>Register</h2>
+      <p>If you already have an account:<br>You can <a routerLink="/login">Login!</a></p>
 
       <form (submit)="register(); $event.preventDefault()">
         <label for="email">Email</label>
         <div class="input-group">
-          <input type="email" id="email" placeholder="Gib deine Email Adresse ein" [(ngModel)]="user.email" name="email" required>
+          <input type="email" id="email" name="email" placeholder="Enter your email" [(ngModel)]="user.email" required />
           <i class="fa fa-envelope"></i>
         </div>
 
-        <label for="username">Nutzername</label>
+        <label for="username">Username</label>
         <div class="input-group">
-          <input type="text" id="username" placeholder="Gib deinen Nutzernamen ein" [(ngModel)]="user.username" name="username" required>
+          <input type="text" id="username" name="username" placeholder="Enter your username" [(ngModel)]="user.username" required />
           <i class="fa fa-user"></i>
         </div>
 
-        <label for="password">Passwort</label>
+        <label for="password">Password</label>
         <div class="input-group">
-          <input type="password" id="password" placeholder="Gib dein Passwort ein" [(ngModel)]="user.password" name="password" required>
-          <i class="fa fa-eye"></i>
-        </div>
-
-        <label for="confirmPassword">Passwort bestätigen</label>
-        <div class="input-group">
-          <input type="password" id="confirmPassword" placeholder="Bestätige dein Passwort" [(ngModel)]="user.confirmPassword" name="confirmPassword" required>
+          <input type="password" id="password" name="password" placeholder="Enter your password" [(ngModel)]="user.password" required />
           <i class="fa fa-lock"></i>
-        </div>
-
-        <label for="school">Schule</label>
-        <div class="input-group">
-          <input type="text" id="school" placeholder="Gib deine Schule ein" [(ngModel)]="user.school" name="school">
-          <i class="fa fa-phone"></i>
         </div>
 
         <label for="region">Region</label>
         <div class="input-group">
-          <input type="text" id="region" [(ngModel)]="user.region" name="region" >
-          <i class="fa fa-calendar"></i>
+          <input type="text" id="region" name="region" placeholder="Your region" [(ngModel)]="user.region" />
+          <i class="fa fa-map-marker"></i>
         </div>
 
         <div class="options">
-          <label><input type="checkbox" required> Ich akzeptiere die <a href="/terms">Nutzungsbedingungen</a></label>
+          <label><input type="checkbox" required> I accept the <a routerLink="/terms">Terms of use</a></label>
         </div>
 
-        <button type="submit" class="register-btn">Registrieren</button>
+        <button type="submit" class="login-btn">Register</button>
       </form>
     </div>
   </section>
 
-
-  <footer class="footer">
-    <div class="footer-logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-      <p>Hirschengraben 10</p>
-      <p>Postfach 3439</p>
-      <p>6002 Luzern</p>
-      <p>Switzerland</p>
-    </div>
-    <div class="footer-links">
-      <h4>Links</h4>
-      <ul>
-        <li><a routerLink="/home">Home</a></li>
-        <li><a routerLink="/browse">Shop</a></li>
-        <li><a routerLink="/sell">Sell</a></li>
-        <li><a routerLink="/cart">Cart</a></li>
-        <li><a routerLink="/profile">Profile</a></li>
-      </ul>
-    </div>
-    <div class="footer-help">
-      <h4>Help</h4>
-      <ul>
-        <li><a routerLink="/aboutus">About Us</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-        <li><a routerLink="/policy">Privacy Policy</a></li>
-        <li><a routerLink="/terms">Terms of Service</a></li>
-      </ul>
-    </div>
-    <div class="footer-newsletter">
-      <h4>Newsletter</h4>
-      <input type="email" placeholder="Enter Your Email Address">
-      <button class="subscribe-btn">SUBSCRIBE</button>
-    </div>
-  </footer>
+  <app-footer></app-footer>
 </div>
-

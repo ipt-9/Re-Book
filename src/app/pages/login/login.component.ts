@@ -1,25 +1,40 @@
 import { Component } from '@angular/core';
-import { AuthService } from './login.service';
+import { LoginService } from './login.service';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss', '../../../styles.scss'],
-  imports: [FormsModule, RouterLink]
-})export class LoginComponent {
-  email = '';
-  password = '';
+  imports: [
+    FormsModule,
+    RouterLink,
+    NavbarComponent,
+    FooterComponent
+  ]
+})
+export class LoginComponent {
+  user = {
+    email: '',
+    password: ''
+  };
 
-  constructor(private authService: AuthService) {}
+  constructor(private loginSSService: LoginService, private router: Router) {}
 
-  login() {
-    this.authService.login(this.email, this.password).subscribe(
-      response => alert(response.message),
-      error => alert('Login failed')
-    );
+  async login() {
+    try {
+      const response = await lastValueFrom(this.loginSSService.loginUser(this.user));
+      alert('Login successful! Redirecting to profile.');
+      this.router.navigate(['/profile']);
+    } catch (error) {
+      console.error('Login failed', error);
+      alert('Invalid email or password. Please try again.');
+    }
   }
 }
+

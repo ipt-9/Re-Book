@@ -1,18 +1,5 @@
 <div class="checkout-container">
-  <nav class="navbar">
-    <div class="logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-    </div>
-    <ul class="nav-links">
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/browse">Shop</a></li>
-      <li><a routerLink="/sell">Sell</a></li>
-      <li><a routerLink="/pricing">Pricing</a></li>
-      <li><a routerLink="/favorites">Favourites</a></li>
-      <li><a routerLink="/cart">Cart</a></li>
-      <li><a routerLink="/profile">Profile</a></li>
-    </ul>
-  </nav>
+<app-navbar></app-navbar>
 
   <section class="checkout-header">
     <h2>SHOPPING CART</h2>
@@ -20,22 +7,22 @@
 
   <section class="payment-form">
     <div class="payment-box">
-      <h3>Kartendetails</h3>
+      <h3>Card details</h3>
       <div class="card-types">
         <img src="/mastercard.png" alt="MasterCard">
         <img src="/visa.svg" alt="Visa">
       </div>
 
       <form>
-        <label for="cardname">Kartenname</label>
+        <label for="cardname">Card name</label>
         <input type="text" id="cardname" placeholder="Name">
 
-        <label for="cardnumber">Kartennummer</label>
+        <label for="cardnumber">Card number</label>
         <input type="text" id="cardnumber" placeholder="1111 2222 3333 4444">
 
         <div class="card-details">
           <div>
-            <label for="expiry">Ablaufdatum</label>
+            <label for="expiry">Expiration date</label>
             <input type="text" id="expiry" placeholder="mm/yy">
           </div>
           <div>
@@ -45,47 +32,15 @@
         </div>
 
         <div class="price-summary">
-          <p><strong>Zwischensumme</strong> <span>CHF 169.00</span></p>
-          <p><strong>Versand</strong> <span>CHF 9.90</span></p>
-          <p><strong>Total (Steuer inkl.)</strong> <span>CHF 178.90</span></p>
+          <p><strong>Subtotal</strong> <span>CHF 169.00</span></p>
+          <p><strong>Shipping</strong> <span>CHF 9.90</span></p>
+          <p><strong>Total (tax incl.)</strong> <span>CHF 178.90</span></p>
         </div>
 
-        <button routerLink="/confirmation" type="submit" class="pay-btn">ZAHLEN</button>
+        <button routerLink="/confirmation" type="submit" class="pay-btn">PAY</button>
       </form>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="footer-logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-      <p>Hirschengraben 10</p>
-      <p>Postfach 3439</p>
-      <p>6002 Luzern</p>
-      <p>Switzerland</p>
-    </div>
-    <div class="footer-links">
-      <h4>Links</h4>
-      <ul>
-        <li><a routerLink="/home">Home</a></li>
-        <li><a routerLink="/browse">Shop</a></li>
-        <li><a routerLink="/sell">Sell</a></li>
-        <li><a routerLink="/cart">Cart</a></li>
-        <li><a routerLink="/profile">Profile</a></li>
-      </ul>
-    </div>
-    <div class="footer-help">
-      <h4>Help</h4>
-      <ul>
-        <li><a routerLink="/aboutus">About Us</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-        <li><a routerLink="/policy">Privacy Policy</a></li>
-        <li><a routerLink="/terms">Terms of Service</a></li>
-      </ul>
-    </div>
-    <div class="footer-newsletter">
-      <h4>Newsletter</h4>
-      <input type="email" placeholder="Enter Your Email Address">
-      <button class="subscribe-btn">SUBSCRIBE</button>
-    </div>
-  </footer>
+<app-footer></app-footer>
 </div>

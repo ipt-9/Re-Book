@@ -1,108 +1,40 @@
 <div class="cart-container">
-  <nav class="navbar">
-    <div class="logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-    </div>
-    <ul class="nav-links">
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/browse">Shop</a></li>
-      <li><a routerLink="/sell">Sell</a></li>
-      <li><a routerLink="/pricing">Pricing</a></li>
-      <li><a routerLink="/favorites">Favourites</a></li>
-      <li><a routerLink="/cart">Cart</a></li>
-      <li><a routerLink="/profile">Profile</a></li>
-    </ul>
-  </nav>
+<app-navbar></app-navbar>
 
   <section class="cart-header">
-    <h2>WARENKORB</h2>
-    <a href="/browse" class="continue-shopping">← Weiter Shoppen</a>
+    <h2>SHOPPING CART</h2>
+    <a href="/browse" class="continue-shopping">← Continue shopping</a>
   </section>
 
   <section class="cart-items">
-    <div class="cart-item">
-      <img  routerLink="/product" src="/zgb.jpg" alt="ZGB/OR">
+    <div class="cart-item" *ngFor="let item of cart; let i = index">
+      <img [src]="item.image" [alt]="item.title" routerLink="/product">
       <div class="item-info">
-        <h4>ZGB/OR</h4>
-        <p>Ernst A. Schraner</p>
+        <h4>{{ item.title }}</h4>
+        <p>{{ item.author }}</p>
       </div>
+
       <div class="quantity-control">
-        <button class="quantity-btn">▲</button>
-        <span>1</span>
-        <button class="quantity-btn">▼</button>
+        <button class="quantity-btn" (click)="increaseQuantity(item)">▲</button>
+        <span>{{ item.quantity }}</span>
+        <button class="quantity-btn" (click)="decreaseQuantity(item)">▼</button>
       </div>
-      <p class="item-price">CHF 9.90</p>
-      <button class="remove-btn">🗑</button>
+
+      <p class="item-price">CHF {{ (item.price * item.quantity).toFixed(2) }}</p>
+
+      <button class="remove-btn" (click)="removeItem(i)">🗑</button>
     </div>
 
-    <div class="cart-item">
-      <img src="/wirtschaft_ordner.jpeg" alt="Brennpunkt Wirtschaft">
-      <div class="item-info">
-        <h4>Brennpunkt Wirtschaft Und Gesellschaft 1</h4>
-        <p>Heinz Rolfesnach</p>
-      </div>
-      <div class="quantity-control">
-        <button class="quantity-btn">▲</button>
-        <span>1</span>
-        <button class="quantity-btn">▼</button>
-      </div>
-      <p class="item-price">CHF 32.00</p>
-      <button class="remove-btn">🗑</button>
-    </div>
-
-    <div class="cart-item">
-      <img src="/frw1.webp" alt="Finanzwesen 1">
-      <div class="item-info">
-        <h4>Finanz- und Rechnungswesen - Grundlagen 2</h4>
-        <p>Ernst Keller</p>
-      </div>
-      <div class="quantity-control">
-        <button class="quantity-btn">▲</button>
-        <span>1</span>
-        <button class="quantity-btn">▼</button>
-      </div>
-      <p class="item-price">CHF 19.90</p>
-      <button class="remove-btn">🗑</button>
+    <div *ngIf="cart.length === 0" style="text-align: center; margin-top: 20px;">
+      Your cart is empty.
     </div>
   </section>
 
   <section class="cart-summary">
-    <h3>Zusammenfassung</h3>
-    <p class="total-price">CHF 61.80</p>
-    <button routerLink="/checkout" class="checkout-btn">Zur Kasse</button>
+    <h3>Summary</h3>
+    <p class="total-price">{{ getTotalPrice() }}</p>
+    <button *ngIf="cart.length > 0" routerLink="/checkout" class="checkout-btn">Go to checkout</button>
   </section>
 
-  <footer class="footer">
-    <div class="footer-logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-      <p>Hirschengraben 10</p>
-      <p>Postfach 3439</p>
-      <p>6002 Luzern</p>
-      <p>Switzerland</p>
-    </div>
-    <div class="footer-links">
-      <h4>Links</h4>
-      <ul>
-        <li><a routerLink="/home">Home</a></li>
-        <li><a routerLink="/browse">Shop</a></li>
-        <li><a routerLink="/sell">Sell</a></li>
-        <li><a routerLink="/cart">Cart</a></li>
-        <li><a routerLink="/profile">Profile</a></li>
-      </ul>
-    </div>
-    <div class="footer-help">
-      <h4>Help</h4>
-      <ul>
-        <li><a routerLink="/aboutus">About Us</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-        <li><a routerLink="/policy">Privacy Policy</a></li>
-        <li><a routerLink="/terms">Terms of Service</a></li>
-      </ul>
-    </div>
-    <div class="footer-newsletter">
-      <h4>Newsletter</h4>
-      <input type="email" placeholder="Enter Your Email Address">
-      <button class="subscribe-btn">SUBSCRIBE</button>
-    </div>
-  </footer>
+  <app-footer></app-footer>
 </div>

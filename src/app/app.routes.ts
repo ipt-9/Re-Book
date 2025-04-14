@@ -16,6 +16,8 @@ import { ConfirmationComponent } from './pages/confirmation/confirmation.compone
 import { AboutusComponent } from './pages/aboutus/aboutus.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { PricingComponent } from './pages/pricing/pricing.component';
+import { FooterComponent } from './pages/footer/footer.component';
+import { NavbarComponent } from './pages/navbar/navbar.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -35,5 +37,7 @@ export const routes: Routes = [
   { path: 'confirmation', component: ConfirmationComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'pricing', component: PricingComponent }
+  { path: 'pricing', component: PricingComponent },
+  { path: 'footer', component: FooterComponent },
+  { path: 'navbar', component: NavbarComponent }
 ];
