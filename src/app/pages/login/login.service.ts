@@ -5,16 +5,22 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  private apiUrl = 'http://localhost/Re-Book/backend';
+export class LoginService {
+  private apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/backend/login.php';
 
   constructor(private http: HttpClient) {}
 
-  register(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register.php`, { email, password });
+  loginUser(userData: any): Observable<string> {
+    return this.http.post(this.apiUrl, userData, { responseType: 'text' });
   }
+}
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login.php`, { email, password });
+export class BookService {
+  private apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/backend/get_books.php';
+
+  constructor(private http: HttpClient) {}
+
+  getBooks(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
   }
 }

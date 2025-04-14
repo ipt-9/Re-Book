@@ -1,95 +1,49 @@
 <div class="sell-container">
-  <nav class="navbar">
-    <div class="logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-    </div>
-    <ul class="nav-links">
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/browse">Shop</a></li>
-      <li><a routerLink="/sell">Sell</a></li>
-      <li><a routerLink="/pricing">Pricing</a></li>
-      <li><a routerLink="/favorites">Favourites</a></li>
-      <li><a routerLink="/cart">Cart</a></li>
-      <li><a routerLink="/profile">Profile</a></li>
-    </ul>
-  </nav>
+<app-navbar></app-navbar>
 
   <section class="sell-header">
-    <h2>VERKAUF DEIN BUCH</h2>
-    <p>Liste deine gebrauchten Lehrbücher und Schulmaterialien zum Verkauf auf.
-      Wir helfen dir, Käufer zu finden und den besten Preis zu erzielen.</p>
+    <h2>SELL YOUR BOOK</h2>
+    <p>List your used textbooks and school materials for sale.
+      We'll help you find buyers and get the best price.</p>
   </section>
 
   <section class="sell-form">
     <form>
       <div class="form-group">
-        <label for="title">Titel</label>
-        <input type="text" id="title" placeholder="Gib den Buchtitel ein" aria-label="Buchtitel">
+        <label for="title">Title</label>
+        <input type="text" id="title" placeholder="Enter the book title" aria-label="Buchtitel">
       </div>
 
       <div class="form-group">
-        <label for="description">Beschreibung</label>
-        <textarea id="description" placeholder="Beschreibe den Zustand und die Details des Buches" aria-label="Beschreibung"></textarea>
+        <label for="description">Descriptiom</label>
+        <textarea id="description" placeholder="Describe the condition and details of the book" aria-label="Beschreibung"></textarea>
       </div>
 
       <div class="form-group category-group">
-        <label>Kategorie</label>
+        <label>Category</label>
         <div class="checkbox-group">
-          <label for="category1"><input type="checkbox" id="category1"> Schulbücher</label>
-          <label for="category2"><input type="checkbox" id="category2"> Schulmaterial</label>
-          <label for="category3"><input type="checkbox" id="category3"> Lernmaterial</label>
-          <label for="category4"><input type="checkbox" id="category4"> Andere</label>
+          <label for="category1"><input type="checkbox" id="category1"> School books</label>
+          <label for="category2"><input type="checkbox" id="category2"> School materials</label>
+          <label for="category3"><input type="checkbox" id="category3"> Learning material</label>
+          <label for="category4"><input type="checkbox" id="category4"> Other</label>
         </div>
       </div>
 
       <div class="form-group price-group">
-        <label for="price">Preis</label>
+        <label for="price">Price</label>
         <div class="price-input">
-          <input type="text" id="price" placeholder="Gib den Preis ein" aria-label="Preis">
+          <input type="text" id="price" placeholder="Enter the price" aria-label="Preis">
           <span>CHF</span>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="file-upload">Bild hochladen</label>
-        <input type="file" id="file-upload" aria-label="Bild hochladen">
+        <label for="file-upload">Upload Picture</label>
+        <input type="file" id="file-upload" aria-label="Upload Picture">
       </div>
 
-      <button routerLink="/home" type="submit" class="submit-btn">Absenden</button>
+      <button routerLink="/home" type="submit" class="submit-btn">Submit</button>
     </form>
   </section>
-
-  <footer class="footer">
-    <div class="footer-logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-      <p>Hirschengraben 10</p>
-      <p>Postfach 3439</p>
-      <p>6002 Luzern</p>
-      <p>Switzerland</p>
-    </div>
-    <div class="footer-links">
-      <h4>Links</h4>
-      <ul>
-        <li><a routerLink="/home">Home</a></li>
-        <li><a routerLink="/browse">Shop</a></li>
-        <li><a routerLink="/sell">Sell</a></li>
-        <li><a routerLink="/cart">Cart</a></li>
-        <li><a routerLink="/profile">Profile</a></li>
-      </ul>
-    </div>
-    <div class="footer-help">
-      <h4>Help</h4>
-      <ul>
-        <li><a routerLink="/aboutus">About Us</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-        <li><a routerLink="/policy">Privacy Policy</a></li>
-        <li><a routerLink="/terms">Terms of Service</a></li>
-      </ul>
-    </div>
-    <div class="footer-newsletter">
-      <h4>Newsletter</h4>
-      <input type="email" placeholder="Enter Your Email Address">
-      <button class="subscribe-btn">SUBSCRIBE</button>
-    </div>
-  </footer>
+<app-footer></app-footer>
 </div>

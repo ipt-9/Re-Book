@@ -1,18 +1,5 @@
 <div class="product-container">
-  <nav class="navbar">
-    <div class="logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-    </div>
-    <ul class="nav-links">
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/browse">Shop</a></li>
-      <li><a routerLink="/sell">Sell</a></li>
-      <li><a routerLink="/pricing">Pricing</a></li>
-      <li><a routerLink="/favorites">Favourites</a></li>
-      <li><a routerLink="/cart">Cart</a></li>
-      <li><a routerLink="/profile">Profile</a></li>
-    </ul>
-  </nav>
+<app-navbar></app-navbar>
 
   <section class="product-details">
     <div class="product-images">
@@ -27,7 +14,7 @@
     <div class="product-info">
       <h1>ZGB/OR Kaufmännische Ausgabe</h1>
       <p class="author">Ernst J. Schneiter</p>
-      <p class="book-condition"><strong>BUCHZUSTAND:</strong> NEU</p>
+      <p class="book-condition"><strong>BOOK CONDITION: </strong> NEW</p>
       <p class="book-category"><strong>Zivilgesetzbuch, Obligationenrecht, SchKG, BV Und Weitere Erlasse</strong></p>
       <p class="description">
         Die kaufmännische Ausgabe ZGB/OR zeichnet sich dadurch aus, dass sie sich inhaltlich
@@ -35,13 +22,13 @@
         Die deutsche- und die französischsprachige Ausgabe sind identisch aufgebaut.
       </p>
       <p class="price"><strong>CHF 9.90</strong></p>
-      <button routerLink="/cart" class="cart-btn">ZUM WARENKORB</button>
+      <button routerLink="/cart" class="cart-btn">GO TO SHOPPING CART</button>
       <button class="wishlist-btn">❤️</button>
     </div>
   </section>
 
   <section class="suggestions">
-    <div><h2>VORSCHLÄGE</h2>
+    <div><h2>SUGGESTIONS</h2>
     <div class="suggested-books">
       <div  routerLink="/product" class="book-item">
         <img src="/wirtschaft_ordner.jpeg" alt="Brennpunkt Wirtschaft">
@@ -69,38 +56,5 @@
     </div>
     </div>
   </section>
-
-  <footer class="footer">
-    <div class="footer-logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-      <p>Hirschengraben 10</p>
-      <p>Postfach 3439</p>
-      <p>6002 Luzern</p>
-      <p>Switzerland</p>
-    </div>
-    <div class="footer-links">
-      <h4>Links</h4>
-      <ul>
-        <li><a routerLink="/home">Home</a></li>
-        <li><a routerLink="/browse">Shop</a></li>
-        <li><a routerLink="/sell">Sell</a></li>
-        <li><a routerLink="/cart">Cart</a></li>
-        <li><a routerLink="/profile">Profile</a></li>
-      </ul>
-    </div>
-    <div class="footer-help">
-      <h4>Help</h4>
-      <ul>
-        <li><a routerLink="/aboutus">About Us</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-        <li><a routerLink="/policy">Privacy Policy</a></li>
-        <li><a routerLink="/terms">Terms of Service</a></li>
-      </ul>
-    </div>
-    <div class="footer-newsletter">
-      <h4>Newsletter</h4>
-      <input type="email" placeholder="Enter Your Email Address">
-      <button class="subscribe-btn">SUBSCRIBE</button>
-    </div>
-  </footer>
+<app-footer></app-footer>
 </div>

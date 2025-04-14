@@ -1,164 +1,80 @@
 <div class="browse-container">
-  <nav class="navbar">
-    <div class="logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-    </div>
-    <ul class="nav-links">
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/browse">Shop</a></li>
-      <li><a routerLink="/sell">Sell</a></li>
-      <li><a routerLink="/pricing">Pricing</a></li>
-      <li><a routerLink="/favorites">Favourites</a></li>
-      <li><a routerLink="/cart">Cart</a></li>
-      <li><a routerLink="/profile">Profile</a></li>
-    </ul>
-  </nav>
+  <app-navbar></app-navbar>
 
   <div class="main-content">
+    <!-- 🔍 Search Bar -->
+    <section class="search-bar">
+      <h2>SEARCH PRODUCTS</h2>
+      <div class="search-input">
+        <input type="text" placeholder="Search" [(ngModel)]="searchTerm">
+        <button class="search-button" (click)="onSearch()">🔍</button>
+      </div>
+    </section>
+
+    <!-- 🧠 Filter -->
     <section class="filter-section">
       <h2>FILTER</h2>
       <div class="filter-container">
-        <div class="filter-group">
-          <h3>Preis</h3>
-          <p>CHF <input type="text" placeholder="10"> bis CHF <input type="text" placeholder="100"></p>
+        <!-- Price Filter -->
+        <div class="filter-group" [class.closed]="!isOpen('price')">
+          <h3 (click)="toggle('price')">Price</h3>
+          <div *ngIf="isOpen('price')" class="price-inputs">
+            <span>CHF</span>
+            <input
+              type="number"
+              placeholder="min"
+              (input)="minPrice = parseFloat($any($event.target).value) || null"
+            />
+            <span>to</span>
+            <span>CHF</span>
+            <input
+              type="number"
+              placeholder="max"
+              (input)="maxPrice = parseFloat($any($event.target).value) || null"
+            />
+          </div>
         </div>
 
-        <div class="filter-group">
-          <h3>Kategorie</h3>
-          <ul>
-            <li>Schulbücher</li>
-            <li>Schulmaterial</li>
-            <li>Lernmaterial</li>
+        <!-- Category Filter -->
+        <div class="filter-group" [class.closed]="!isOpen('category')">
+          <h3 (click)="toggle('category')">Category</h3>
+          <ul *ngIf="isOpen('category')">
+            <li
+              *ngFor="let cat of categories"
+              [class.selected]="selectedCategory === cat"
+              (click)="selectCategory(cat)"
+            >
+              {{ cat }}
+            </li>
           </ul>
         </div>
 
-        <div class="filter-group">
-          <h3>Fach</h3>
-          <ul>
-            <li>Mathematik</li>
-            <li>Geschichte</li>
-            <li>Deutsch</li>
-            <li>Wissenschaft</li>
-            <li>Englisch</li>
-            <li>Literatur</li>
+        <!-- Subject Filter -->
+        <div class="filter-group" [class.closed]="!isOpen('subject')">
+          <h3 (click)="toggle('subject')">Subject</h3>
+          <ul *ngIf="isOpen('subject')">
+            <li
+              *ngFor="let subj of ['Law', 'Economy', 'Finance', 'Language', 'Mathematics', 'Science', 'History']"
+              [class.active]="selectedSubjects.includes(subj)"
+              (click)="toggleSubject(subj)"
+            >
+              {{ subj }}
+            </li>
           </ul>
         </div>
       </div>
     </section>
 
+    <!-- 📚 Book Display -->
     <section class="book-list">
-      <div class="book-item">
-        <img src="/zgb.jpg" alt="ZGB/OR">
-        <h4>ZGB/OR</h4>
-        <p>Ernst A. Schraner</p>
-        <strong>CHF 9.90</strong>
-      </div>
-      <div routerLink="/product" class="book-item">
-        <img src="/wirtschaft_ordner.jpeg" alt="Brennpunkt Wirtschaft">
-        <h4>Brennpunkt Wirtschaft Und Gesellschaft 1</h4>
-        <p>Heinz Rolfesnach</p>
-        <strong>CHF 30.00</strong>
-      </div>
-      <div routerLink="/product" class="book-item">
-        <img src="/frw1.webp" alt="Finanzwesen 1">
-        <h4>Finanz- und Rechnungswesen - Grundlagen 1</h4>
-        <p>Ernst Keller</p>
-        <strong>CHF 23.90</strong>
-      </div>
-      <div routerLink="/product" class="book-item">
-        <img src="/frw2.webp" alt="Finanzwesen 2">
-        <h4>Finanz- und Rechnungswesen - Grundlagen 2</h4>
-        <p>Ernst Keller</p>
-        <strong>CHF 25.90</strong>
-      </div>
-    </section>
-
-    <section class="book-list">
-      <div class="book-item">
-        <img src="/zgb.jpg" alt="ZGB/OR">
-        <h4>ZGB/OR</h4>
-        <p>Ernst A. Schraner</p>
-        <strong>CHF 9.90</strong>
-      </div>
-      <div  routerLink="/product" class="book-item">
-        <img src="/wirtschaft_ordner.jpeg" alt="Brennpunkt Wirtschaft">
-        <h4>Brennpunkt Wirtschaft Und Gesellschaft 1</h4>
-        <p>Heinz Rolfesnach</p>
-        <strong>CHF 30.00</strong>
-      </div>
-      <div class="book-item">
-        <img src="/frw1.webp" alt="Finanzwesen 1">
-        <h4>Finanz- und Rechnungswesen - Grundlagen 1</h4>
-        <p>Ernst Keller</p>
-        <strong>CHF 23.90</strong>
-      </div>
-      <div class="book-item">
-        <img src="/frw2.webp" alt="Finanzwesen 2">
-        <h4>Finanz- und Rechnungswesen - Grundlagen 2</h4>
-        <p>Ernst Keller</p>
-        <strong>CHF 25.90</strong>
-      </div>
-    </section>
-
-    <section class="book-list">
-      <div class="book-item">
-        <img src="/frw3.png" alt="ZGB/OR">
-        <h4>ZGB/OR</h4>
-        <p>Ernst A. Schraner</p>
-        <strong>CHF 9.90</strong>
-      </div>
-      <div class="book-item">
-        <img src="/wirtschaft_ordner.jpeg" alt="Brennpunkt Wirtschaft">
-        <h4>Brennpunkt Wirtschaft Und Gesellschaft 1</h4>
-        <p>Heinz Rolfesnach</p>
-        <strong>CHF 30.00</strong>
-      </div>
-      <div class="book-item">
-        <img src="/frw3.png" alt="Finanzwesen 1">
-        <h4>Finanz- und Rechnungswesen - Grundlagen 1</h4>
-        <p>Ernst Keller</p>
-        <strong>CHF 23.90</strong>
-      </div>
-      <div class="book-item">
-        <img src="/frw2.webp" alt="Finanzwesen 2">
-        <h4>Finanz- und Rechnungswesen - Grundlagen 2</h4>
-        <p>Ernst Keller</p>
-        <strong>CHF 25.90</strong>
+      <div *ngFor="let book of filteredBooks()" routerLink="/product" class="book-item">
+        <img [src]="book.image" [alt]="book.title">
+        <h4>{{ book.title }}</h4>
+        <p>{{ book.author }}</p>
+        <strong>CHF {{ book.price.toFixed(2) }}</strong>
       </div>
     </section>
   </div>
 
-  <footer class="footer">
-    <div class="footer-logo">
-      <a href="/home" class="logo"> <img src="/logo.png" alt="Logo"> </a>
-      <p>Hirschengraben 10</p>
-      <p>Postfach 3439</p>
-      <p>6002 Luzern</p>
-      <p>Switzerland</p>
-    </div>
-    <div class="footer-links">
-      <h4>Links</h4>
-      <ul>
-        <li><a routerLink="/home">Home</a></li>
-        <li><a routerLink="/browse">Shop</a></li>
-        <li><a routerLink="/sell">Sell</a></li>
-        <li><a routerLink="/cart">Cart</a></li>
-        <li><a routerLink="/profile">Profile</a></li>
-      </ul>
-    </div>
-    <div class="footer-help">
-      <h4>Help</h4>
-      <ul>
-        <li><a routerLink="/aboutus">About Us</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-        <li><a routerLink="/policy">Privacy Policy</a></li>
-        <li><a routerLink="/terms">Terms of Service</a></li>
-      </ul>
-    </div>
-    <div class="footer-newsletter">
-      <h4>Newsletter</h4>
-      <input type="email" placeholder="Enter Your Email Address">
-      <button class="subscribe-btn">SUBSCRIBE</button>
-    </div>
-  </footer>
+  <app-footer></app-footer>
 </div>
