@@ -49,13 +49,12 @@
           </ul>
         </div>
 
-
         <!-- Subject Filter -->
         <div class="filter-group" [class.closed]="!isOpen('subject')">
           <h3 (click)="toggle('subject')">Subject</h3>
           <ul *ngIf="isOpen('subject')">
             <li
-              *ngFor="let subj of ['Law', 'Economy', 'Finance', 'Language']"
+              *ngFor="let subj of ['Law', 'Economy', 'Finance', 'Language', 'Mathematics', 'Science', 'History']"
               [class.active]="selectedSubjects.includes(subj)"
               (click)="toggleSubject(subj)"
             >

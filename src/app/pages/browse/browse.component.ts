@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-browse',
@@ -29,20 +30,44 @@ export class BrowseComponent implements OnInit {
   books: any[] = [];
   categories = ['School Books', 'School Material', 'Learning Material'];
 
-  constructor(private http: HttpClient) {}
+  openedFilters: Record<string, boolean> = {
+    price: true,
+    category: true,
+    subject: true
+  };
+
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    // URL-Filter (Query-Parameter) übernehmen
+    this.route.queryParams.subscribe(params => {
+      if (params['category']) {
+        this.selectedCategory = params['category'];
+      }
+      if (params['subject']) {
+        this.selectedSubjects = [params['subject']];
+      }
+    });
+
+    // Bücher vom Backend laden
     this.loadBooks();
   }
 
+  private getBooks(): Observable<any[]> {
+    const apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/backend/get_books.php';
+    return this.http.get<any[]>(apiUrl);
+  }
+
   loadBooks(): void {
-    this.http.get<any[]>('https://rebook-bmsd22a.bbzwinf.ch/backend/get_books.php').subscribe({
+    this.getBooks().subscribe({
       next: (data) => this.books = data,
       error: (err) => console.error('Failed to load books', err)
     });
   }
 
-  // ⬇️ Main filtering logic
   filteredBooks() {
     const term = this.searchTerm.toLowerCase().trim();
 
@@ -68,13 +93,6 @@ export class BrowseComponent implements OnInit {
     console.log('Searching for:', this.searchTerm);
   }
 
-  // ⬇️ Filter toggle
-  openedFilters: Record<string, boolean> = {
-    price: true,
-    category: true,
-    subject: true
-  };
-
   toggle(section: string): void {
     this.openedFilters[section] = !this.openedFilters[section];
   }
@@ -83,7 +101,6 @@ export class BrowseComponent implements OnInit {
     return this.openedFilters[section];
   }
 
-  // ⬇️ Subject click toggle
   toggleSubject(subject: string): void {
     const index = this.selectedSubjects.indexOf(subject);
     if (index > -1) {
@@ -93,7 +110,6 @@ export class BrowseComponent implements OnInit {
     }
   }
 
-  // ⬇️ Category selection (single selection)
   selectCategory(category: string): void {
     this.selectedCategory = this.selectedCategory === category ? null : category;
   }
