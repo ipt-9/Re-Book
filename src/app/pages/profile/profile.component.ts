@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
     }
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    this.http.get('https://rebook-bmsd22a.bbzwinf.ch/backend/get_user.php', { headers })
+    this.http.get('https://rebook-bmsd22a.bbzwinf.ch/backend/user.php', { headers })
       .subscribe({
         next: (response: any) => {
           if (response.success) {

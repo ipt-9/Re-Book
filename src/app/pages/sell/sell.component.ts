@@ -52,7 +52,7 @@ export class SellComponent {
       formData.append('image', this.selectedImage);
     }
 
-    this.http.post('http://rebook-bmsd22a.bbzwinf.ch/httpdocs/backend/upload-listing.php', formData)
+    this.http.post('https://rebook-bmsd22a.bbzwinf.ch/backend/upload-listing.php', formData)
       .subscribe({
         next: (response) => {
           this.message = 'Produkt erfolgreich hochgeladen!';

@@ -1,52 +1,46 @@
 <?php
-include('connection.php');
-include(login.php);
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
-{
-  $imagePath = '';
-  if (!empty($_FILES['image']['name'])) {
+require 'auth.php';
+
+$imagePath = '';
+if (!empty($_FILES['image']['name'])) {
     $targetDir = "uploads/";
     if (!file_exists($targetDir)) {
-      mkdir($targetDir, 0777, true);
+        mkdir($targetDir, 0777, true);
     }
 
     $fileName = uniqid() . "_" . basename($_FILES["image"]["name"]);
     $targetFile = $targetDir . $fileName;
 
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
-      $imagePath = $targetFile;
+        $imagePath = $targetFile;
     } else {
-      http_response_code(400);
-      echo json_encode(['error' => 'Picture could not be uploaded.']);
-      exit;
+        http_response_code(400);
+        echo json_encode(['error' => 'Picture could not be uploaded.']);
+        exit;
     }
-  }
+}
 
-  $stmt = $conn->prepare("INSERT INTO products (title, author, description, subject, category, format, image)
-                          VALUES (?, ?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param("sssssss",
+$stmt = $conn->prepare("INSERT INTO products (title, author, description, subject, category, format, image, price)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sssssssd",
     $_POST['title'],
     $_POST['author'],
     $_POST['description'],
     $_POST['subject'],
     $_POST['category'],
     $_POST['format'],
-    $imagePath
-  );
-  $stmt->execute();
-  $product_id = $conn->insert_id;
+    $imagePath,
+    $_POST['price']
+);
+$stmt->execute();
+$product_id = $conn->insert_id;
 
-  // replace with Login-ID
-  $user_id = 1;
+$stmt = $conn->prepare("INSERT INTO listings (fk_product_id, fk_user_id, listing_condition, status, created_at)
+                        VALUES (?, ?, ?, 'Available', NOW())");
+$stmt->bind_param("iis", $product_id, $user_id, $_POST['listing_condition']);
+$stmt->execute();
 
-  $stmt = $conn->prepare("INSERT INTO listings (fk_product_id, fk_user_id, price, listing_condition, status, created_at)
-                          VALUES (?, ?, ?, ?, 'Available', NOW())");
-  $stmt->bind_param("iids", $product_id, $user_id, $_POST['price'], $_POST['listing_condition']);
-  $stmt->execute();
-
-  echo json_encode(['success' => true, 'message' => 'Product saved succesfully']);
-} else{
-    http_response_code(400);
-    echo json_encode(['error' => 'User is not logged in']);
-}
+echo json_encode(['success' => true, 'message' => 'Product saved successfully']);

@@ -1,29 +1,35 @@
 ﻿<?php
-include('connection.php');
+require 'connection.php';
+header('Content-Type: application/json');
 
-session_start();
+$headers = getallheaders();
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    echo json_encode(["status" => "error", "message" => "User not logged in"]);
+if (!isset($headers['Authorization'])) {
+    http_response_code(401);
+    echo json_encode(['success' => false, 'message' => 'No token provided.']);
     exit;
 }
 
-$user_id = $_SESSION['user_id'];
+$token = str_replace('Bearer ', '', $headers['Authorization']);
 
-// Fetch user details
-$stmt = $conn->prepare("SELECT username, email, school, region FROM users WHERE user_id = ?");
-$stmt->bind_param("i", $user_id);
+$stmt = $conn->prepare("SELECT user_id FROM users WHERE token = ?");
+$stmt->bind_param("s", $token);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
 if (!$user) {
-    echo json_encode(["status" => "error", "message" => "User not found"]);
+    http_response_code(403);
+    echo json_encode(['success' => false, 'message' => 'Invalid or expired token.']);
     exit;
 }
 
-echo json_encode(["status" => "success", "user" => $user]);
-$stmt->close();
-$conn->close();
-?>
+$user_id = $user['user_id'];
+
+$stmt = $conn->prepare("SELECT user_id, username, email, school, region FROM users WHERE user_id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$userData = $result->fetch_assoc();
+
+echo json_encode(['success' => true, 'user' => $userData]);
