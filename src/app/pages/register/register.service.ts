@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RegisterService {
-  private apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/backend/register.php';
+  private apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/api/register';
 
   constructor(private http: HttpClient) {}
 

@@ -21,6 +21,7 @@ $user = $result->fetch_assoc();
 if ($user && password_verify($password, $user['password'])) {
     $token = bin2hex(random_bytes(32));
     $_SESSION['token'] = $token;
+    $_SESSION['loggedin'] = true; //this should confirm that the user is logged in
     $_SESSION['user_id'] = $user['user_id'];
 
     exit(json_encode([

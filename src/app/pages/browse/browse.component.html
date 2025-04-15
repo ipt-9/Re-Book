@@ -67,11 +67,11 @@
 
     <!-- 📚 Book Display -->
     <section class="book-list">
-      <div *ngFor="let book of filteredBooks()" routerLink="/product" class="book-item">
+      <div *ngFor="let book of filteredBooks()" routerLink="/product" class="book-item" [title]="book.title">
         <img [src]="book.image" [alt]="book.title">
         <h4>{{ book.title }}</h4>
         <p>{{ book.author }}</p>
-        <strong>CHF {{ book.price.toFixed(2) }}</strong>
+        <strong *ngIf="book.price != null">CHF {{ book.price | number: '1.2-2' }}</strong>
       </div>
     </section>
   </div>

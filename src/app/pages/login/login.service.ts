@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/backend/login.php';
+  private apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/api/login';
 
   constructor(private http: HttpClient) {}
 
@@ -16,7 +16,7 @@ export class LoginService {
 }
 
 export class BookService {
-  private apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/backend/get_books.php';
+  private apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/api/get_books';
 
   constructor(private http: HttpClient) {}
 

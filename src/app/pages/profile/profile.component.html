@@ -1,131 +1,101 @@
 <div class="profile-container">
-<app-navbar></app-navbar>
+  <app-navbar></app-navbar>
 
-    <section class="profile-header">
-        <div class="profile-info">
-            <img src="/profile.avif" alt="Profile Picture" class="profile-pic">
-            <div>
-                <h2>Max Mustermann <span class="premium">Premium</span></h2>
-                <p class="email">max&#64;gmail.com</p>
-            </div>
-        </div>
-      <button class="signout-btn" (click)="logout()">Sign out</button>
-    </section>
+  <!-- 🧑‍💼 Profil Header -->
+  <section class="profile-header">
+    <div class="profile-info">
+      <img src="/profile.avif" alt="Profile Picture" class="profile-pic">
+      <div>
+        <h2>{{ user?.username }} <span class="premium">Premium</span></h2>
+        <p class="email">{{ user?.email }}</p>
+      </div>
+    </div>
+    <button class="signout-btn" (click)="logout()">Sign out</button>
+  </section>
 
-    <section class="profile-details">
-        <div class="detail-group">
-            <label>Fullname</label>
-            <input type="text" value="Max Mustermann" disabled>
-        </div>
-        <div class="detail-group">
-            <label>Nickname</label>
-            <input type="text" value="Max12" disabled>
-        </div>
-        <div class="detail-group">
-            <label>Gender</label>
-            <input type="text" value="Männlich" disabled>
-        </div>
-        <div class="detail-group">
-            <label>Country</label>
-            <input type="text" value="Schweiz" disabled>
-        </div>
-        <div class="detail-group">
-            <label>Language</label>
-            <input type="text" value="Deutsch" disabled>
-        </div>
-        <div class="detail-group">
-            <label>School</label>
-            <input type="text" value="FMZ Luzern" disabled>
-        </div>
-    </section>
+  <!-- 🧾 Profil Details -->
+  <section class="profile-details" *ngIf="user">
+    <div class="detail-group">
+      <label>Fullname</label>
+      <input type="text" [value]="user?.username" disabled>
+    </div>
+    <div class="detail-group">
+      <label>Nickname</label>
+      <input type="text" [value]="user?.nickname || '—'" disabled>
+    </div>
+    <div class="detail-group">
+      <label>Gender</label>
+      <input type="text" [value]="user?.gender || '—'" disabled>
+    </div>
+    <div class="detail-group">
+      <label>Country</label>
+      <input type="text" [value]="user?.region" disabled>
+    </div>
+    <div class="detail-group">
+      <label>Language</label>
+      <input type="text" [value]="user?.language || '—'" disabled>
+    </div>
+    <div class="detail-group">
+      <label>School</label>
+      <input type="text" [value]="user?.school" disabled>
+    </div>
+  </section>
 
-    <section class="email-section">
-        <h3>My Email Adress</h3>
-        <div class="email-info">
-            <img src="/email.webp" alt="Email Icon" class="email-icon">
-            <div>
-                <p class="email-text">max&#64;gmail.com</p>
-                <p class="email-date">One month ago</p>
-            </div>
-        </div>
-    </section>
+  <!-- ✉️ Email Anzeige -->
+  <section class="email-section" *ngIf="user">
+    <h3>My Email Address</h3>
+    <div class="email-info">
+      <img src="/email.webp" alt="Email Icon" class="email-icon">
+      <div>
+        <p class="email-text">{{ user?.email }}</p>
+        <p class="email-date">One month ago</p> <!-- Optional dynamisch machen -->
+      </div>
+    </div>
+  </section>
 
-    <section class="products">
-        <h3>Advertised products</h3>
-        <div class="book-list">
-            <div class="book-item highlighted">
-                <img src="/frw3.png" alt="Product">
-                <h4>Finanz- und Rechnungswesen - Vertiefungen</h4>
-                <strong>CHF 49.90</strong>
-            </div>
-            <div class="book-item">
-                <img src="/grammatik.jpg" alt="Product">
-                <h4>Systematische Übungsgrammatik</h4>
-                <strong>CHF 25.90</strong>
-            </div>
-            <div class="book-item">
-                <img src="/gold.webp" alt="Product">
-                <h4>Gold B2 First</h4>
-                <strong>CHF 46.70</strong>
-            </div>
-            <div class="book-item">
-                <img src="/business.jpg" alt="Product">
-                <h4>Business Partner B1+</h4>
-                <strong>CHF 35.90</strong>
-            </div>
-        </div>
-    </section>
+  <!-- 📚 Produkte -->
+  <section class="products">
+    <h3>Advertised products</h3>
+    <div class="book-list">
+      <div class="book-item highlighted">
+        <img src="/frw3.png" alt="Product">
+        <h4>Finanz- und Rechnungswesen - Vertiefungen</h4>
+        <strong>CHF 49.90</strong>
+      </div>
+      <div class="book-item">
+        <img src="/grammatik.jpg" alt="Product">
+        <h4>Systematische Übungsgrammatik</h4>
+        <strong>CHF 25.90</strong>
+      </div>
+    </div>
+  </section>
 
-    <section class="products">
-        <h3>Sold products</h3>
-        <div class="book-list">
-            <div class="book-item highlighted">
-                <img src="/frw3.png" alt="Product">
-                <h4>Finanz- und Rechnungswesen - Vertiefungen</h4>
-                <strong>CHF 49.90</strong>
-            </div>
-            <div class="book-item">
-                <img src="/grammatik.jpg" alt="Product">
-                <h4>Systematische Übungsgrammatik</h4>
-                <strong>CHF 25.90</strong>
-            </div>
-            <div class="book-item">
-                <img src="/gold.webp" alt="Product">
-                <h4>Gold B2 First</h4>
-                <strong>CHF 46.70</strong>
-            </div>
-            <div class="book-item">
-                <img src="/business.jpg" alt="Product">
-                <h4>Business Partner B1+</h4>
-                <strong>CHF 35.90</strong>
-            </div>
-        </div>
-    </section>
+  <section class="products">
+    <h3>Sold products</h3>
+    <div class="book-list">
+      <div class="book-item">
+        <img src="/gold.webp" alt="Product">
+        <h4>Gold B2 First</h4>
+        <strong>CHF 46.70</strong>
+      </div>
+      <div class="book-item">
+        <img src="/business.jpg" alt="Product">
+        <h4>Business Partner B1+</h4>
+        <strong>CHF 35.90</strong>
+      </div>
+    </div>
+  </section>
 
-    <section class="products">
-        <h3>Purchased products</h3>
-        <div class="book-list">
-            <div class="book-item highlighted">
-                <img src="/frw3.png" alt="Product">
-                <h4>Finanz- und Rechnungswesen - Vertiefungen</h4>
-                <strong>CHF 49.90</strong>
-            </div>
-            <div class="book-item">
-                <img src="/grammatik.jpg" alt="Product">
-                <h4>Systematische Übungsgrammatik</h4>
-                <strong>CHF 25.90</strong>
-            </div>
-            <div class="book-item">
-                <img src="/gold.webp" alt="Product">
-                <h4>Gold B2 First</h4>
-                <strong>CHF 46.70</strong>
-            </div>
-            <div class="book-item">
-                <img src="/business.jpg" alt="Product">
-                <h4>Business Partner B1+</h4>
-                <strong>CHF 35.90</strong>
-            </div>
-        </div>
-    </section>
-<app-footer></app-footer>
+  <section class="products">
+    <h3>Purchased products</h3>
+    <div class="book-list">
+      <div class="book-item">
+        <img src="/frw3.png" alt="Product">
+        <h4>Finanz- und Rechnungswesen - Vertiefungen</h4>
+        <strong>CHF 49.90</strong>
+      </div>
+    </div>
+  </section>
+
+  <app-footer></app-footer>
 </div>

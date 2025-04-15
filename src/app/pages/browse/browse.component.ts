@@ -57,7 +57,7 @@ export class BrowseComponent implements OnInit {
   }
 
   private getBooks(): Observable<any[]> {
-    const apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/backend/get_books.php';
+    const apiUrl = 'https://rebook-bmsd22a.bbzwinf.ch/api/get_books';
     return this.http.get<any[]>(apiUrl);
   }
 
