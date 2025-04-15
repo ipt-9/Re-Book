@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import {NavbarComponent} from '../navbar/navbar.component';
-import {FooterComponent} from '../footer/footer.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
+import { CommonModule } from '@angular/common'; // Good to have
 
 @Component({
   selector: 'app-product',
   standalone: true,
   templateUrl: './product.component.html',
   imports: [
+    CommonModule,
     NavbarComponent,
     FooterComponent,
     RouterLink

@@ -19,7 +19,11 @@ import { AuthService } from '../../services/auth.service';
 export class ProfileComponent implements OnInit {
   user: any = null;
 
-  constructor(private router: Router, private http: HttpClient, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     const token = this.authService.getToken();
@@ -47,7 +51,18 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    this.http.post('https://rebook-bmsd22a.bbzwinf.ch/backend/logout.php', {}, { headers }).subscribe({
+      next: () => {
+        this.authService.removeToken(); // lokal löschen
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.error('Logout failed:', err);
+        alert('Logout failed.');
+      }
+    });
   }
 }
