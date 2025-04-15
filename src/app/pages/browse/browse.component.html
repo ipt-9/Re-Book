@@ -67,13 +67,20 @@
 
     <!-- 📚 Book Display -->
     <section class="book-list">
-      <div *ngFor="let book of filteredBooks()" routerLink="/product" class="book-item" [title]="book.title">
-        <img [src]="book.image" [alt]="book.title">
+      <a
+        *ngFor="let book of filteredBooks()"
+        [routerLink]="['/product']"
+        [queryParams]="{ id: book.product_id }"
+        class="book-item"
+        [title]="book.title"
+      >
+        <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image"  />
         <h4>{{ book.title }}</h4>
         <p>{{ book.author }}</p>
-        <strong *ngIf="book.price != null">CHF {{ book.price | number: '1.2-2' }}</strong>
-      </div>
+        <strong> CHF {{ book.price }}</strong>
+      </a>
     </section>
+
   </div>
 
   <app-footer></app-footer>

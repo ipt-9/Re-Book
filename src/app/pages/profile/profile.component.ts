@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,10 +19,11 @@ import { FooterComponent } from '../footer/footer.component';
 export class ProfileComponent implements OnInit {
   user: any = null;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
+    const token = this.authService.getToken();
+    console.log('🔐 Token in ProfileComponent:', token);
     if (!token) {
       this.router.navigate(['/login']);
       return;
