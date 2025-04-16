@@ -31,9 +31,9 @@ export class BrowseComponent implements OnInit {
   categories = ['School Books', 'School Material', 'Learning Material'];
 
   openedFilters: Record<string, boolean> = {
-    price: true,
-    category: true,
-    subject: true
+    price: false,
+    category: false,
+    subject: false
   };
 
   constructor(
@@ -42,7 +42,7 @@ export class BrowseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // URL-Filter (Query-Parameter) übernehmen
+    // URL-Filter (Query-Parameter) ubernehmen
     this.route.queryParams.subscribe(params => {
       if (params['category']) {
         this.selectedCategory = params['category'];

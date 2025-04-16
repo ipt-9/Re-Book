@@ -1,7 +1,6 @@
 <div class="profile-container">
   <app-navbar></app-navbar>
 
-  <!-- 🧑‍💼 Profil Header -->
   <section class="profile-header">
     <div class="profile-info">
       <img src="/profile.avif" alt="Profile Picture" class="profile-pic">
@@ -13,7 +12,6 @@
     <button class="signout-btn" (click)="logout()">Sign out</button>
   </section>
 
-  <!-- 🧾 Profil Details -->
   <section class="profile-details" *ngIf="user">
     <div class="detail-group">
       <label>Fullname</label>
@@ -21,81 +19,86 @@
     </div>
     <div class="detail-group">
       <label>Nickname</label>
-      <input type="text" [value]="user?.nickname || '—'" disabled>
+      <input type="text" [(ngModel)]="user.nickname">
     </div>
     <div class="detail-group">
       <label>Gender</label>
-      <input type="text" [value]="user?.gender || '—'" disabled>
+      <select [(ngModel)]="user.gender">
+        <option value="">—</option>
+        <option value="Männlich">Männlich</option>
+        <option value="Weiblich">Weiblich</option>
+        <option value="Divers">Divers</option>
+      </select>
     </div>
     <div class="detail-group">
       <label>Country</label>
-      <input type="text" [value]="user?.region" disabled>
+      <input type="text" [(ngModel)]="user.region">
     </div>
     <div class="detail-group">
       <label>Language</label>
-      <input type="text" [value]="user?.language || '—'" disabled>
+      <input type="text" [(ngModel)]="user.language">
     </div>
     <div class="detail-group">
       <label>School</label>
-      <input type="text" [value]="user?.school" disabled>
+      <input type="text" [(ngModel)]="user.school">
     </div>
+
+    <button (click)="saveProfile()" class="save-btn">Speichern</button>
   </section>
 
-  <!-- ✉️ Email Anzeige -->
   <section class="email-section" *ngIf="user">
     <h3>My Email Address</h3>
     <div class="email-info">
       <img src="/email.webp" alt="Email Icon" class="email-icon">
       <div>
         <p class="email-text">{{ user?.email }}</p>
-        <p class="email-date">One month ago</p> <!-- Optional dynamisch machen -->
+        <p class="email-date">One month ago</p>
       </div>
     </div>
   </section>
 
-  <!-- 📚 Produkte -->
-  <section class="products">
+  <section class="products" *ngIf="advertisedProducts.length">
     <h3>Advertised products</h3>
     <div class="book-list">
-      <div class="book-item highlighted">
-        <img src="/frw3.png" alt="Product">
-        <h4>Finanz- und Rechnungswesen - Vertiefungen</h4>
-        <strong>CHF 49.90</strong>
-      </div>
-      <div class="book-item">
-        <img src="/grammatik.jpg" alt="Product">
-        <h4>Systematische Übungsgrammatik</h4>
-        <strong>CHF 25.90</strong>
-      </div>
+      <a *ngFor="let book of advertisedProducts"
+         [routerLink]="['/product']"
+         [queryParams]="{ id: book.product_id }"
+         class="book-item">
+        <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title">
+        <h4>{{ book.title }}</h4>
+        <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
+      </a>
     </div>
   </section>
 
-  <section class="products">
+  <section class="products" *ngIf="soldProducts.length">
     <h3>Sold products</h3>
     <div class="book-list">
-      <div class="book-item">
-        <img src="/gold.webp" alt="Product">
-        <h4>Gold B2 First</h4>
-        <strong>CHF 46.70</strong>
-      </div>
-      <div class="book-item">
-        <img src="/business.jpg" alt="Product">
-        <h4>Business Partner B1+</h4>
-        <strong>CHF 35.90</strong>
-      </div>
+      <a *ngFor="let book of soldProducts"
+         [routerLink]="['/product']"
+         [queryParams]="{ id: book.product_id }"
+         class="book-item">
+        <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title">
+        <h4>{{ book.title }}</h4>
+        <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
+      </a>
     </div>
   </section>
 
-  <section class="products">
-    <h3>Purchased products</h3>
+  <section class="products" *ngIf="boughtProducts.length">
+    <h3>Bought products</h3>
     <div class="book-list">
-      <div class="book-item">
-        <img src="/frw3.png" alt="Product">
-        <h4>Finanz- und Rechnungswesen - Vertiefungen</h4>
-        <strong>CHF 49.90</strong>
-      </div>
+      <a *ngFor="let book of boughtProducts"
+         [routerLink]="['/product']"
+         [queryParams]="{ id: book.product_id }"
+         class="book-item">
+        <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title">
+        <h4>{{ book.title }}</h4>
+        <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
+      </a>
     </div>
   </section>
+
 
   <app-footer></app-footer>
 </div>
