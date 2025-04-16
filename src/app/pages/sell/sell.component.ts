@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    RouterLink,
+    FormsModule,
     NavbarComponent,
     FooterComponent
   ],
@@ -22,6 +21,13 @@ export class SellComponent {
   selectedImage: File | null = null;
   message: string = '';
   isSuccess: boolean = false;
+  product = {
+    title : '',
+    description : '',
+    price : '',
+    category: '', //maybe change this since it's in the form of a checkbox
+    imagePath: ''
+  }
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.productForm = this.fb.group({
@@ -36,13 +42,8 @@ export class SellComponent {
     });
   }
 
-  onFileChange(event: any) {
-    if (event.target.files.length > 0) {
-      this.selectedImage = event.target.files[0];
-    }
-  }
 
-  onSubmit() {
+  async uploadListing() {
     const formData = new FormData();
     for (const key in this.productForm.value) {
       formData.append(key, this.productForm.value[key]);
@@ -66,14 +67,11 @@ export class SellComponent {
         }
       });
   }
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
-  }
 
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    if (event.dataTransfer?.files.length) {
-      this.selectedImage = event.dataTransfer.files[0];
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedImage = input.files[0];
     }
   }
 }

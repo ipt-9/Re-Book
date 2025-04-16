@@ -66,16 +66,48 @@ html, body {
   gap: 20px;
 }
 
-.detail-group label {
-  font-weight: bold;
+.detail-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
+.detail-group select,
 .detail-group input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background: #f7f7f7;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fdfdfd;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-group select:focus,
+.detail-group input:focus {
+  outline: none;
+  border-color: #6a5acd;
+  box-shadow: 0 0 4px rgba(106, 90, 205, 0.3);
+}
+
+/* 💾 Save Button */
+.save-btn {
+  grid-column: span 2;
+  margin-top: 10px;
+  padding: 12px 20px;
+  background-color: #6a5acd;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.save-btn:hover {
+  background-color: #5b4bb1;
+  transform: translateY(-2px);
 }
 
 .email-section {

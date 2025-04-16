@@ -13,10 +13,28 @@
       <p class="book-category"><strong>{{ product.category }}</strong></p>
       <p class="description">{{ product.description }}</p>
       <p class="price"><strong>CHF {{ product.price }}</strong></p>
-      <button routerLink="/cart" class="cart-btn">ADD TO SHOPPING CART</button>
+      <button (click)="addToCart()" class="cart-btn">ADD TO SHOPPING CART</button>
       <button  class="wishlist-btn">❤️</button>
     </div>
   </section>
+
+  <section class="top-picks" *ngIf="topBooks.length">
+    <h2>TOP PICKS</h2>
+    <div class="book-list">
+      <a
+        *ngFor="let book of topBooks"
+        [routerLink]="['/product']"
+        [queryParams]="{ id: book.product_id }"
+        class="book-item"
+      >
+        <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title" />
+        <h4>{{ book.title }}</h4>
+        <p>{{ book.author }}</p>
+        <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
+      </a>
+    </div>
+  </section>
+
 
   <app-footer></app-footer>
 </div>

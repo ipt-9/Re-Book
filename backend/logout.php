@@ -1,9 +1,11 @@
 ﻿<?php
-session_start();
-session_unset();
-session_destroy();
+require 'auth.php';
 
-echo json_encode([
-    "success" => true,
-    "message" => "Logout successful."
-]);
+$stmt = $conn->prepare("UPDATE users SET token = NULL WHERE user_id = ?");
+$stmt->bind_param("i", $user_id);
+
+if ($stmt->execute()) {
+    echo json_encode(['success' => true, 'message' => 'Logged out successfully']);
+} else {
+    echo json_encode(['success' => false, 'message' => 'Logout failed']);
+}

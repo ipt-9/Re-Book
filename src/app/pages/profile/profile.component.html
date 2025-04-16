@@ -12,7 +12,7 @@
     <button class="signout-btn" (click)="logout()">Sign out</button>
   </section>
 
-  <section class="profile-details" *ngIf="user">
+  <section class="profile-details">
     <div class="detail-group">
       <label>Fullname</label>
       <input type="text" [value]="user?.username" disabled>
@@ -22,16 +22,16 @@
       <input type="text" [(ngModel)]="user.nickname">
     </div>
     <div class="detail-group">
-      <label>Gender</label>
-      <select [(ngModel)]="user.gender">
+      <label for="gender">Gender</label>
+      <select id="gender" [(ngModel)]="user.gender">
         <option value="">—</option>
-        <option value="Männlich">Männlich</option>
-        <option value="Weiblich">Weiblich</option>
-        <option value="Divers">Divers</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
       </select>
     </div>
     <div class="detail-group">
-      <label>Country</label>
+      <label>Region</label>
       <input type="text" [(ngModel)]="user.region">
     </div>
     <div class="detail-group">
@@ -43,7 +43,7 @@
       <input type="text" [(ngModel)]="user.school">
     </div>
 
-    <button (click)="saveProfile()" class="save-btn">Speichern</button>
+    <button (click)="saveProfile()" class="save-btn">Save</button>
   </section>
 
   <section class="email-section" *ngIf="user">
