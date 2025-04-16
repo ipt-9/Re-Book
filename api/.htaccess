@@ -2,9 +2,9 @@ RewriteEngine On
 RewriteBase /api/
 Options +FollowSymLinks
 
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
 RewriteRule ^test123$ test-output.php [L]
-
-
 RewriteRule ^login$ ../backend/login.php [QSA,L]
 RewriteRule ^register$ ../backend/register.php [QSA,L]
 RewriteRule ^logout$ ../backend/logout.php [QSA,L]
@@ -13,4 +13,4 @@ RewriteRule ^user$ ../backend/get_user.php [QSA,L]
 RewriteRule ^upload-listing$ ../backend/upload-listing.php [QSA,L]
 RewriteRule ^auth$ ../backend/auth.php [QSA,L]
 RewriteRule ^test$ ../backend/test.php [QSA,L]
-RewriteRule ^con$ ../backend/connection.php [QSA, L]
+RewriteRule ^con$ ../backend/connection.php [QSA,L]

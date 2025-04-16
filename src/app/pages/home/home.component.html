@@ -23,29 +23,20 @@
     </div>
   </section>
 
-  <section class="top-picks">
+  <section class="top-picks" *ngIf="topBooks.length">
     <h2>TOP PICKS</h2>
     <div class="book-list">
-      <div routerLink="/product" class="book-item">
-        <img src="/zgb.jpg" alt="ZGB/OR">
-        <h4>ZGB/OR</h4>
-        <p>Author</p>
-        <strong>Price</strong>
-      </div>
-
-      <div routerLink="/product" class="book-item">
-        <img src="/wirtschaft_ordner.jpeg" alt="Brennpunkt Wirtschaft">
-        <h4>Brennpunkt Wirtschaft Und Gesellschaft 1</h4>
-        <p>Author</p>
-        <strong>Price</strong>
-      </div>
-
-      <div routerLink="/product" class="book-item">
-        <img src="/frw1.webp" alt="Finanzwesen 1">
-        <h4>Finanz- und Rechnungswesen - Grundlagen 1</h4>
-        <p>Author</p>
-        <strong>Price</strong>
-      </div>
+      <a
+        *ngFor="let book of topBooks"
+        [routerLink]="['/product']"
+        [queryParams]="{ id: book.product_id }"
+        class="book-item"
+      >
+        <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title" />
+        <h4>{{ book.title }}</h4>
+        <p>{{ book.author }}</p>
+        <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
+      </a>
     </div>
   </section>
 
