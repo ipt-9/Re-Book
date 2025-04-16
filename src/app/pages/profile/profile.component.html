@@ -56,47 +56,70 @@
       </div>
     </div>
   </section>
-
-  <section class="products" *ngIf="advertisedProducts.length">
+  <!-- 🔸 Advertised Products -->
+  <section class="products">
     <h3>Advertised products</h3>
-    <div class="book-list">
-      <a *ngFor="let book of advertisedProducts"
-         [routerLink]="['/product']"
-         [queryParams]="{ id: book.product_id }"
-         class="book-item">
-        <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title">
-        <h4>{{ book.title }}</h4>
-        <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
-      </a>
+
+    <div *ngIf="advertisedProducts.length; else noAdvertised">
+      <div class="book-list">
+        <a *ngFor="let book of advertisedProducts"
+           [routerLink]="['/product']"
+           [queryParams]="{ id: book.product_id }"
+           class="book-item">
+          <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title">
+          <h4>{{ book.title }}</h4>
+          <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
+        </a>
+      </div>
     </div>
+
+    <ng-template #noAdvertised>
+      <p style="margin-top: 10px; font-style: italic; color: #666;">Keine angebotenen Produkte gefunden.</p>
+    </ng-template>
   </section>
 
-  <section class="products" *ngIf="soldProducts.length">
+  <!-- 🔸 Sold Products -->
+  <section class="products">
     <h3>Sold products</h3>
-    <div class="book-list">
-      <a *ngFor="let book of soldProducts"
-         [routerLink]="['/product']"
-         [queryParams]="{ id: book.product_id }"
-         class="book-item">
-        <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title">
-        <h4>{{ book.title }}</h4>
-        <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
-      </a>
+
+    <div *ngIf="soldProducts.length; else noSold">
+      <div class="book-list">
+        <a *ngFor="let book of soldProducts"
+           [routerLink]="['/product']"
+           [queryParams]="{ id: book.product_id }"
+           class="book-item">
+          <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title">
+          <h4>{{ book.title }}</h4>
+          <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
+        </a>
+      </div>
     </div>
+
+    <ng-template #noSold>
+      <p style="margin-top: 10px; font-style: italic; color: #666;">Keine verkauften Produkte gefunden.</p>
+    </ng-template>
   </section>
 
-  <section class="products" *ngIf="boughtProducts.length">
+  <!-- 🔸 Bought Products -->
+  <section class="products">
     <h3>Bought products</h3>
-    <div class="book-list">
-      <a *ngFor="let book of boughtProducts"
-         [routerLink]="['/product']"
-         [queryParams]="{ id: book.product_id }"
-         class="book-item">
-        <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title">
-        <h4>{{ book.title }}</h4>
-        <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
-      </a>
+
+    <div *ngIf="boughtProducts.length; else noBought">
+      <div class="book-list">
+        <a *ngFor="let book of boughtProducts"
+           [routerLink]="['/product']"
+           [queryParams]="{ id: book.product_id }"
+           class="book-item">
+          <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title">
+          <h4>{{ book.title }}</h4>
+          <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
+        </a>
+      </div>
     </div>
+
+    <ng-template #noBought>
+      <p style="margin-top: 10px; font-style: italic; color: #666;">Keine gekauften Produkte gefunden.</p>
+    </ng-template>
   </section>
 
 

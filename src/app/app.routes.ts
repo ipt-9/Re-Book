@@ -41,3 +41,4 @@ export const routes: Routes = [
   { path: 'footer', component: FooterComponent },
   { path: 'navbar', component: NavbarComponent }
 ];
+

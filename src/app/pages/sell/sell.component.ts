@@ -17,60 +17,64 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./sell.component.scss', '../../../styles.scss']
 })
 export class SellComponent {
-  productForm: FormGroup;
   selectedImage: File | null = null;
   message: string = '';
   isSuccess: boolean = false;
+
   product = {
-    title : '',
-    description : '',
-    price : '',
-    category: '', //maybe change this since it's in the form of a checkbox
-    imagePath: ''
-  }
+    title: '',
+    description: '',
+    price: '',
+    category: ''
+  };
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
-    this.productForm = this.fb.group({
-      title: [''],
-      author: [''],
-      description: [''],
-      subject: [''],
-      category: [''],
-      format: [''],
-      price: [''],
-      listing_condition: ['New']
-    });
-  }
+  constructor(private http: HttpClient) {}
 
-
-  async uploadListing() {
+  uploadListing() {
     const formData = new FormData();
-    for (const key in this.productForm.value) {
-      formData.append(key, this.productForm.value[key]);
-    }
+
+    formData.append('title', this.product.title);
+    formData.append('description', this.product.description);
+    formData.append('price', this.product.price);
+    formData.append('category', this.product.category);
 
     if (this.selectedImage) {
       formData.append('image', this.selectedImage);
     }
 
-    this.http.post('https://rebook-bmsd22a.bbzwinf.ch/backend/upload-listing.php', formData)
-      .subscribe({
-        next: (response) => {
-          this.message = 'Produkt erfolgreich hochgeladen!';
-          this.isSuccess = true;
-          this.productForm.reset();
-        },
-        error: (error) => {
-          this.message = 'Fehler beim Hochladen des Produkts.';
-          this.isSuccess = false;
-          console.error(error);
+    const token = localStorage.getItem('user_token');
+    if (!token) {
+      this.message = 'You must be logged in to upload';
+      return;
+    }
+
+    this.http.post(
+      'https://rebook-bmsd22a.bbzwinf.ch/backend/upload-listing.php',
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-      });
+      }
+    ).subscribe({
+      next: res => {
+        console.log('Uploaded:', res);
+        this.message = 'Upload successful!';
+        this.isSuccess = true;
+        this.product = { title: '', description: '', price: '', category: '' };
+        this.selectedImage = null;
+      },
+      error: err => {
+        console.error(err);
+        this.message = 'Upload failed.';
+        this.isSuccess = false;
+      }
+    });
   }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
+    if (input.files?.length) {
       this.selectedImage = input.files[0];
     }
   }
