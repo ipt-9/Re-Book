@@ -19,11 +19,11 @@ import {DecimalPipe} from '@angular/common';
   styleUrls: ['./favorites.component.scss', '../../../styles.scss']
 })
 export class FavoritesComponent implements OnInit {
-  favourites: any[] = [];
+  favorites: any[] = [];
 
   constructor(private favoritesService: FavoritesService) {}
 
   ngOnInit(): void {
-    this.favourites = this.favoritesService.getAll();
+    this.favorites = this.favoritesService.getAll();
   }
 }
