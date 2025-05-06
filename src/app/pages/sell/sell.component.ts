@@ -3,6 +3,8 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import {lastValueFrom} from 'rxjs';
+import {SellService} from './sell.service';
 
 @Component({
   selector: 'app-home',
@@ -28,9 +30,12 @@ export class SellComponent {
     category: ''
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+              private uploadService: SellService) {}
 
-  uploadListing() {
+  upload() {
+    //const response = await lastValueFrom(this.uploadService.uploadListing(this.user));
+    console.log('Proof that it enters function')
     const formData = new FormData();
 
     formData.append('title', this.product.title);

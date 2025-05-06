@@ -3,7 +3,6 @@ import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { CartService } from './cart.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -20,10 +19,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CartComponent implements OnInit {
   cart: any[] = [];
-  constructor(private cartService: CartService, private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    const token = localStorage.getItem('user_token');
+    const token = localStorage.getItem('token');
     if (token) {
       this.http.get<any[]>(
         'https://rebook-bmsd22a.bbzwinf.ch/backend/get-cart.php',

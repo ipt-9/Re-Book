@@ -31,7 +31,7 @@ $stmt = $conn->prepare("
     INSERT INTO products (title, author, description, subject, category, format, image, price)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 ");
-$stmt->bind_param("sssssssd",
+$stmt->bind_param("ssssssss",
     $title,
     $author,
     $description,

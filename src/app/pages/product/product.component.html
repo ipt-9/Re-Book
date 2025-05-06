@@ -14,7 +14,7 @@
       <p class="description">{{ product.description }}</p>
       <p class="price"><strong>CHF {{ product.price }}</strong></p>
       <button (click)="addToCart()" class="cart-btn">ADD TO SHOPPING CART</button>
-      <button  class="wishlist-btn">❤️</button>
+      <button class="wishlist-btn" (click)="addToFavorites(product)">❤️</button>
     </div>
   </section>
 

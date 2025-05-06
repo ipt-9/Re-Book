@@ -5,7 +5,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
-import {DecimalPipe } from '@angular/common';
+import {DecimalPipe, NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +16,8 @@ import {DecimalPipe } from '@angular/common';
     FooterComponent,
     FormsModule,
     DecimalPipe,
+    NgIf,
+    NgForOf,
   ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
