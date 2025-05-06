@@ -4,6 +4,8 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -18,30 +20,40 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./cart.component.scss', '../../../styles.scss']
 })
 export class CartComponent implements OnInit {
+
   cart: any[] = [];
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token'); // fix the key
+    console.log('🛒 CartComponent INIT');
 
-    if (token) {
-      this.http.get<any[]>(
-        'https://rebook-bmsd22a.bbzwinf.ch/backend/get-cart.php',
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      ).subscribe({
-        next: data => {
-          console.log('Cart data:', data);
-          this.cart = data;
-        },
-        error: err => {
-          console.error('Failed to load cart', err);
-          alert('Error loading cart: ' + (err.error?.message || 'Unknown error'));
-        }
-      });
+    const token = localStorage.getItem('token');
+    console.log('🧾 Token:', token);
+
+    if (!token) {
+      console.error('⛔ No token found in localStorage');
+      return;
     }
+
+    this.http.get<any[]>(
+      'https://rebook-bmsd22a.bbzwinf.ch/backend/get-cart.php',
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    ).pipe(
+      catchError(error => {
+        console.error('📛 Caught HTTP error:', error);
+        return of([]); // leeres Array zurückgeben
+      })
+    ).subscribe({
+      next: data => {
+        console.log('✅ Cart data received:', data);
+        this.cart = data;
+      }
+    });
+
   }
+
 
   increaseQuantity(item: any) {
     item.quantity++;

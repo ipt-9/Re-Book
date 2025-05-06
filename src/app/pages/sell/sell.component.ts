@@ -25,8 +25,10 @@ export class SellComponent {
 
   product = {
     title: '',
+    author: '',
     description: '',
     price: '',
+    subject: '',
     category: ''
   };
 
@@ -39,8 +41,10 @@ export class SellComponent {
     const formData = new FormData();
 
     formData.append('title', this.product.title);
+    formData.append('author', this.product.author);
     formData.append('description', this.product.description);
     formData.append('price', this.product.price);
+    formData.append('subject', this.product.subject);
     formData.append('category', this.product.category);
 
     if (this.selectedImage) {
@@ -67,7 +71,7 @@ export class SellComponent {
         console.log('Uploaded:', res);
         this.message = 'Upload successful!';
         this.isSuccess = true;
-        this.product = { title: '', description: '', price: '', category: '' };
+        this.product = { title: '', description: '', price: '', category: '' , author: '', subject: '' };
         this.selectedImage = null;
       },
       error: err => {

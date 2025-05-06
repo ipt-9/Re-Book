@@ -54,7 +54,7 @@
           <h3 (click)="toggle('subject')">Subject</h3>
           <ul *ngIf="isOpen('subject')">
             <li
-              *ngFor="let subj of ['Law', 'Economy', 'Finance', 'Language', 'Mathematics', 'Science', 'History']"
+              *ngFor="let subj of ['Law', 'Economy', 'Finance', 'Language', 'Mathematics', 'Science', 'History', 'Other']"
               [class.active]="selectedSubjects.includes(subj)"
               (click)="toggleSubject(subj)"
             >

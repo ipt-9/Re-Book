@@ -9,6 +9,11 @@ require 'connection.php';
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Authorization, Content-Type');
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header('Access-Control-Allow-Methods: GET, OPTIONS');
+    exit(0);
+}
+
 
 if (!isset($user_id)) {
     http_response_code(401);

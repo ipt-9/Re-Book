@@ -16,6 +16,11 @@
       </div>
 
       <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" id="author" name="author" placeholder="Enter author of the book" aria-label="Author" [(ngModel)]="product.author" required>
+      </div>
+
+      <div class="form-group">
         <label for="description">Description</label>
         <textarea id="description" name="description" placeholder="Describe the condition and details of the book" aria-label="Beschreibung" [(ngModel)]="product.description" required></textarea>
       </div>
@@ -27,6 +32,20 @@
           <label for="category2"><input type="radio" id="category2" name="category" [(ngModel)]="product.category" value="School Materials"> School materials</label>
           <label for="category3"><input type="radio" id="category3"  name="category" [(ngModel)]="product.category" value="Learning Materials"> Learning material</label>
           <label for="category4"><input type="radio" id="category4" name="category" [(ngModel)]="product.category" value="Other"> Other</label>
+        </div>
+      </div>
+
+      <div class="form-group category-group">
+        <label>Category</label>
+        <div class="checkbox-group">
+          <label for="subject1"><input type="radio" id="subject1" name="subject" [(ngModel)]="product.subject" value="Law"> Law</label>
+          <label for="subject2"><input type="radio" id="subject2" name="subject" [(ngModel)]="product.subject" value="Economy"> Economy</label>
+          <label for="subject3"><input type="radio" id="subject3"  name="subject" [(ngModel)]="product.subject" value="Finance"> Finance</label>
+          <label for="subject4"><input type="radio" id="subject4" name="subject" [(ngModel)]="product.subject" value="Language"> Language</label>
+          <label for="subject5"><input type="radio" id="subject5" name="subject" [(ngModel)]="product.subject" value="Mathematics"> Mathematics</label>
+          <label for="subject6"><input type="radio" id="subject6" name="subject" [(ngModel)]="product.subject" value="Science"> Science</label>
+          <label for="subject7"><input type="radio" id="subject7" name="subject" [(ngModel)]="product.subject" value="History"> History</label>
+          <label for="subject8"><input type="radio" id="subject8" name="subject" [(ngModel)]="product.subject" value="Other"> Other</label>
         </div>
       </div>
 
