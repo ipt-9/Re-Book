@@ -22,7 +22,8 @@ export class CartComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token'); // fix the key
+
     if (token) {
       this.http.get<any[]>(
         'https://rebook-bmsd22a.bbzwinf.ch/backend/get-cart.php',
@@ -30,10 +31,15 @@ export class CartComponent implements OnInit {
           headers: { Authorization: `Bearer ${token}` }
         }
       ).subscribe({
-        next: data => this.cart = data,
-        error: err => console.error('Failed to load cart', err)
+        next: data => {
+          console.log('Cart data:', data);
+          this.cart = data;
+        },
+        error: err => {
+          console.error('Failed to load cart', err);
+          alert('Error loading cart: ' + (err.error?.message || 'Unknown error'));
+        }
       });
-
     }
   }
 

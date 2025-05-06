@@ -10,8 +10,18 @@ require_once 'connection.php';
 
 $query = "
     SELECT
-        product_id, title, author, description, subject, category, format, image, price
-    FROM products
+      p.product_id,
+      p.title,
+      p.author,
+      p.description,
+      p.image,
+      p.price,
+      p.category,
+      p.subject,
+      l.listing_id
+    FROM products p
+    JOIN listings l ON l.fk_product_id = p.product_id
+
 ";
 $result = $conn->query($query);
 

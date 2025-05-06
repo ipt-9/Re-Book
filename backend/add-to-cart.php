@@ -14,7 +14,7 @@ if (!$listing_id) {
 }
 
 // check if already in cart
-$stmt = $conn->prepare("SELECT id FROM cart WHERE fk_user_id = ? AND fk_listing_id = ?");
+$stmt = $conn->prepare("SELECT cart_id FROM cart WHERE fk_user_id = ? AND fk_listing_id = ?");
 $stmt->bind_param("ii", $user_id, $listing_id);
 $stmt->execute();
 $result = $stmt->get_result();

@@ -8,7 +8,7 @@
 
   <section class="cart-items">
     <div class="cart-item" *ngFor="let item of cart; let i = index">
-      <img [src]="item.image" [alt]="item.title" routerLink="/product">
+      <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + item.image" [alt]="item.title" [routerLink]="['/product']" [queryParams]="{ id: item.listing_id }">
       <div class="item-info">
         <h4>{{ item.title }}</h4>
         <p>{{ item.author }}</p>

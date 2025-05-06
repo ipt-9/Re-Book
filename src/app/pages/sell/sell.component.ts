@@ -44,10 +44,11 @@ export class SellComponent {
     formData.append('category', this.product.category);
 
     if (this.selectedImage) {
+      console.log('Proof that it finds the image')
       formData.append('image', this.selectedImage);
     }
 
-    const token = localStorage.getItem('user_token');
+    const token = localStorage.getItem('token');
     if (!token) {
       this.message = 'You must be logged in to upload';
       return;
