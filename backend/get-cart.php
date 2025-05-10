@@ -35,11 +35,12 @@ $stmt = $conn->prepare("
         p.author,
         p.price,
         p.image,
-        l.listing_id
+        l.listing_id,
+        p.product_id
     FROM cart c
     JOIN listings l ON c.fk_listing_id = l.listing_id
     JOIN products p ON l.fk_product_id = p.product_id
-    WHERE c.fk_user_id = ?
+    WHERE c.fk_user_id = ? AND l.status = 'Available'
 ");
 
 if (!$stmt) {

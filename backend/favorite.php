@@ -39,11 +39,11 @@ if ($method === 'POST') {
 } else if ($method === 'GET') {
     // 🔹 Get all favorites
     $stmt = $conn->prepare("
-        SELECT f.fk_listing_id AS listing_id, p.title, p.author, p.image, p.price
+        SELECT f.fk_listing_id AS listing_id, p.title, p.author, p.image, p.price, p.product_id
         FROM favorite f
         JOIN listings l ON f.fk_listing_id = l.listing_id
         JOIN products p ON l.fk_product_id = p.product_id
-        WHERE f.fk_user_id = ?
+        WHERE f.fk_user_id = ? AND l.status = 'Available'
     ");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();

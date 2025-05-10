@@ -63,18 +63,16 @@ export class CartComponent implements OnInit {
 
   }
 
-  increaseQuantity(item: any) {
-    item.quantity++;
-  }
-
-  decreaseQuantity(item: any) {
-    if (item.quantity > 1) {
-      item.quantity--;
-    }
-  }
-
   removeItem(index: number) {
-    this.cart.splice(index, 1);
+    const item = this.cart[index];
+
+    this.http.post('https://rebook-bmsd22a.bbzwinf.ch/backend/remove_item.php', {
+      listing_id: item.listing_id
+    }).subscribe({
+      next: () => {
+        this.cart.splice(index, 1); // Only remove from UI if backend succeeds
+      }
+    });
   }
 
   getTotalPrice(): string {

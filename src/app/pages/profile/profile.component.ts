@@ -113,4 +113,30 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+  removeItem(index: number) {
+    const item = this.advertisedProducts[index];
+
+    this.http.post(
+      'https://rebook-bmsd22a.bbzwinf.ch/backend/delete_item.php',
+      { listing_id: item.listing_id },
+      {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${localStorage.getItem('token') || ''}`,
+          'Content-Type': 'application/json'
+        }),
+        responseType: 'text'  // <--- TEMP: allows you to inspect raw response
+      }
+    ).subscribe({
+      next: res => {
+        console.log('Raw response:', res);  // See what's being returned
+        this.advertisedProducts.splice(index, 1);
+      },
+      error: err => {
+        console.error('Error deleting item:', err);
+      }
+    });
+
+  }
+
+
 }

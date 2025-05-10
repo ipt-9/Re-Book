@@ -3,9 +3,7 @@ import {RouterLink} from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
-import { NgForOf, DecimalPipe, NgIf } from '@angular/common';
-
-
+import {NgForOf, DecimalPipe, NgIf, JsonPipe} from '@angular/common';
 
 @Component({
   selector: 'app-favorites',
@@ -16,7 +14,8 @@ import { NgForOf, DecimalPipe, NgIf } from '@angular/common';
     DecimalPipe,
     NgForOf,
     NgIf,
-    RouterLink
+    RouterLink,
+    JsonPipe
   ],
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss', '../../../styles.scss']

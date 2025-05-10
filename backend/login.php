@@ -1,6 +1,4 @@
 ﻿<?php
-ob_start();
-
 require 'connection.php';
 header('Content-Type: application/json');
 
@@ -36,9 +34,7 @@ if ($user && password_verify($password, $user['password'])) {
             'email' => $email
         ]
     ]);
-    ob_end_flush();
     exit;
 }
 
 echo json_encode(['success' => false, 'message' => 'Invalid credentials.']);
-

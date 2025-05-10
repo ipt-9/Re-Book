@@ -21,7 +21,7 @@ $query = "
       l.listing_id
     FROM products p
     JOIN listings l ON l.fk_product_id = p.product_id
-
+    WHERE l.status = 'Available'
 ";
 $result = $conn->query($query);
 

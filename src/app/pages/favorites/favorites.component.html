@@ -7,11 +7,17 @@
 
   <section class="favourites-list">
     <p *ngIf="favourites.length === 0">No favorites found.</p>
-    <div *ngFor="let book of favourites" class="book-item">
-      <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title" />
-      <h4>{{ book.title }}</h4>
-      <p>{{ book.author }}</p>
-      <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
+
+    <div class="book-list" *ngIf="favourites.length > 0">
+      <a *ngFor="let book of favourites"
+         [routerLink]="['/product']"
+         [queryParams]="{ id: book.product_id }"
+         class="book-item">
+        <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title">
+        <h4>{{ book.title }}</h4>
+        <p>{{ book.author }}</p>
+        <strong>CHF {{ book.price }}</strong>
+      </a>
     </div>
   </section>
 

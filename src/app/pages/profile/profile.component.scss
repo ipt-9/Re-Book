@@ -137,74 +137,35 @@ html, body {
   color: #555;
 }
 
-.products {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto 50px auto;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Afacad:wght@400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Afacad', sans-serif;
 }
 
-.products h3 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 15px;
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #f8f9fa;
 }
 
-.book-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-}
-
-.book-item {
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 300px;
-}
-
-
-.book-item:hover {
-  transform: translateY(-5px);
-}
-
-.book-item img {
-  height: 220px;
-  object-fit: contain;
-}
-
-
-
-.book-item h4 {
-  font-size: 1rem;
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-.book-item strong {
-  display: block;
-  margin-top: 10px;
-  font-size: 1.1rem;
-  color: #007bff;
-}
-
-
-
+/* Book grid container */
 .book-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  margin-top: 20px;
-  margin-bottom: 60px;
+  margin: 40px auto 60px auto;
+  max-width: 1200px;
+  width: 90%;
 }
 
+/* Book card */
 .book-item {
   background: white;
   padding: 15px;
@@ -221,7 +182,9 @@ html, body {
 
 .book-item img {
   width: 100%;
+  height: auto;
   border-radius: 5px;
+  object-fit: contain;
 }
 
 .book-item h4 {
@@ -240,4 +203,26 @@ html, body {
   margin-top: 10px;
   font-size: 1.1rem;
   color: #007bff;
+}
+
+.book-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Delete button below each book */
+.remove-btn {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #d9534f;
+  transition: color 0.3s;
+}
+
+.remove-btn:hover {
+  color: #c9302c;
 }
