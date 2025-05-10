@@ -5,7 +5,6 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
-import { FavoritesService } from '../favorites/favorites.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -28,7 +27,6 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private favoritesService: FavoritesService,
     private authService: AuthService,
     private http: HttpClient,
     private router: Router
@@ -87,7 +85,26 @@ export class ProductComponent implements OnInit {
 
   }
 
-  addToFavorites(book: any): void {
-    this.favoritesService.add(book);
+  addToFavorites(listing: any): void {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('You must be logged in to favorite an item.');
+      return;
+    }
+
+    const body = { listing_id: listing.listing_id };
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    this.http.post('https://rebook-bmsd22a.bbzwinf.ch/backend/favorite.php', body, { headers })
+      .subscribe({
+        next: res => {
+          console.log('✅ Favorited:', res);
+          alert('Item added to favorites!');
+        },
+        error: err => {
+          console.error('❌ Favorite failed:', err);
+          alert('Failed to add to favorites.');
+        }
+      });
   }
 }

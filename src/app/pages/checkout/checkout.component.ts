@@ -52,7 +52,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   loadCart(headers: HttpHeaders) {
-    this.http.get('https://rebook-bmsd22a.bbzwinf.ch/backend/cart_items.php', { headers })
+    this.http.get('https://rebook-bmsd22a.bbzwinf.ch/backend/get_cart.php', { headers })
       .subscribe((res: any) => {
         this.items = res.items;
         this.totalPrice = this.items.reduce((sum: number, item: any) => sum + +item.price, 0);

@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { SellService } from './sell.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sell',
@@ -32,7 +33,7 @@ export class SellComponent {
     category: ''
   };
 
-  constructor(private http: HttpClient, private uploadService: SellService) {}
+  constructor(private http: HttpClient, private uploadService: SellService, private router: Router,) {}
 
   upload(): void {
     console.log('Entered upload() function');
@@ -73,7 +74,9 @@ export class SellComponent {
         console.log('Uploaded:', res);
         this.message = 'Upload successful!';
         this.isSuccess = true;
+        alert('Item uploaded successfully.');
         this.resetForm();
+        this.router.navigate(['/profile']);
       },
       error: err => {
         console.error('Upload error:', err);
