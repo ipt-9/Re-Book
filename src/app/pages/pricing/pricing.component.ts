@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 
@@ -16,5 +16,12 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrl: './pricing.component.scss'
 })
 export class PricingComponent {
+  constructor(private router: Router) {}
 
+  buyPremium(): void {
+    this.router.navigate(['/checkout']);
+  }
+  buyBooster(): void {
+    this.router.navigate(['/checkout']);
+  }
 }

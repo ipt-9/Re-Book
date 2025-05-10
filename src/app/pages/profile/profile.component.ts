@@ -51,12 +51,6 @@ export class ProfileComponent implements OnInit {
           if (response.success) {
             this.user = response.user;
 
-            // 👉 sicherstellen, dass keine Null-Werte vorhanden sind
-            this.user.nickname = this.user.nickname ?? '';
-            this.user.gender = this.user.gender ?? '';
-            this.user.language = this.user.language ?? '';
-            this.user.school = this.user.school ?? '';
-            this.user.region = this.user.region ?? '';
             console.log('✅ USER geladen:', this.user);
 
             this.cdr.detectChanges(); // 🛠️ hier Trigger für die Anzeige
@@ -105,10 +99,18 @@ export class ProfileComponent implements OnInit {
     const token = this.authService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
+    // 🛠️ Ensure optional fields are not null (again, just in case)
+    this.user.nickname = this.user.nickname ?? '';
+    this.user.gender = this.user.gender ?? '';
+    this.user.language = this.user.language ?? '';
+    this.user.school = this.user.school ?? '';
+    this.user.region = this.user.region ?? '';
+
     this.http.post('https://rebook-bmsd22a.bbzwinf.ch/backend/update_user.php', this.user, { headers })
       .subscribe({
         next: () => alert('Profil gespeichert!'),
         error: () => alert('Fehler beim Speichern')
       });
   }
+
 }

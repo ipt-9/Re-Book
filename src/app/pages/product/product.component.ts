@@ -77,12 +77,11 @@ export class ProductComponent implements OnInit {
 
     this.http.post('https://rebook-bmsd22a.bbzwinf.ch/backend/add-to-cart.php', body, { headers }).subscribe({
       next: (response: any) => {
-        alert(response.message); // or use a nicer toast service
         this.router.navigate(['/cart']); // optional: go to cart
       },
       error: err => {
         console.error('Failed to add to cart', err);
-        alert('Error adding to cart.');
+        alert('Error adding to cart. Check if you are signed in!');
       }
     });
 

@@ -35,7 +35,6 @@ export class LoginComponent {
 
       if (response.success && response.token) {
         this.authService.setToken(response.token);
-        alert('Login successful! Redirecting to profile.');
         this.router.navigate(['/profile']);
       } else {
         alert('Login failed: ' + response.message);

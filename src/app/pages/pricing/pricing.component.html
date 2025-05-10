@@ -1,32 +1,26 @@
 <div class="pricing-container">
-<app-navbar></app-navbar>
+    <app-navbar></app-navbar>
 
-  <section class="pricing-header">
-    <h2>OUR PRICES</h2>
-  </section>
+    <section class="pricing-header">
+      <h2>OUR PRICES</h2>
+    </section>
 
-  <section class="pricing-options">
-    <div class="pricing-card">
-      <h3>Premium</h3>
-      <h4>One price for all</h4>
-      <p>Unlock all the benefits at a single price:</p>
-        <li>Prioritized access to top articles</li>
-        <li>Accelerate your sales</li>
-        <li>Improved and optimized Fee</li>
-      <h2>CHF 20</h2>
-      <a class="buy-btn" routerLink="/checkout">Buy now</a>
-    </div>
+    <section class="pricing-options">
+      <div class="pricing-card">
+        <h3>Premium</h3>
+        <h4>CHF 10 / month</h4>
+        <p>Become an official Re-Book member and unlock the full experience. As a Premium user, you're instantly recognized as a trusted seller, giving buyers more confidence to choose you. Your listings get boosted automatically, your product feed is smarter and more tailored to buyers, and you'll benefit from monthly or yearly bonuses based on your sales performance. Best of all, the selling fee drops from 5% to just 3%, helping you earn more with every sale.</p>
+        <a class="buy-btn" (click)="buyPremium()" routerLink="/checkout">Buy now</a>
+      </div>
 
-    <div class="pricing-card">
-      <h3>Einzelpreis</h3>
-      <p>Get individual benefits at a lower price:
-        <li>Access to selected articles</li>
-        <li>Increase visibility for certain articles</li>
-        <li>Adjust your feed optimizations</li>
-        <li>Only pay for what you really need!</li>
-      <h2>CHF 3</h2>
-      <a class="buy-btn" routerLink="/checkout">Buy now</a>
-    </div>
-  </section>
-<app-footer></app-footer>
+      <div class="pricing-card">
+        <h3>Booster</h3>
+        <h4>CHF 3</h4>
+        <p>Want to sell one item faster? Boost it! With Booster, your selected product gets premium placement and more visibility across the platform — helping it reach more buyers and sell quicker. It's the perfect one-time push to close that important sale.</p>
+        <a class="buy-btn" (click)="buyBooster()" routerLink="/checkout">Buy now</a>
+      </div>
+    </section>
+
+  <app-footer></app-footer>
 </div>
+
