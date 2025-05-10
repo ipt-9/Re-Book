@@ -73,7 +73,7 @@
             <p>{{ book.author }}</p>
             <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
           </a>
-          <button class="remove-btn" (click)="removeItem(i)">🗑</button>
+          <button class="remove-btn" (click)="removeItem(i)" style="font-size: xxx-large">🗑</button>
         </div>
       </div>
     </div>
@@ -107,7 +107,7 @@
     </ng-template>
   </section>
 
-  <!-- 🔸 Bought Products -->
+  <!-- 🔸 Bought Products
   <section class="products">
     <h3>Bought products</h3>
 
@@ -129,7 +129,7 @@
       <p style="margin-top: 10px; font-style: italic; color: #666;">Keine gekauften Produkte gefunden.</p>
     </ng-template>
   </section>
-
+  -->
 
   <app-footer></app-footer>
 </div>

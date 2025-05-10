@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit {
           if (response.success && response.data) {
             this.advertisedProducts = response.data.advertised || [];
             this.soldProducts = response.data.sold || [];
-            this.boughtProducts = response.data.bought || [];
+            //this.boughtProducts = response.data.bought || [];
           }
         },
         error: (err) => {

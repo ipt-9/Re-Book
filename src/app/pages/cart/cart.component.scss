@@ -8,6 +8,7 @@
 }
 a {
   text-decoration: none;
+  color: black;
 }
 .cart-container {
   width: 100%;
@@ -86,16 +87,6 @@ a {
   cursor: pointer;
   text-align: right;
 }
-
-.item-info{
-  text-align: right;
-  margin-right: 10px;
-}
-.item-price{
-  text-align: right;
-  margin-right: 10px;
-}
-
 .cart-summary {
   text-align: center;
   margin-top: 20px;

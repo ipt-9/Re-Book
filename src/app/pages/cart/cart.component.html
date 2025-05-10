@@ -9,23 +9,24 @@
   <section class="cart-items">
     <div *ngIf="cart && cart.length; else noItems">
 
-      <a class="cart-item"
+      <div class="cart-item">
+      <a
          *ngFor="let item of cart; let i = index"
          [routerLink]="['/product']"
          [queryParams]="{ id: item.product_id }">
 
         <img *ngIf="item.image"  [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + item.image" [alt]="item.title">
-        <a class="item-info">
+        </a>
+        <div class="item-info" *ngFor="let item of cart; let i = index">
           <h4>{{ item.title }}</h4>
           <p>{{ item.author }}</p>
-        </a>
+        </div>
 
-        <p class="item-price">
+        <p class="item-price" *ngFor="let item of cart; let i = index">
           CHF {{ item.price }}
-        </p>
-
         <button class="remove-btn" (click)="removeItem(i)">🗑</button>
-</a>
+        </p>
+    </div>
     </div>
 
     <ng-template #noItems>
@@ -37,7 +38,11 @@
   <section class="cart-summary">
     <h3>Summary</h3>
     <p class="total-price">{{ getTotalPrice() }}</p>
-    <button *ngIf="cart.length > 0" routerLink="/checkout" class="checkout-btn">Go to checkout</button>
+    <button *ngIf="cart.length > 0" (click)="createOrder()" class="checkout-btn">
+      Go to checkout
+    </button>
+
+
   </section>
 
   <app-footer></app-footer>

@@ -12,22 +12,21 @@
         <img src="/mastercard.png" alt="MasterCard">
         <img src="/visa.svg" alt="Visa">
       </div>
-
-      <form>
+      <form (ngSubmit)="submitPayment()">
         <label for="cardname">Card name</label>
-        <input type="text" id="cardname" placeholder="Name">
+        <input type="text" id="cardname" placeholder="Name" [(ngModel)]="card.name" name="name">
 
         <label for="cardnumber">Card number</label>
-        <input type="text" id="cardnumber" placeholder="1111 2222 3333 4444">
+        <input type="text" id="cardnumber" placeholder="1111 2222 3333 4444" [(ngModel)]="card.number" name="number">
 
         <div class="card-details">
           <div>
             <label for="expiry">Expiration date</label>
-            <input type="text" id="expiry" placeholder="mm/yy">
+            <input type="text" id="expiry" placeholder="mm/yy" [(ngModel)]="card.expiry" name="expiry">
           </div>
           <div>
             <label for="cvv">CVV</label>
-            <input type="text" id="cvv" placeholder="123">
+            <input type="text" id="cvv" placeholder="123" [(ngModel)]="card.cvv" name="cvv">
           </div>
         </div>
 
@@ -35,8 +34,9 @@
           <p><strong>Total</strong> <span>CHF {{ total_price.toFixed(2) }}</span></p>
         </div>
 
-        <button routerLink="/confirmation" type="submit" class="pay-btn">PAY</button>
+        <button type="submit" class="pay-btn">PAY</button>
       </form>
+
     </div>
   </section>
 

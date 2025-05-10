@@ -37,7 +37,7 @@ $user_id = $user['user_id'];
 
 // Step 2: Fetch advertised products
 $stmt = $conn->prepare("
-    SELECT p.*, l.listing_condition, l.status, l.listing_id
+    SELECT p.*, l.status, l.listing_id
     FROM listings l
     JOIN products p ON l.fk_product_id = p.product_id
     WHERE l.fk_user_id = ? AND l.status = 'Available'
@@ -49,7 +49,7 @@ $stmt->close();
 
 // Step 3: Fetch sold products
 $stmt = $conn->prepare("
-    SELECT p.*, l.listing_condition, l.status, l.listing_id
+    SELECT p.*, l.status, l.listing_id
     FROM listings l
     JOIN products p ON l.fk_product_id = p.product_id
     WHERE l.fk_user_id = ? AND l.status = 'Sold'
@@ -59,6 +59,7 @@ $stmt->execute();
 $sold = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
+/*
 // Step 4: Fetch bought products
 $stmt = $conn->prepare("
     SELECT p.*, l.listing_condition, l.status, l.listing_id
@@ -72,6 +73,7 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $bought = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
+*/
 
 // Step 5: Return response
 echo json_encode([
@@ -79,6 +81,6 @@ echo json_encode([
     'data' => [
         'advertised' => $advertised,
         'sold' => $sold,
-        'bought' => $bought
+        //'bought' => $bought
     ]
 ]);

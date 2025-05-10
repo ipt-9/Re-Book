@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
@@ -23,7 +23,7 @@ export class CartComponent implements OnInit {
 
   cart: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     console.log('🛒 CartComponent INIT');
@@ -63,20 +63,52 @@ export class CartComponent implements OnInit {
 
   }
 
-  removeItem(index: number) {
+  removeItem(index: number): void {
     const item = this.cart[index];
-
     this.http.post('https://rebook-bmsd22a.bbzwinf.ch/backend/remove_item.php', {
       listing_id: item.listing_id
     }).subscribe({
       next: () => {
-        this.cart.splice(index, 1); // Only remove from UI if backend succeeds
+        this.cart.splice(index, 1); // Only update UI if backend deletion was successful
+      },
+      error: err => {
+        console.error('❌ Failed to remove item:', err);
+        alert('Error removing item from cart');
       }
     });
   }
+
 
   getTotalPrice(): string {
     const total = this.cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
     return `CHF ${total.toFixed(2)}`;
   }
+
+  createOrder(): void {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    this.http.post<any>(
+      'https://rebook-bmsd22a.bbzwinf.ch/backend/create_order.php',
+      {},
+      { headers }
+    ).subscribe({
+      next: res => {
+        if (res.success) {
+          console.log('✅ Order created:', res);
+          this.router.navigate(['/checkout']); // navigate after successful order
+        } else {
+          alert('Order creation failed');
+        }
+      },
+      error: err => {
+        console.error('❌ Order error:', err);
+        alert('Error while creating order');
+      }
+    });
+  }
+
+
 }
