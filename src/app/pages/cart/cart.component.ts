@@ -38,27 +38,29 @@ export class CartComponent implements OnInit {
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.http.get<any>('https://rebook-bmsd22a.bbzwinf.ch/backend/get-cart.php', { headers, responseType: 'json' as const })
+    this.http.get<any>('https://rebook-bmsd22a.bbzwinf.ch/backend/get-cart.php', { headers })
       .pipe(
         catchError(error => {
-          console.error('📛 HTTP Fehler beim Abrufen des Warenkorbs:', error);
-          return of([]); // Leeres Array zurückgeben, um App-Absturz zu verhindern
+          console.error('📛 HTTP error:', error);
+          return of({ success: false, data: [] });
         })
       )
       .subscribe({
-        next: data => {
-          if (Array.isArray(data)) {
-            console.log('✅ Erfolgreich Daten empfangen:', data);
-            this.cart = data;
+        next: res => {
+          console.log('✅ Cart data received:', res);
+          if (res.success && Array.isArray(res.data)) {
+            this.cart = res.data;
+            console.table(this.cart);
           } else {
-            console.warn('⚠️ Antwort ist kein Array:', data);
+            console.warn('⚠️ Unerwartete Antwortstruktur oder keine Daten:', res);
             this.cart = [];
           }
         },
         error: err => {
-          console.error('❌ Fehler beim Verarbeiten der Antwort:', err);
+          console.error('❌ Verarbeitungsfehler:', err);
         }
       });
+
   }
 
   increaseQuantity(item: any) {

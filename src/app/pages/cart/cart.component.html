@@ -7,31 +7,33 @@
   </section>
 
   <section class="cart-items">
-    lol
-    <div class="cart-item" *ngFor="let item of cart; let i = index">
-    <img src="buchbaum.webp" alt="bro wtf">
-      <!--<img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + item.image" [alt]="item.title" [routerLink]="['/product']" [queryParams]="{ id: item.listing_id }">
-     -->
-     <div class="item-info">
-       <h4>{{ item.title }}</h4>
-       <p>{{ item.author }}</p>
-     </div>
+    <div *ngIf="cart && cart.length; else noItems">
+      <div class="cart-item" *ngFor="let item of cart; let i = index">
+        <!--<img src="buchbaum.webp" alt="bro wtf">-->
+        <img *ngIf="item.image"  [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + item.image" [alt]="item.title">
+        <div class="item-info">
+          <h4>{{ item.title }}</h4>
+          <p>{{ item.author }}</p>
+        </div>
 
-     <div class="quantity-control">
-       <button class="quantity-btn" (click)="increaseQuantity(item)">▲</button>
-       <span>{{ item.quantity }}</span>
-       <button class="quantity-btn" (click)="decreaseQuantity(item)">▼</button>
-     </div>
+        <div class="quantity-control">
+          <button class="quantity-btn" (click)="increaseQuantity(item)">▲</button>
+          <span>{{ item.quantity }}</span>
+          <button class="quantity-btn" (click)="decreaseQuantity(item)">▼</button>
+        </div>
 
-     <p class="item-price">CHF {{ (item.price * item.quantity).toFixed(2) }}</p>
+        <p class="item-price">
+          CHF {{ (item.quantity * (+item.price)).toFixed(2) }}
+        </p>
 
-     <button class="remove-btn" (click)="removeItem(i)">🗑</button>
-   </div>
-  <!--
-   <div *ngIf="cart.length === 0" style="text-align: center; margin-top: 20px;">
-     Your cart is empty.
-   </div>
-   -->
+        <button class="remove-btn" (click)="removeItem(i)">🗑</button>
+      </div>
+    </div>
+
+    <ng-template #noItems>
+      <p>🛒 Your cart is empty.</p>
+    </ng-template>
+
   </section>
 
   <section class="cart-summary">

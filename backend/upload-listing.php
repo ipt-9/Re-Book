@@ -2,45 +2,49 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require 'auth.php';
+require 'auth.php'; // must set $user_id
 header('Content-Type: application/json');
 
-// 🔹 Read and decode JSON body
-$data = json_decode(file_get_contents("php://input"), true);
-
-// 🔸 Extract fields safely
-$title = $data['title'] ?? null;
-$author = $data['author'] ?? null;
-$description = $data['description'] ?? null;
-$subject = $data['subject'] ?? null;
-$category = $data['category'] ?? null;
-$format = $data['format'] ?? null;
-$imagePath = $data['image'] ?? ''; // Optional: set to default or null
-$price = $data['price'] ?? 0;
-$listing_condition = $data['listing_condition'] ?? 'Good'; // fallback value
+// 🔹 Extract fields from multipart/form-data
+$title = $_POST['title'] ?? null;
+$author = $_POST['author'] ?? null;
+$description = $_POST['description'] ?? null;
+$subject = $_POST['subject'] ?? null;
+$category = $_POST['category'] ?? null;
+$price = $_POST['price'] ?? 0;
+$listing_condition = $_POST['listing_condition'] ?? 'Good';
 
 // 🔹 Basic validation
-if (!$title || !$author || !$subject || !$category || !$format) {
+if (!$title || !$author || !$user_id) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Missing required fields']);
     exit;
 }
 
+// 🔹 Handle file upload (optional)
+$imagePath = null;
+if (!empty($_FILES['image']['tmp_name'])) {
+    $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
+    if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
+
+    $filename = uniqid() . '_' . basename($_FILES['image']['name']);
+    $targetPath = $uploadDir . $filename;
+
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
+        $imagePath = 'uploads/' . $filename; // used in frontend
+    } else {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'message' => 'Image upload failed']);
+        exit;
+    }
+}
+
 // 🔹 Insert into `products` table
 $stmt = $conn->prepare("
-    INSERT INTO products (title, author, description, subject, category, format, image, price)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO products (title, author, description, subject, category, image, price)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
 ");
-$stmt->bind_param("ssssssss",
-    $title,
-    $author,
-    $description,
-    $subject,
-    $category,
-    $format,
-    $imagePath,
-    $price
-);
+$stmt->bind_param("ssssssd", $title, $author, $description, $subject, $category, $imagePath, $price);
 $stmt->execute();
 
 if ($stmt->error) {

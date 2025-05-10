@@ -19,10 +19,10 @@ $stmt->bind_param("i", $user_id);
 if ($stmt->execute()) {
     http_response_code(200);
     if (ob_get_length()) ob_clean();  // important
-    echo json_encode(['success' => true, 'message' => 'Item added to cart']);
+    echo json_encode(['success' => true, 'message' => 'Logged out successfully']);
 } else {
     http_response_code(500);
-    echo "Logged out failed";
+    echo "Logout failed";
 }
 
 

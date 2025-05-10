@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
-import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import {lastValueFrom} from 'rxjs';
-import {SellService} from './sell.service';
+import { SellService } from './sell.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-sell',
   standalone: true,
   imports: [
+    CommonModule,
     FormsModule,
     NavbarComponent,
     FooterComponent
   ],
-
   templateUrl: './sell.component.html',
   styleUrls: ['./sell.component.scss', '../../../styles.scss']
 })
@@ -32,29 +32,31 @@ export class SellComponent {
     category: ''
   };
 
-  constructor(private http: HttpClient,
-              private uploadService: SellService) {}
+  constructor(private http: HttpClient, private uploadService: SellService) {}
 
-  upload() {
-    //const response = await lastValueFrom(this.uploadService.uploadListing(this.user));
-    console.log('Proof that it enters function')
+  upload(): void {
+    console.log('Entered upload() function');
+
+    if (!this.product.title || !this.product.price) {
+      this.message = 'Please fill in all required fields.';
+      this.isSuccess = false;
+      return;
+    }
+
     const formData = new FormData();
-
-    formData.append('title', this.product.title);
-    formData.append('author', this.product.author);
-    formData.append('description', this.product.description);
-    formData.append('price', this.product.price);
-    formData.append('subject', this.product.subject);
-    formData.append('category', this.product.category);
+    Object.entries(this.product).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
 
     if (this.selectedImage) {
-      console.log('Proof that it finds the image')
+      console.log('Image selected');
       formData.append('image', this.selectedImage);
     }
 
     const token = localStorage.getItem('token');
     if (!token) {
-      this.message = 'You must be logged in to upload';
+      this.message = 'You must be logged in to upload.';
+      this.isSuccess = false;
       return;
     }
 
@@ -71,11 +73,10 @@ export class SellComponent {
         console.log('Uploaded:', res);
         this.message = 'Upload successful!';
         this.isSuccess = true;
-        this.product = { title: '', description: '', price: '', category: '' , author: '', subject: '' };
-        this.selectedImage = null;
+        this.resetForm();
       },
       error: err => {
-        console.error(err);
+        console.error('Upload error:', err);
         this.message = 'Upload failed.';
         this.isSuccess = false;
       }
@@ -87,5 +88,17 @@ export class SellComponent {
     if (input.files?.length) {
       this.selectedImage = input.files[0];
     }
+  }
+
+  private resetForm(): void {
+    this.product = {
+      title: '',
+      author: '',
+      description: '',
+      price: '',
+      subject: '',
+      category: ''
+    };
+    this.selectedImage = null;
   }
 }

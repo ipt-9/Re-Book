@@ -36,7 +36,7 @@
       </div>
 
       <div class="form-group category-group">
-        <label>Category</label>
+        <label>Subject</label>
         <div class="checkbox-group">
           <label for="subject1"><input type="radio" id="subject1" name="subject" [(ngModel)]="product.subject" value="Law"> Law</label>
           <label for="subject2"><input type="radio" id="subject2" name="subject" [(ngModel)]="product.subject" value="Economy"> Economy</label>
@@ -52,18 +52,23 @@
       <div class="form-group price-group">
         <label for="price">Price</label>
         <div class="price-input">
-          <input type="text" id="price" name="price" placeholder="Enter the price" aria-label="Preis" [(ngModel)]="product.price" required>
+          <input type="text" id="price" name="price" placeholder="Enter the price" aria-label="Price" [(ngModel)]="product.price" required>
           <span>CHF</span>
         </div>
       </div>
 
       <div class="form-group">
         <label for="file-upload">Upload Picture</label>
-        <input type="file" id="file-upload" name="picture" aria-label="Upload Picture" (change)="onFileSelected($event)" required>
+        <input type="file" id="file-upload" name="picture" aria-label="Upload Picture" (change)="onFileSelected($event)">
+        <p *ngIf="selectedImage">Selected: {{ selectedImage.name }}</p>
       </div>
+
 
       <button type="submit" class="submit-btn">Submit</button>
     </form>
+    <div *ngIf="message" [class.success]="isSuccess" [class.error]="!isSuccess">
+      {{ message }}
+    </div>
   </section>
   <app-footer></app-footer>
 </div>
