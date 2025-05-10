@@ -1,4 +1,6 @@
 <?php
+ob_clean();
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -6,7 +8,7 @@ error_reporting(E_ALL);
 require 'auth.php';
 require 'connection.php';
 
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Authorization, Content-Type');
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -27,7 +29,7 @@ $stmt = $conn->prepare("
       c.quantity,
       p.title,
       p.author,
-      p.price,
+      c.total_price,
       p.image,
       l.listing_id
     FROM cart c
@@ -58,3 +60,4 @@ while ($row = $result->fetch_assoc()) {
 }
 
 echo json_encode($cart);
+exit;

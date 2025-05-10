@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -22,6 +22,7 @@ import { of } from 'rxjs';
 export class CartComponent implements OnInit {
 
   cart: any[] = [];
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -31,29 +32,34 @@ export class CartComponent implements OnInit {
     console.log('🧾 Token:', token);
 
     if (!token) {
-      console.error('⛔ No token found in localStorage');
+      console.error('⛔ Kein Token in localStorage gefunden');
       return;
     }
 
-    this.http.get<any[]>(
-      'https://rebook-bmsd22a.bbzwinf.ch/backend/get-cart.php',
-      {
-        headers: { Authorization: `Bearer ${token}` }
-      }
-    ).pipe(
-      catchError(error => {
-        console.error('📛 Caught HTTP error:', error);
-        return of([]); // leeres Array zurückgeben
-      })
-    ).subscribe({
-      next: data => {
-        console.log('✅ Cart data received:', data);
-        this.cart = data;
-      }
-    });
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
+    this.http.get<any>('https://rebook-bmsd22a.bbzwinf.ch/backend/get-cart.php', { headers, responseType: 'json' as const })
+      .pipe(
+        catchError(error => {
+          console.error('📛 HTTP Fehler beim Abrufen des Warenkorbs:', error);
+          return of([]); // Leeres Array zurückgeben, um App-Absturz zu verhindern
+        })
+      )
+      .subscribe({
+        next: data => {
+          if (Array.isArray(data)) {
+            console.log('✅ Erfolgreich Daten empfangen:', data);
+            this.cart = data;
+          } else {
+            console.warn('⚠️ Antwort ist kein Array:', data);
+            this.cart = [];
+          }
+        },
+        error: err => {
+          console.error('❌ Fehler beim Verarbeiten der Antwort:', err);
+        }
+      });
   }
-
 
   increaseQuantity(item: any) {
     item.quantity++;
@@ -70,7 +76,7 @@ export class CartComponent implements OnInit {
   }
 
   getTotalPrice(): string {
-    const total = this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const total = this.cart.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
     return `CHF ${total.toFixed(2)}`;
   }
 }
