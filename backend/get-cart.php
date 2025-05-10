@@ -30,7 +30,6 @@ if (!isset($user_id)) {
 $stmt = $conn->prepare("
     SELECT
         c.cart_id,
-        c.quantity,
         p.title,
         p.author,
         p.price,

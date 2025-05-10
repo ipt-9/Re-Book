@@ -21,7 +21,7 @@
         </a>
 
         <p class="item-price">
-          CHF {{ (item.quantity * (+item.price)).toFixed(2) }}
+          CHF {{ item.price }}
         </p>
 
         <button class="remove-btn" (click)="removeItem(i)">🗑</button>

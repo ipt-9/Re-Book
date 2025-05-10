@@ -76,7 +76,7 @@ export class CartComponent implements OnInit {
   }
 
   getTotalPrice(): string {
-    const total = this.cart.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
+    const total = this.cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
     return `CHF ${total.toFixed(2)}`;
   }
 }

@@ -18,10 +18,10 @@ import {FormsModule} from '@angular/forms';
     FormsModule
   ]
 })
-
 export class CheckoutComponent implements OnInit {
   cart: any[] = [];
   card = { name: '', number: '', expiry: '', cvv: '' };
+  total_price = 0;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -29,34 +29,20 @@ export class CheckoutComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (!token) return;
 
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    this.http.get<any[]>('https://rebook-bmsd22a.bbzwinf.ch/backend/cart.php', { headers })
-      .subscribe(res => {
-        this.cart = res;
-      });
-  }
-
-  getTotal(): string {
-    return this.cart.reduce((acc, item) => acc + parseFloat(item.price), 0).toFixed(2);
-  }
-
-  submitPayment(): void {
-    // Normally, you'd call a payment gateway. Here we just simulate success.
-    const token = localStorage.getItem('token');
-    if (!token) return;
-
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    // Send DELETE request for each item
-    const deleteRequests = this.cart.map(item =>
-      this.http.post('https://rebook-bmsd22a.bbzwinf.ch/backend/cart/delete_item.php',
-        { listing_id: item.listing_id },
-        { headers }
-      ).toPromise()
-    );
-
-    Promise.all(deleteRequests).then(() => {
-      this.router.navigate(['/confirm']);
+    this.http.get<any>('https://rebook-bmsd22a.bbzwinf.ch/backend/get_cart.php', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).subscribe({
+      next: res => {
+        this.cart = res.data || [];
+        this.total_price = this.cart.reduce((sum, item) =>
+          sum + item.quantity * parseFloat(item.price), 0
+        );
+      },
+      error: err => {
+        console.error('Failed to load cart', err);
+      }
     });
   }
 }

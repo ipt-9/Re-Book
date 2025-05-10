@@ -6,7 +6,9 @@
   box-sizing: border-box;
   font-family: 'Afacad', sans-serif;
 }
-
+a {
+  text-decoration: none;
+}
 .favourites-container {
   width: 100%;
   min-height: 100vh;
