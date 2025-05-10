@@ -3,7 +3,7 @@ import {RouterLink} from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
-import {DecimalPipe} from '@angular/common';
+import { NgForOf, DecimalPipe, NgIf } from '@angular/common';
 
 
 
@@ -14,6 +14,8 @@ import {DecimalPipe} from '@angular/common';
     NavbarComponent,
     FooterComponent,
     DecimalPipe,
+    NgForOf,
+    NgIf,
     RouterLink
   ],
   templateUrl: './favorites.component.html',
@@ -33,6 +35,7 @@ export class FavoritesComponent implements OnInit {
     this.http.get('https://rebook-bmsd22a.bbzwinf.ch/backend/favorite.php', { headers })
       .subscribe({
         next: (res: any) => {
+          console.log('Favorites loaded:', res); // ✅ Confirm this shows up
           this.favourites = res.favorites || [];
         },
         error: (err) => {
@@ -40,5 +43,6 @@ export class FavoritesComponent implements OnInit {
         }
       });
   }
+
 }
 

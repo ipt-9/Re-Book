@@ -6,6 +6,7 @@
   </section>
 
   <section class="favourites-list">
+    <p *ngIf="favourites.length === 0">No favorites found.</p>
     <div *ngFor="let book of favourites" class="book-item">
       <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title" />
       <h4>{{ book.title }}</h4>
