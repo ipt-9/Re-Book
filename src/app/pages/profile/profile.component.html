@@ -90,7 +90,7 @@
 
     <div *ngIf="soldProducts.length; else noSold">
       <div class="book-list">
-        <a *ngFor="let book of soldProducts"
+        <div *ngFor="let book of soldProducts"
            [routerLink]="['/product']"
            [queryParams]="{ id: book.product_id }"
            class="book-item">
@@ -98,7 +98,7 @@
           <h4>{{ book.title }}</h4>
           <p>{{ book.author }}</p>
           <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
-        </a>
+        </div>
       </div>
     </div>
 
