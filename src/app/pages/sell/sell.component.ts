@@ -1,79 +1,107 @@
 import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { SellService } from './sell.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-sell',
   standalone: true,
   imports: [
-    RouterLink,
+    CommonModule,
+    FormsModule,
     NavbarComponent,
     FooterComponent
   ],
-
   templateUrl: './sell.component.html',
   styleUrls: ['./sell.component.scss', '../../../styles.scss']
 })
 export class SellComponent {
-  productForm: FormGroup;
   selectedImage: File | null = null;
   message: string = '';
   isSuccess: boolean = false;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
-    this.productForm = this.fb.group({
-      title: [''],
-      author: [''],
-      description: [''],
-      subject: [''],
-      category: [''],
-      format: [''],
-      price: [''],
-      listing_condition: ['New']
-    });
-  }
+  product = {
+    title: '',
+    author: '',
+    description: '',
+    price: '',
+    subject: '',
+    category: ''
+  };
 
-  onFileChange(event: any) {
-    if (event.target.files.length > 0) {
-      this.selectedImage = event.target.files[0];
+  constructor(private http: HttpClient, private uploadService: SellService, private router: Router,) {}
+
+  upload(): void {
+    console.log('Entered upload() function');
+
+    if (!this.product.title || !this.product.price) {
+      this.message = 'Please fill in all required fields.';
+      this.isSuccess = false;
+      return;
     }
-  }
 
-  onSubmit() {
     const formData = new FormData();
-    for (const key in this.productForm.value) {
-      formData.append(key, this.productForm.value[key]);
-    }
+    Object.entries(this.product).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
 
     if (this.selectedImage) {
+      console.log('Image selected');
       formData.append('image', this.selectedImage);
     }
 
-    this.http.post('http://rebook-bmsd22a.bbzwinf.ch/httpdocs/backend/upload-listing.php', formData)
-      .subscribe({
-        next: (response) => {
-          this.message = 'Produkt erfolgreich hochgeladen!';
-          this.isSuccess = true;
-          this.productForm.reset();
-        },
-        error: (error) => {
-          this.message = 'Fehler beim Hochladen des Produkts.';
-          this.isSuccess = false;
-          console.error(error);
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.message = 'You must be logged in to upload.';
+      this.isSuccess = false;
+      return;
+    }
+
+    this.http.post(
+      'https://rebook-bmsd22a.bbzwinf.ch/backend/upload-listing.php',
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-      });
-  }
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
+      }
+    ).subscribe({
+      next: res => {
+        console.log('Uploaded:', res);
+        this.message = 'Upload successful!';
+        this.isSuccess = true;
+        alert('Item uploaded successfully.');
+        this.resetForm();
+        this.router.navigate(['/profile']);
+      },
+      error: err => {
+        console.error('Upload error:', err);
+        this.message = 'Upload failed.';
+        this.isSuccess = false;
+      }
+    });
   }
 
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    if (event.dataTransfer?.files.length) {
-      this.selectedImage = event.dataTransfer.files[0];
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files?.length) {
+      this.selectedImage = input.files[0];
     }
+  }
+
+  private resetForm(): void {
+    this.product = {
+      title: '',
+      author: '',
+      description: '',
+      price: '',
+      subject: '',
+      category: ''
+    };
+    this.selectedImage = null;
   }
 }

@@ -3,37 +3,46 @@
 
   <section class="cart-header">
     <h2>SHOPPING CART</h2>
-    <a href="/browse" class="continue-shopping">← Continue shopping</a>
+    <a routerLink="/browse" class="continue-shopping">← Continue shopping</a>
   </section>
 
   <section class="cart-items">
-    <div class="cart-item" *ngFor="let item of cart; let i = index">
-      <img [src]="item.image" [alt]="item.title" routerLink="/product">
-      <div class="item-info">
-        <h4>{{ item.title }}</h4>
-        <p>{{ item.author }}</p>
-      </div>
+    <div *ngIf="cart && cart.length; else noItems">
 
-      <div class="quantity-control">
-        <button class="quantity-btn" (click)="increaseQuantity(item)">▲</button>
-        <span>{{ item.quantity }}</span>
-        <button class="quantity-btn" (click)="decreaseQuantity(item)">▼</button>
-      </div>
+      <div class="cart-item">
+      <a
+         *ngFor="let item of cart; let i = index"
+         [routerLink]="['/product']"
+         [queryParams]="{ id: item.product_id }">
 
-      <p class="item-price">CHF {{ (item.price * item.quantity).toFixed(2) }}</p>
+        <img *ngIf="item.image"  [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + item.image" [alt]="item.title">
+        </a>
+        <div class="item-info" *ngFor="let item of cart; let i = index">
+          <h4>{{ item.title }}</h4>
+          <p>{{ item.author }}</p>
+        </div>
 
-      <button class="remove-btn" (click)="removeItem(i)">🗑</button>
+        <p class="item-price" *ngFor="let item of cart; let i = index">
+          CHF {{ item.price }}
+        <button class="remove-btn" (click)="removeItem(i)">🗑</button>
+        </p>
+    </div>
     </div>
 
-    <div *ngIf="cart.length === 0" style="text-align: center; margin-top: 20px;">
-      Your cart is empty.
-    </div>
+    <ng-template #noItems>
+      <p>🛒 Your cart is empty.</p>
+    </ng-template>
+
   </section>
 
   <section class="cart-summary">
     <h3>Summary</h3>
     <p class="total-price">{{ getTotalPrice() }}</p>
-    <button *ngIf="cart.length > 0" routerLink="/checkout" class="checkout-btn">Go to checkout</button>
+    <button *ngIf="cart.length > 0" (click)="createOrder()" class="checkout-btn">
+      Go to checkout
+    </button>
+
+
   </section>
 
   <app-footer></app-footer>

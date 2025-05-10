@@ -10,7 +10,10 @@
   text-align: center;
   padding: 50px 10%;
 }
-
+.book-list a {
+  text-decoration: none;
+  color: inherit;
+}
 h2 {
   font-size: 2rem;
   font-weight: bold;

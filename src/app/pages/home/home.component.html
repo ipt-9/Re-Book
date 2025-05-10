@@ -23,34 +23,25 @@
     </div>
   </section>
 
-  <section class="top-picks">
+  <section class="top-picks" *ngIf="topBooks.length">
     <h2>TOP PICKS</h2>
     <div class="book-list">
-      <div routerLink="/product" class="book-item">
-        <img src="/zgb.jpg" alt="ZGB/OR">
-        <h4>ZGB/OR</h4>
-        <p>Author</p>
-        <strong>Price</strong>
-      </div>
-
-      <div routerLink="/product" class="book-item">
-        <img src="/wirtschaft_ordner.jpeg" alt="Brennpunkt Wirtschaft">
-        <h4>Brennpunkt Wirtschaft Und Gesellschaft 1</h4>
-        <p>Author</p>
-        <strong>Price</strong>
-      </div>
-
-      <div routerLink="/product" class="book-item">
-        <img src="/frw1.webp" alt="Finanzwesen 1">
-        <h4>Finanz- und Rechnungswesen - Grundlagen 1</h4>
-        <p>Author</p>
-        <strong>Price</strong>
-      </div>
+      <a
+        *ngFor="let book of topBooks"
+        [routerLink]="['/product']"
+        [queryParams]="{ id: book.product_id }"
+        class="book-item"
+      >
+        <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title" />
+        <h4>{{ book.title }}</h4>
+        <p>{{ book.author }}</p>
+        <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
+      </a>
     </div>
   </section>
 
   <section class="categories">
-    <h2>Kategorien</h2>
+    <h2>Categories</h2>
     <div class="category-list">
       <div class="category-item" [routerLink]="['/browse']" [queryParams]="{ category: 'School Books' }">
         <img src="/schulbücher.jpg" alt="Schulbücher">
@@ -104,25 +95,29 @@
     <div class="pricing-item">
       <h3>Premium</h3>
       <p>
-        Unlock all benefits at a single price:
-        <li>Prioritized access to top items</li>
-        <li>Accelerate your sales</li>
-        <li>Improved, optimized feed</li>
-        <li>And much more!</li>
+        Unlock all benefits:
+        <br>
+        Official seller status for more trust<br>
+        Automatic boosts on all your listings<br>
+        Smarter feed and better sales<br>
+        Lower selling fees & exclusive rewards
       </p>
-      <strong>CHF 20</strong>
+      <strong>CHF 10</strong>
+      <a routerLink="/pricing" class="btn">Check it out!</a>
     </div>
 
+
     <div class="pricing-item">
-      <h3>Single price</h3>
+      <h3>Booster</h3>
       <p>
         Get individual benefits at a lower price:
-        <li>Access to selected articles</li>
-        <li>Increase visibility for certain articles</li>
-        <li>Adjust your feed optimizations</li>
-        <li>Only pay for what you really need!</li>
+        <br>
+        Increase visibility for chosen article<br>
+        Speed up the selling process<br>
+        Only pay for what you really need!
       </p>
       <strong>CHF 3</strong>
+      <a routerLink="/pricing" class="btn">Check it out!</a>
     </div>
   </section>
 

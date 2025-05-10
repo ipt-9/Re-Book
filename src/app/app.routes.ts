@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { SearchComponent } from './pages/search/search.component';
 import { SellComponent } from './pages/sell/sell.component';
 import { BrowseComponent } from './pages/browse/browse.component';
 import { ProductComponent } from './pages/product/product.component';
@@ -22,7 +21,6 @@ import { NavbarComponent } from './pages/navbar/navbar.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'search', component: SearchComponent },
   { path: 'sell', component: SellComponent },
   { path: 'browse', component: BrowseComponent },
   { path: 'product', component: ProductComponent },
@@ -41,3 +39,4 @@ export const routes: Routes = [
   { path: 'footer', component: FooterComponent },
   { path: 'navbar', component: NavbarComponent }
 ];
+

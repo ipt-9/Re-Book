@@ -1,60 +1,40 @@
-<div class="product-container">
-<app-navbar></app-navbar>
+<div class="product-container" *ngIf="product">
+  <app-navbar></app-navbar>
 
   <section class="product-details">
     <div class="product-images">
-      <img src="/zgb.jpg" alt="ZGB/OR" class="main-image">
-      <div class="thumbnail-images">
-        <img src="/zgb.jpg" alt="ZGB/OR">
-        <img src="/zgb.jpg" alt="ZGB/OR">
-        <img src="/zgb.jpg" alt="ZGB/OR">
-      </div>
+      <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + product.image" [alt]="product.title" class="main-image">
     </div>
 
     <div class="product-info">
-      <h1>ZGB/OR Kaufmännische Ausgabe</h1>
-      <p class="author">Ernst J. Schneiter</p>
-      <p class="book-condition"><strong>BOOK CONDITION: </strong> NEW</p>
-      <p class="book-category"><strong>Zivilgesetzbuch, Obligationenrecht, SchKG, BV Und Weitere Erlasse</strong></p>
-      <p class="description">
-        Die kaufmännische Ausgabe ZGB/OR zeichnet sich dadurch aus, dass sie sich inhaltlich
-        und konzeptionell konsequent auf die Bedürfnisse des kaufmännischen Bereichs ausrichtet.
-        Die deutsche- und die französischsprachige Ausgabe sind identisch aufgebaut.
-      </p>
-      <p class="price"><strong>CHF 9.90</strong></p>
-      <button routerLink="/cart" class="cart-btn">GO TO SHOPPING CART</button>
-      <button class="wishlist-btn">❤️</button>
+      <h1>{{ product.title }}</h1>
+      <p class="author">{{ product.author }}</p>
+      <p class="book-condition"><strong>BOOK CONDITION:</strong> NEW</p>
+      <p class="book-category"><strong>{{ product.category }}</strong></p>
+      <p class="description">{{ product.description }}</p>
+      <p class="price"><strong>CHF {{ product.price }}</strong></p>
+      <button (click)="addToCart()" class="cart-btn">ADD TO SHOPPING CART</button>
+      <button class="wishlist-btn" (click)="addToFavorites(product)">❤️</button>
     </div>
   </section>
 
-  <section class="suggestions">
-    <div><h2>SUGGESTIONS</h2>
-    <div class="suggested-books">
-      <div  routerLink="/product" class="book-item">
-        <img src="/wirtschaft_ordner.jpeg" alt="Brennpunkt Wirtschaft">
-        <h4>Brennpunkt Wirtschaft Und Gesellschaft 1</h4>
-        <strong>CHF 72.00</strong>
-      </div>
-
-      <div  routerLink="/product"  class="book-item">
-        <img src="/grammatik.jpg" alt="Übungsgrammatik">
-        <h4>Systematische Übungsgrammatik</h4>
-        <strong>CHF 25.90</strong>
-      </div>
-
-      <div  routerLink="/product" class="book-item">
-        <img src="/gold.webp" alt="Gold B2">
-        <h4>Gold B2 First</h4>
-        <strong>CHF 46.70</strong>
-      </div>
-
-      <div  routerLink="/product" class="book-item">
-        <img src="/business.jpg" alt="Business Partner">
-        <h4>Business Partner B1+</h4>
-        <strong>CHF 35.90</strong>
-      </div>
-    </div>
+  <section class="top-picks" *ngIf="topBooks.length">
+    <h2>TOP PICKS</h2>
+    <div class="book-list">
+      <a
+        *ngFor="let book of topBooks"
+        [routerLink]="['/product']"
+        [queryParams]="{ id: book.product_id }"
+        class="book-item"
+      >
+        <img [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + book.image" [alt]="book.title" />
+        <h4>{{ book.title }}</h4>
+        <p>{{ book.author }}</p>
+        <strong>CHF {{ book.price | number: '1.2-2' }}</strong>
+      </a>
     </div>
   </section>
-<app-footer></app-footer>
+
+
+  <app-footer></app-footer>
 </div>
