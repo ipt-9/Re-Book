@@ -105,6 +105,8 @@ h2 {
   background: #0056b3;
 }
 
+
+
 .pricing {
   display: flex;
   justify-content: center;
@@ -141,4 +143,19 @@ h2 {
   display: block;
   color: #007bff;
   margin: 10px 0;
+}
+
+.pricing-item .btn {
+  display: inline-block;
+  margin-top: 10px;
+  background: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pricing-item .btn:hover {
+  background: #0056b3;
 }

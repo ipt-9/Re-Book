@@ -8,26 +8,23 @@
 
   <section class="cart-items">
     <div *ngIf="cart && cart.length; else noItems">
-
-      <div class="cart-item">
-      <a
-         *ngFor="let item of cart; let i = index"
-         [routerLink]="['/product']"
-         [queryParams]="{ id: item.product_id }">
-
-        <img *ngIf="item.image"  [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + item.image" [alt]="item.title">
+      <div *ngFor="let item of cart; let i = index" class="cart-item">
+        <a [routerLink]="['/product']" [queryParams]="{ id: item.product_id }">
+          <img *ngIf="item.image" [src]="'https://rebook-bmsd22a.bbzwinf.ch/' + item.image" [alt]="item.title">
         </a>
-        <div class="item-info" *ngFor="let item of cart; let i = index">
+
+        <div class="item-info">
           <h4>{{ item.title }}</h4>
           <p>{{ item.author }}</p>
         </div>
 
-        <p class="item-price" *ngFor="let item of cart; let i = index">
+        <div class="item-price">
           CHF {{ item.price }}
-        <button class="remove-btn" (click)="removeItem(i)">🗑</button>
-        </p>
+          <button class="remove-btn" (click)="removeItem(i)">🗑</button>
+        </div>
+      </div>
     </div>
-    </div>
+
 
     <ng-template #noItems>
       <p>🛒 Your cart is empty.</p>

@@ -73,18 +73,25 @@
   color: #2c3e50;
   margin-top: 15px;
 }
-
 .buy-btn {
+  display: inline-block;
   background: #6a5acd;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
   cursor: pointer;
-  margin-top: 15px;
+  margin-top: 20px;
+  text-align: center;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(106, 90, 205, 0.2);
+  text-decoration: none;
 }
 
 .buy-btn:hover {
   background: #5845c3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(88, 69, 195, 0.3);
 }
